@@ -22,6 +22,8 @@ return {
         version = false,
         build = ":TSUpdate",
     },
+    { "nvim-treesitter/nvim-treesitter-context" },
+    { "windwp/nvim-ts-autotag" },
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
@@ -38,11 +40,11 @@ return {
         "lewis6991/gitsigns.nvim",
         opts = {
             signs = {
-                add = { text = '+' },
-                change = { text = '~' },
-                delete = { text = '_' },
-                topdelete = { text = '‾' },
-                changedelete = { text = '~' },
+                add = { text = "+" },
+                change = { text = "~" },
+                delete = { text = "_" },
+                topdelete = { text = "‾" },
+                changedelete = { text = "~" },
             }
         },
     },
@@ -87,14 +89,19 @@ return {
         version = "^5",
         lazy = false,
     },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = true,
+    },
 
     -- themes
     { "rose-pine/neovim" },
-    { "folke/tokyonight.nvim" },
     { "EdenEast/nightfox.nvim" },
     { "olimorris/onedarkpro.nvim" },
-    { "rebelot/kanagawa.nvim" },
-    { "embark-theme/vim" },
-    { "Shatur/neovim-ayu" },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000
+    },
 }
