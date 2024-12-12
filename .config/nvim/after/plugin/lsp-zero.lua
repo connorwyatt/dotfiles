@@ -9,8 +9,8 @@ require("mason-lspconfig").setup_handlers {
     ["csharp_ls"] = function()
         require("lspconfig").csharp_ls.setup {
             handlers = {
-                ["textDocument/definition"] = require('csharpls_extended').handler,
-                ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+                ["textDocument/definition"] = require("csharpls_extended").handler,
+                ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
             },
         }
     end,
@@ -35,14 +35,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local cmp = require("cmp")
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+    "confirm_done",
+    cmp_autopairs.on_confirm_done()
 )
 cmp.setup({
     sources = {
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
+        { name = "rg" },
     },
     snippet = {
         expand = function(args)

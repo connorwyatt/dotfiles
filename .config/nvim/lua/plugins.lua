@@ -67,6 +67,8 @@ return {
     { "neovim/nvim-lspconfig" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/nvim-cmp" },
+    { "hrsh7th/cmp-nvim-lsp-signature-help" },
+    { "lukas-reineke/cmp-rg" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "mfussenegger/nvim-dap" },
