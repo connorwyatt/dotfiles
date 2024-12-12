@@ -1,8 +1,47 @@
-require("telescope").setup {
-    defaults = {
-        layout_strategy = "center",
-        layout_config = { prompt_position = "top", anchor = "N" },
+local dropdown = {
+    results_title = false,
+    sorting_strategy = "ascending",
+    prompt_position = "top",
+    layout_strategy = "center",
+    layout_config = {
+        prompt_position = "top",
+        anchor = "N",
+        preview_cutoff = 1,
+
+        width = function(_, max_columns, _)
+            return math.min(max_columns, 120)
+        end,
+
+        height = function(_, _, max_lines)
+            return math.min(max_lines, 15)
+        end,
     },
+    border = true,
+    borderchars = {
+        prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+        results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+}
+
+local ivy = {
+    sorting_strategy = "ascending",
+
+    layout_strategy = "bottom_pane",
+    layout_config = {
+        height = 25,
+    },
+
+    border = true,
+    borderchars = {
+        prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+        results = { " " },
+        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+}
+
+require("telescope").setup {
+    defaults = dropdown,
 }
 
 local builtin = require("telescope.builtin")
