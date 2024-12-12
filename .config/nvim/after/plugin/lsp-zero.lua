@@ -6,6 +6,14 @@ require("mason-lspconfig").setup_handlers {
     function(server_name)
         require("lspconfig")[server_name].setup {}
     end,
+    ["csharp_ls"] = function()
+        require("lspconfig").csharp_ls.setup {
+            handlers = {
+                ["textDocument/definition"] = require('csharpls_extended').handler,
+                ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+            },
+        }
+    end,
 }
 
 vim.api.nvim_create_autocmd("LspAttach", {

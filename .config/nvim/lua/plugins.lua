@@ -77,6 +77,7 @@ return {
             "nvim-neotest/nvim-nio"
         },
     },
+    { "Decodetalkers/csharpls-extended-lsp.nvim" },
     { "nvim-neotest/nvim-nio" },
     {
         "nvim-lualine/lualine.nvim",
