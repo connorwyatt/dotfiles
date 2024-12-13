@@ -14,10 +14,6 @@ return {
         },
     },
     {
-        "zaldih/themery.nvim",
-        lazy = false,
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         version = false,
         build = ":TSUpdate",
