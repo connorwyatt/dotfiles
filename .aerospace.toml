@@ -28,8 +28,8 @@ default-root-container-orientation = 'auto'
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
-# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
-# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# You can effectively turn off macOS "Hide application" (h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit h or alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = true
 
@@ -46,12 +46,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 16
-inner.vertical =   16
-outer.left =       16
-outer.bottom =     16
-outer.top =        16
-outer.right =      16
+inner.horizontal = 12
+inner.vertical =   12
+outer.left =       12
+outer.bottom =     12
+outer.top =        12
+outer.right =      12
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -84,54 +84,54 @@ outer.right =      16
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-alt-slash = 'layout tiles horizontal vertical'
-cmd-alt-comma = 'layout accordion horizontal vertical'
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-alt-h = 'focus left'
-cmd-alt-j = 'focus down'
-cmd-alt-k = 'focus up'
-cmd-alt-l = 'focus right'
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-alt-shift-h = 'move left'
-cmd-alt-shift-j = 'move down'
-cmd-alt-shift-k = 'move up'
-cmd-alt-shift-l = 'move right'
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-cmd-alt-shift-minus = 'resize smart -50'
-cmd-alt-shift-equal = 'resize smart +50'
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-cmd-alt-1 = 'workspace 1'
-cmd-alt-2 = 'workspace 2'
-cmd-alt-3 = 'workspace 3'
-cmd-alt-4 = 'workspace 4'
-cmd-alt-5 = 'workspace 5'
-cmd-alt-6 = 'workspace 6'
-cmd-alt-7 = 'workspace 7'
-cmd-alt-8 = 'workspace 8'
-cmd-alt-9 = 'workspace 9'
+alt-q = 'workspace Q'
+alt-w = 'workspace W'
+alt-e = 'workspace E'
+alt-a = 'workspace A'
+alt-s = 'workspace S'
+alt-d = 'workspace D'
+alt-z = 'workspace Z'
+alt-x = 'workspace X'
+alt-c = 'workspace C'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-alt-shift-1 = 'move-node-to-workspace 1'
-cmd-alt-shift-2 = 'move-node-to-workspace 2'
-cmd-alt-shift-3 = 'move-node-to-workspace 3'
-cmd-alt-shift-4 = 'move-node-to-workspace 4'
-cmd-alt-shift-5 = 'move-node-to-workspace 5'
-cmd-alt-shift-6 = 'move-node-to-workspace 6'
-cmd-alt-shift-7 = 'move-node-to-workspace 7'
-cmd-alt-shift-8 = 'move-node-to-workspace 8'
-cmd-alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-q = 'move-node-to-workspace Q'
+alt-shift-w = 'move-node-to-workspace W'
+alt-shift-e = 'move-node-to-workspace E'
+alt-shift-a = 'move-node-to-workspace A'
+alt-shift-s = 'move-node-to-workspace S'
+alt-shift-d = 'move-node-to-workspace D'
+alt-shift-z = 'move-node-to-workspace Z'
+alt-shift-x = 'move-node-to-workspace X'
+alt-shift-c = 'move-node-to-workspace C'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-cmd-alt-tab = 'workspace-back-and-forth'
+alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-cmd-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-alt-shift-semicolon = 'mode service'
+alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -144,7 +144,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-cmd-alt-shift-h = ['join-with left', 'mode main']
-cmd-alt-shift-j = ['join-with down', 'mode main']
-cmd-alt-shift-k = ['join-with up', 'mode main']
-cmd-alt-shift-l = ['join-with right', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
