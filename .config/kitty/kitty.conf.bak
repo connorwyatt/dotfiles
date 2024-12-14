@@ -1,7 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Frappe
+# Catppuccin-Macchiato
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -13,12 +13,18 @@ cursor_shape_unfocused hollow
 
 macos_option_as_alt right
 
-macos_titlebar_color background
+# macos_titlebar_color background
 
-#window_padding_width 8
+hide_window_decorations titlebar-only
+
+background_opacity 0.75
+
+background_blur 64
+
+window_padding_width 8
 
 # BEGIN_KITTY_FONTS
-font_family      family="JetBrains Mono"
+font_family      family="Roboto Mono"
 bold_font        family='JetBrains Mono' style=Bold variable_name=JetBrainsMono
 italic_font      auto
 bold_italic_font family='JetBrains Mono' style=Bold variable_name=JetBrainsMonoItalic
