@@ -34,7 +34,12 @@ return {
                 wrap = true,
             },
             quickfile = { enabled = true },
-            scroll = { enabled = true },
+            scroll = {
+                enabled = true,
+                animate = {
+                    duration = { step = 15, total = 100 },
+                },
+            },
         },
         keys = {
             { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
@@ -54,11 +59,11 @@ return {
                     end
                     vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-                    Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-                    Snacks.toggle.diagnostics():map("<leader>ud")
-                    Snacks.toggle.inlay_hints():map("<leader>uh")
-                    Snacks.toggle.indent():map("<leader>ug")
-                    Snacks.toggle.dim():map("<leader>uD")
+                    Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
+                    Snacks.toggle.diagnostics():map("<leader>td")
+                    Snacks.toggle.inlay_hints():map("<leader>th")
+                    Snacks.toggle.indent():map("<leader>ti")
+                    Snacks.toggle.dim():map("<leader>tf")
                 end,
             })
         end,
@@ -75,7 +80,10 @@ return {
     {
         "mbbill/undotree"
     },
-    { "ThePrimeagen/harpoon" },
+    {
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+    },
     { "tpope/vim-fugitive" },
     {
         "lewis6991/gitsigns.nvim",
