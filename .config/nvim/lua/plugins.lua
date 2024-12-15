@@ -77,9 +77,8 @@ return {
             "nvim-lua/plenary.nvim"
         },
     },
-    {
-        "mbbill/undotree"
-    },
+    { "petertriho/nvim-scrollbar" },
+    { "mbbill/undotree" },
     {
         "chentoast/marks.nvim",
         event = "VeryLazy",
