@@ -137,7 +137,7 @@ return {
     { "xiyaowong/transparent.nvim" },
 
     -- themes
-    { "rose-pine/neovim" },
+    { "rose-pine/neovim", name = "rose-pine.nvim" },
     { "EdenEast/nightfox.nvim" },
     { "olimorris/onedarkpro.nvim" },
     {
