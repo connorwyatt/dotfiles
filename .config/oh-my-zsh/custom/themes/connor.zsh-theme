@@ -29,14 +29,14 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" %{$white_foreground%}on%{%f%} %{$green_foreground%
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$yellow_foreground%}$plus_minus_glyph%{%f%}"
 
-#PROMPT="
+#PROMPT="\
 #%{$blue_foreground%}$user_glyph  %n%{%f%}@%{$magenta_foreground%}%m%{%f%}\
 # %{$white_foreground%}in%{%f%} \
 #%{$yellow_foreground%}$directory_glyph  %~%{$reset_color%}%{%f%}\
 #${git_info}
 #%{$magenta_foreground%}$%{%f%} "
 
-PROMPT="
+PROMPT="\
 %{$blue_foreground%}%n%{%f%}\
  %{$white_foreground%}in%{%f%} \
 %{$yellow_foreground%}$directory_glyph  %~%{$reset_color%}%{%f%}\
@@ -50,7 +50,7 @@ ${git_info}
 #ZSH_THEME_GIT_PROMPT_SUFFIX=" %{$reset_color$green_foreground%}$right_half_circle_glyph%{$reset_color%}"
 #ZSH_THEME_GIT_PROMPT_DIRTY=" $plus_minus_glyph"
 #
-#PROMPT="
+#PROMPT="\
 #%{$blue_foreground%}$left_half_circle_glyph%{$black_foreground$blue_background%} $user_glyph  %n %{$blue_foreground$magenta_background%}$right_half_circle_glyph\
 # %{$black_foreground%}%m %{$reset_color$magenta_foreground%}$right_half_circle_glyph\
 # %{$reset_color$white_foreground%}in%{%f%}\
