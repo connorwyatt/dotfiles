@@ -13,7 +13,7 @@ vim.keymap.set(
     "n",
     "<leader>lh",
     function()
-        vim.cmd.RustLsp({"hover", "actions"})
+        vim.cmd.RustLsp({ "hover", "actions" })
     end,
     { silent = true, buffer = bufnr }
 )

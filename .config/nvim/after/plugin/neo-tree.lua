@@ -8,8 +8,8 @@ require("neo-tree").setup({
     },
     group_empty_dirs = true,
     filesystem = {
-        hijack_netrw_behavior = "open_default",
+        hijack_netrw_behavior = "disabled",
     },
 })
 
-vim.keymap.set("n", "<leader>pv", "<cmd>:Neotree position=current reveal reveal_force_cwd<cr>")
+vim.keymap.set("n", "<leader>pv", "<cmd>:Neotree<cr>", { desc = "Neotree" })

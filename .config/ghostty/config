@@ -1,0 +1,19 @@
+theme = dark:rose-pine-moon,light:rose-pine-dawn
+
+mouse-hide-while-typing = true
+
+window-padding-x = 8
+window-padding-y = 8
+window-padding-color = extend
+
+background-opacity = 0.9
+background-blur-radius = 64
+
+macos-titlebar-style = hidden
+
+font-family = "Iosevka Extended"
+font-family-italic = "Iosevka Extended Oblique"
+font-family-bold = "Iosevka Heavy Extended"
+font-family-bold-italic = "Iosevka Heavy Extended Oblique"
+
+font-size = 15

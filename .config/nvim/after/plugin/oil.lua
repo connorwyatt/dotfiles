@@ -1,5 +1,5 @@
 require("oil").setup({
-  default_file_explorer = false,
+  default_file_explorer = true,
   columns = {
     "icon",
     "size",
@@ -44,7 +44,7 @@ require("oil").setup({
   -- Set to `false` to disable, or "name" to keep it on the file names
   constrain_cursor = "editable",
   -- Set to true to watch the filesystem for changes and reload oil
-  watch_for_changes = false,
+  watch_for_changes = true,
   -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
   -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
   -- Additionally, if it is a string that matches "actions.<name>",
@@ -73,7 +73,7 @@ require("oil").setup({
   use_default_keymaps = true,
   view_options = {
     -- Show files and directories that start with "."
-    show_hidden = false,
+    show_hidden = true,
     -- This function defines what is considered a "hidden" file
     is_hidden_file = function(name, bufnr)
       local m = name:match("^%.")
@@ -81,7 +81,7 @@ require("oil").setup({
     end,
     -- This function defines what will never be shown, even when `show_hidden` is set
     is_always_hidden = function(name, bufnr)
-      return false
+      return name == ".DS_Store"
     end,
     -- Sort file names with numbers in a more intuitive order for humans.
     -- Can be "fast", true, or false. "fast" will turn it off for large directories.
@@ -194,4 +194,4 @@ require("oil").setup({
   },
 })
 
-vim.keymap.set("n", "<leader>po", "<cmd>:Oil<cr>")
+vim.keymap.set("n", "<leader>po", "<cmd>:Oil<cr>", { desc = "Oil" })

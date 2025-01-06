@@ -1,5 +1,4 @@
 return {
-    { dir = "~/Code/sakura.nvim" },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -18,6 +17,12 @@ return {
         "nvim-treesitter/nvim-treesitter",
         version = false,
         build = ":TSUpdate",
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
     },
     {
         "folke/snacks.nvim",
@@ -78,13 +83,11 @@ return {
             "nvim-lua/plenary.nvim"
         },
     },
-    { "petertriho/nvim-scrollbar" },
     { "mbbill/undotree" },
     {
         "chentoast/marks.nvim",
         event = "VeryLazy",
     },
-    { "tpope/vim-fugitive" },
     { "lewis6991/gitsigns.nvim" },
     { "pwntester/octo.nvim" },
     {
@@ -106,7 +109,7 @@ return {
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp-signature-help" },
-    { "lukas-reineke/cmp-rg" },
+    { "hrsh7th/cmp-buffer" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "mfussenegger/nvim-dap" },
@@ -135,10 +138,24 @@ return {
         event = "InsertEnter",
         config = true,
     },
-    { "xiyaowong/transparent.nvim" },
+    -- { "xiyaowong/transparent.nvim" },
+    {
+        "f-person/auto-dark-mode.nvim",
+        opts = {
+            update_interval = 1000,
+            set_dark_mode = function()
+                vim.api.nvim_set_option_value("background", "dark", {})
+                vim.cmd("colorscheme rose-pine-moon")
+            end,
+            set_light_mode = function()
+                vim.api.nvim_set_option_value("background", "light", {})
+                vim.cmd("colorscheme rose-pine-dawn")
+            end,
+        }
+    },
 
     -- themes
-    { "rose-pine/neovim", name = "rose-pine.nvim" },
+    { "rose-pine/neovim",          name = "rose-pine.nvim" },
     { "EdenEast/nightfox.nvim" },
     { "olimorris/onedarkpro.nvim" },
     {

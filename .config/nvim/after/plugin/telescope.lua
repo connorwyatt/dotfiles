@@ -41,13 +41,12 @@ local ivy = {
 }
 
 require("telescope").setup {
-    defaults = dropdown,
+    defaults = ivy,
 }
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>fgf", builtin.git_files, { desc = "Find git files" })
-vim.keymap.set("n", "<leader>fgb", builtin.git_branches, { desc = "Find git branches" })
+vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find git files" })
 vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
