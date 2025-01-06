@@ -138,7 +138,7 @@ return {
         event = "InsertEnter",
         config = true,
     },
-    -- { "xiyaowong/transparent.nvim" },
+    { "xiyaowong/transparent.nvim" },
     {
         "f-person/auto-dark-mode.nvim",
         opts = {
