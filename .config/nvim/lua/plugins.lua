@@ -120,7 +120,7 @@ return {
             "nvim-neotest/nvim-nio"
         },
     },
-    { "Decodetalkers/csharpls-extended-lsp.nvim" },
+    { "stevearc/conform.nvim" },
     { "nvim-neotest/nvim-nio" },
     {
         "nvim-lualine/lualine.nvim",
@@ -155,7 +155,7 @@ return {
     },
 
     -- themes
-    { "rose-pine/neovim",          name = "rose-pine.nvim" },
+    { "rose-pine/neovim",         name = "rose-pine.nvim" },
     { "EdenEast/nightfox.nvim" },
     { "olimorris/onedarkpro.nvim" },
     {

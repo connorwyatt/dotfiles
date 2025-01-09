@@ -37,4 +37,5 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
 
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 vim.keymap.set("n", "<leader>dd", "<cmd> lua vim.diagnostic.open_float() <CR>", { desc = "Show diagnostic overlay" })
