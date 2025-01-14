@@ -118,7 +118,6 @@ require("lazy").setup({
         },
     },
     spec = {
-        { dir = "~/Code/sakura.nvim" },
         {
             "folke/which-key.nvim",
             event = "VeryLazy",
