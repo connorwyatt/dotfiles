@@ -62,9 +62,6 @@ cmp.event:on(
     cmp_autopairs.on_confirm_done()
 )
 cmp.setup({
-    view = {
-        entries = { name = 'custom', selection_order = 'near_cursor' }
-    },
     formatting = {
         format = lspkind.cmp_format({
             mode = "symbol_text",
