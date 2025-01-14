@@ -47,14 +47,24 @@ require("conform").setup({
 
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local lspkind = require("lspkind")
 cmp.event:on(
     "confirm_done",
     cmp_autopairs.on_confirm_done()
 )
 cmp.setup({
+    view = {
+        entries = { name = 'custom', selection_order = 'near_cursor' }
+    },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "symbol_text",
+        }),
+    },
     sources = {
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
+        { name = "path" },
         { name = "buffer" },
     },
     snippet = {
@@ -70,4 +80,12 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true })
     }),
     preselect = "item",
+})
+cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp_document_symbol' }
+    }, {
+        { name = 'buffer' }
+    })
 })
