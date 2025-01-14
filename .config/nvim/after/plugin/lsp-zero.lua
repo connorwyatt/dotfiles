@@ -6,6 +6,15 @@ require("mason-lspconfig").setup_handlers {
     function(server_name)
         require("lspconfig")[server_name].setup {}
     end,
+    ["omnisharp"] = function()
+        require("lspconfig").omnisharp.setup {
+            settings = {
+                RoslynExtensionsOptions = {
+                    EnableImportCompletion = true,
+                },
+            },
+        }
+    end
 }
 
 vim.api.nvim_create_autocmd("LspAttach", {
