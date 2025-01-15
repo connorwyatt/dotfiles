@@ -41,7 +41,7 @@ local ivy = {
 }
 
 require("telescope").setup {
-    defaults = ivy,
+    defaults = dropdown,
 }
 
 local builtin = require("telescope.builtin")

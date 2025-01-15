@@ -1,16 +1,24 @@
+local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 require("mason").setup({
     automatic_installation = true,
 })
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers {
     function(server_name)
-        require("lspconfig")[server_name].setup {}
+        require("lspconfig")[server_name].setup {
+            capabilities = default_capabilities
+        }
     end,
     ["omnisharp"] = function()
         require("lspconfig").omnisharp.setup {
+            capabilities = default_capabilities,
             settings = {
                 RoslynExtensionsOptions = {
+                    EnableDecompilationSupport = true,
+                    EnableAnalyzersSupport = nil,
                     EnableImportCompletion = true,
+                    AnalyzeOpenDocumentsOnly = nil,
                 },
             },
         }
@@ -48,10 +56,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 require("conform").setup({
     formatters_by_ft = {
         cs = { "csharpier", "fallback", stop_after_first = true },
+        ["*"] = { "trim_whitespace" },
     },
     default_format_opts = {
         lsp_format = "fallback",
     },
+    format_on_save = function(bufnr)
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+        end
+        return { timeout_ms = 500, lsp_format = "fallback" }
+    end,
 })
 
 local cmp = require("cmp")
