@@ -71,6 +71,18 @@ vim.opt.foldlevel = 99
 -- KEYMAPPING --
 ----------------
 
+-- Disable arrow keys in normal mode.
+vim.keymap.set("n", "<left>", "<cmd>echo 'Use h to move!!'<CR>")
+vim.keymap.set("n", "<right>", "<cmd>echo 'Use l to move!!'<CR>")
+vim.keymap.set("n", "<up>", "<cmd>echo 'Use k to move!!'<CR>")
+vim.keymap.set("n", "<down>", "<cmd>echo 'Use j to move!!'<CR>")
+
+-- Split keybinds.
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left split" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right split" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower split" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper split" })
+
 -- Clear search highlights on escape.
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -143,6 +155,7 @@ require("lazy").setup({
                 "nvim-treesitter/nvim-treesitter",
             },
         },
+        { "tpope/vim-surround" },
         {
             "folke/snacks.nvim",
             priority = 1000,
@@ -198,9 +211,87 @@ require("lazy").setup({
             "nvim-telescope/telescope.nvim",
             tag = "0.1.8",
             dependencies = {
-                "nvim-lua/plenary.nvim"
+                "nvim-lua/plenary.nvim",
+                {
+                    "nvim-telescope/telescope-fzf-native.nvim",
+                    build = "make",
+                    cond = function()
+                        return vim.fn.executable "make" == 1
+                    end,
+                },
+                { "nvim-telescope/telescope-ui-select.nvim" },
             },
+            config = function()
+                local dropdown = {
+                    results_title = false,
+                    sorting_strategy = "ascending",
+                    prompt_position = "top",
+                    layout_strategy = "center",
+                    layout_config = {
+                        prompt_position = "top",
+                        anchor = "N",
+                        preview_cutoff = 1,
+
+                        width = function(_, max_columns, _)
+                            return math.min(max_columns, 120)
+                        end,
+
+                        height = function(_, _, max_lines)
+                            return math.min(max_lines, 15)
+                        end,
+                    },
+                    border = true,
+                    borderchars = {
+                        prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+                        results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+                        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                    },
+                }
+
+                local ivy = {
+                    sorting_strategy = "ascending",
+
+                    layout_strategy = "bottom_pane",
+                    layout_config = {
+                        height = 25,
+                    },
+
+                    border = true,
+                    borderchars = {
+                        prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+                        results = { " " },
+                        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                    },
+                }
+
+                require("telescope").setup {
+                    defaults = dropdown,
+                    extensions = {
+                        ["ui-select"] = {
+                            require("telescope.themes").get_dropdown(),
+                        },
+                    },
+                }
+
+                require("telescope").load_extension("fzf")
+                require("telescope").load_extension("ui-select")
+
+                local builtin = require("telescope.builtin")
+                vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+                vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find git files" })
+                vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find live grep" })
+                vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
+                vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
+                vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find recent files" })
+                vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Find treesitter" })
+                vim.keymap.set("n", "<leader>fd", builtin.lsp_document_symbols, { desc = "Find LSP document symbols" })
+                vim.keymap.set("n", "<leader>fw", builtin.lsp_dynamic_workspace_symbols,
+                    { desc = "Find LSP workspace symbols" })
+                vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Find jumplist" })
+                vim.keymap.set("n", "<leader>fc", builtin.current_buffer_fuzzy_find, { desc = "Find in open buffer" })
+            end,
         },
+        { "j-hui/fidget.nvim" },
         { "mbbill/undotree" },
         {
             "chentoast/marks.nvim",
@@ -235,6 +326,72 @@ require("lazy").setup({
             },
         },
         { "neovim/nvim-lspconfig" },
+        -- {
+        --     "RishabhRD/nvim-lsputils",
+        --     dependencies = {
+        --         "RishabhRD/popfix"
+        --     },
+        --     opts = {
+        --         lsp_utils_codeaction_opts = {
+        --             mode = "editor",
+        --         }
+        --     },
+        --     config = function()
+        --         if vim.fn.has('nvim-0.5.1') == 1 then
+        --             vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
+        --             vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
+        --             vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler
+        --             vim.lsp.handlers['textDocument/declaration'] = require 'lsputil.locations'.declaration_handler
+        --             vim.lsp.handlers['textDocument/typeDefinition'] = require 'lsputil.locations'.typeDefinition_handler
+        --             vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
+        --             vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
+        --             vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
+        --         else
+        --             local bufnr = vim.api.nvim_buf_get_number(0)
+        --
+        --             vim.lsp.handlers['textDocument/codeAction'] = function(_, _, actions)
+        --                 require('lsputil.codeAction').code_action_handler(nil, actions, nil, nil, nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/references'] = function(_, _, result)
+        --                 require('lsputil.locations').references_handler(nil, result, { bufnr = bufnr }, nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/definition'] = function(_, method, result)
+        --                 require('lsputil.locations').definition_handler(nil, result, { bufnr = bufnr, method = method },
+        --                     nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/declaration'] = function(_, method, result)
+        --                 require('lsputil.locations').declaration_handler(nil, result, { bufnr = bufnr, method = method },
+        --                     nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/typeDefinition'] = function(_, method, result)
+        --                 require('lsputil.locations').typeDefinition_handler(nil, result,
+        --                     { bufnr = bufnr, method = method }, nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/implementation'] = function(_, method, result)
+        --                 require('lsputil.locations').implementation_handler(nil, result,
+        --                     { bufnr = bufnr, method = method }, nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/documentSymbol'] = function(_, _, result, _, bufn)
+        --                 require('lsputil.symbols').document_handler(nil, result, { bufnr = bufn }, nil)
+        --             end
+        --
+        --             vim.lsp.handlers['textDocument/symbol'] = function(_, _, result, _, bufn)
+        --                 require('lsputil.symbols').workspace_handler(nil, result, { bufnr = bufn }, nil)
+        --             end
+        --         end
+        --     end
+        -- },
+        {
+            'stevearc/quicker.nvim',
+            event = "FileType qf",
+            config = true,
+        },
         {
             "hrsh7th/nvim-cmp",
             dependencies = {
@@ -292,7 +449,10 @@ require("lazy").setup({
         },
 
         -- themes
-        { "rose-pine/neovim",         name = "rose-pine.nvim" },
+        {
+            "rose-pine/neovim",
+            name = "rose-pine"
+        },
         { "EdenEast/nightfox.nvim" },
         { "olimorris/onedarkpro.nvim" },
         {

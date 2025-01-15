@@ -1,18 +1,20 @@
-local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lsp_and_cmp_capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_and_cmp_capabilities = vim.tbl_deep_extend("force", lsp_and_cmp_capabilities,
+    require("cmp_nvim_lsp").default_capabilities())
 
 require("mason").setup({
     automatic_installation = true,
 })
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {}
 require("mason-lspconfig").setup_handlers {
     function(server_name)
         require("lspconfig")[server_name].setup {
-            capabilities = default_capabilities
+            capabilities = lsp_and_cmp_capabilities
         }
     end,
     ["omnisharp"] = function()
         require("lspconfig").omnisharp.setup {
-            capabilities = default_capabilities,
+            capabilities = lsp_and_cmp_capabilities,
             settings = {
                 RoslynExtensionsOptions = {
                     EnableDecompilationSupport = true,
@@ -94,19 +96,19 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true })
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true })
     }),
     preselect = "item",
 })
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp_document_symbol' }
+        { name = "nvim_lsp_document_symbol" }
     }, {
-        { name = 'buffer' }
+        { name = "buffer" }
     })
 })
