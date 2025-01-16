@@ -309,6 +309,14 @@ require("lazy").setup({
                 },
             },
         },
+        {
+            "lukas-reineke/virt-column.nvim",
+            config = true,
+        },
+        {
+            "brenoprata10/nvim-highlight-colors",
+            config = true,
+        },
         { "pwntester/octo.nvim" },
         {
             "nvim-neo-tree/neo-tree.nvim",
@@ -326,6 +334,12 @@ require("lazy").setup({
             },
         },
         { "neovim/nvim-lspconfig" },
+        {
+            "zeioth/garbage-day.nvim",
+            dependencies = "neovim/nvim-lspconfig",
+            event = "VeryLazy",
+            config = true,
+        },
         -- {
         --     "RishabhRD/nvim-lsputils",
         --     dependencies = {
