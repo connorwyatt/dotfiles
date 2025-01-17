@@ -8,6 +8,8 @@ vim.g.maplocalleader = "\\"
 
 -- Show line numbers.
 vim.opt.number = true
+-- Use relative line numbers.
+vim.opt.relativenumber = true
 
 -- Indentation.
 vim.opt.tabstop = 4
@@ -156,6 +158,11 @@ require("lazy").setup({
             },
         },
         { "tpope/vim-surround" },
+        {
+            'tummetott/unimpaired.nvim',
+            event = 'VeryLazy',
+            config = true,
+        },
         {
             "folke/snacks.nvim",
             priority = 1000,
