@@ -6,8 +6,8 @@ window-padding-x = 8
 window-padding-y = 8
 window-padding-color = extend
 
-background-opacity = 1
-background-blur-radius = 64
+background-opacity = 0.95
+background-blur-radius = 32
 
 macos-titlebar-style = hidden
 
@@ -16,4 +16,14 @@ font-family-italic = "Iosevka Extended Oblique"
 font-family-bold = "Iosevka Heavy Extended"
 font-family-bold-italic = "Iosevka Heavy Extended Oblique"
 
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
 font-size = 15
+
+adjust-cell-height = 25%
+adjust-cell-width = 5%
+
+adjust-cursor-thickness = 2
+adjust-cursor-height = 25%
