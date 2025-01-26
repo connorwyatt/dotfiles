@@ -1,6 +1,9 @@
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
+-- Disable netrw.
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Make space the leader key and backslash the local leader key.
 vim.g.mapleader = " "
@@ -17,6 +20,9 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+
+-- Column line.
+vim.opt.colorcolumn = "80"
 
 -- Don't wrap by default.
 vim.opt.wrap = false
@@ -48,7 +54,10 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default.
 vim.opt.signcolumn = "yes"
 
--- Derease update time.
+-- Stop nvim waiting for more keys when typing a keybind.
+vim.opt.ttimeoutlen = 0
+
+-- Decrease update time.
 vim.opt.updatetime = 1000
 
 -- Preview replacements inline.
@@ -61,7 +70,7 @@ vim.opt.termguicolors = true
 
 -- Show invisible characters.
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
 
 -- Use treesitter for folding.
 vim.opt.foldmethod = "expr"
@@ -73,6 +82,9 @@ vim.opt.foldlevel = 99
 -- KEYMAPPING --
 ----------------
 
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write" })
+
 local noop = function() end
 
 -- Disable arrow keys in normal mode.
@@ -81,20 +93,17 @@ vim.keymap.set("n", "<right>", noop)
 vim.keymap.set("n", "<up>", noop)
 vim.keymap.set("n", "<down>", noop)
 
--- Split keybinds.
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left split" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right split" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower split" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper split" })
+-- Window keybinds.
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Go to the left window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Go to the right window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Go to the down window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Go to the up window" })
 
 -- Clear search highlights on escape.
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Use escape to exit terminal mode.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
-vim.keymap.set("n", "<leader>eq", vim.diagnostic.setloclist, { desc = "Diagnostic quicklist" })
-vim.keymap.set("n", "<leader>eo", vim.diagnostic.open_float, { desc = "Diagnostic overlay" })
 
 -------------
 -- PLUGINS --
@@ -134,5 +143,6 @@ require("lazy").setup({
         },
     },
     spec = {
+        { import = "plugins" },
     },
 })
