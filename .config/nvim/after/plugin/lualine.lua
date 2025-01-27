@@ -36,6 +36,8 @@ lualine.setup({
         lualine_b = {
             "branch",
             "diff",
+        },
+        lualine_c = {
             {
                 "filename",
                 path = 1,
@@ -43,7 +45,6 @@ lualine.setup({
                 fmt = filename_fmt,
             },
         },
-        lualine_c = {},
         lualine_x = {
             {
                 noice.api.statusline.mode.get,
