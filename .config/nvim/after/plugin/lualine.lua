@@ -16,7 +16,7 @@ lualine.setup({
         icons_enabled = true,
         theme = "auto",
         component_separators = "|",
-        section_separators = { left = "", right = "" },
+        section_separators = "",
         disabled_filetypes = {
             statusline = {},
             winbar = {},
@@ -32,11 +32,7 @@ lualine.setup({
         }
     },
     sections = {
-        lualine_a = { {
-            "mode",
-            separator = { left = "" },
-            right_padding = 2
-        } },
+        lualine_a = { "mode", },
         lualine_b = {
             "branch",
             "diff",
@@ -47,24 +43,15 @@ lualine.setup({
                 fmt = filename_fmt,
             },
         },
-        lualine_c = {
-        },
+        lualine_c = {},
         lualine_x = {
             {
                 noice.api.statusline.mode.get,
                 cond = noice.api.statusline.mode.has,
-            }
-        },
-        lualine_y = { "diagnostics", "encoding", "filetype", },
-        lualine_z = {
-            {
-                "location",
-                separator = {
-                    right = "",
-                },
-                left_padding = 2,
             },
         },
+        lualine_y = { "diagnostics", "encoding", "filetype", },
+        lualine_z = { "location", },
     },
     inactive_sections = {
         lualine_a = {},
@@ -78,11 +65,11 @@ lualine.setup({
         },
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { "diagnostics", "encoding", "filetype" },
-        lualine_z = { "location" },
+        lualine_y = { "diagnostics", "encoding", "filetype", },
+        lualine_z = { "location", },
         tabline = {},
         winbar = {},
         inactive_winbar = {},
         extensions = {}
-    }
+    },
 })
