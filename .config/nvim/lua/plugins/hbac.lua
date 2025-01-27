@@ -1,6 +1,7 @@
 return {
     {
         "axkirillov/hbac.nvim",
+        enabled = false,
         opts = {
             autoclose     = true,
             threshold     = 1,

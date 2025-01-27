@@ -1,10 +1,6 @@
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
--- Disable netrw.
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Make space the leader key and backslash the local leader key.
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -72,11 +68,11 @@ vim.opt.termguicolors = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
 
--- Use treesitter for folding.
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = ""
-vim.opt.foldlevel = 99
+-- nvim-ufo suggested folding configuration.
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 ----------------
 -- KEYMAPPING --

@@ -2,9 +2,10 @@ return {
     {
         "stevearc/oil.nvim",
         lazy = false,
-        enabled = false,
         opts = {
+            default_file_explorer = true,
             columns = {
+                "icon",
                 "size",
                 "mtime",
             },

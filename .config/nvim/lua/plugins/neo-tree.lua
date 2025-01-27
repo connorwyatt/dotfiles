@@ -1,8 +1,7 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
-    lazy = false,
-    priority = 999,
+    lazy = true,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
@@ -18,8 +17,5 @@ return {
             leave_dirs_open = false,
         },
         group_empty_dirs = true,
-        filesystem = {
-            hijack_netrw_behavior = "open_current",
-        },
     },
 }

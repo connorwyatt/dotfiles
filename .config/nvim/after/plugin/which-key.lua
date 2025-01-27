@@ -1,8 +1,6 @@
 local whichKey = require("which-key")
 
 whichKey.setup({
-    preset = "modern",
-    delay = 0,
     spec = {
         { "<leader>t", group = "Toggles", },
         {

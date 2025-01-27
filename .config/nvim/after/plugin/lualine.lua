@@ -1,5 +1,4 @@
 local lualine = require("lualine")
-local noice = require("noice")
 
 local neotree_filename_prefix = "neo-tree filesystem"
 local filename_fmt = function(str)
@@ -45,12 +44,7 @@ lualine.setup({
                 fmt = filename_fmt,
             },
         },
-        lualine_x = {
-            {
-                noice.api.statusline.mode.get,
-                cond = noice.api.statusline.mode.has,
-            },
-        },
+        lualine_x = {},
         lualine_y = { "diagnostics", "encoding", "filetype", },
         lualine_z = { "location", },
     },
