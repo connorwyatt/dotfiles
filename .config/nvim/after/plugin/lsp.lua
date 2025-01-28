@@ -3,6 +3,7 @@ local cmpNvimLsp = require("cmp_nvim_lsp")
 local conform = require("conform")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
+local luasnipLoadersFromVscode = require("luasnip.loaders.from_vscode")
 local mason = require("mason")
 local masonLspconfig = require("mason-lspconfig")
 local whichKey = require("which-key")
@@ -50,7 +51,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { buffer = event.buf, desc = "Code actions" })
     end,
 })
-
 
 cmp.setup({
     formatting = {
@@ -126,6 +126,8 @@ cmp.setup.cmdline(":", {
     }),
     matching = { disallow_symbol_nonprefix_matching = false }
 })
+
+luasnipLoadersFromVscode.lazy_load()
 
 conform.setup({
     formatters_by_ft = {
