@@ -5,6 +5,7 @@ local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local luasnipLoadersFromVscode = require("luasnip.loaders.from_vscode")
 local mason = require("mason")
+local masonConform = require("mason-conform")
 local masonLspconfig = require("mason-lspconfig")
 local whichKey = require("which-key")
 
@@ -15,7 +16,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP actions",
     callback = function(event)
         whichKey.add({
-            { "<leader>l",  group = "LSP actions", },
             { "<leader>lt", group = "Toggles", },
             {
                 "<leader>lti",
@@ -43,14 +43,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { buffer = event.buf, desc = "Show signature help" })
         vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",
             { buffer = event.buf, desc = "Rename symbol" })
-        vim.keymap.set({ "n", "x" }, "<leader>lf", function()
-                conform.format({ async = true })
-            end,
-            { buffer = event.buf, desc = "Format" })
         vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",
             { buffer = event.buf, desc = "Code actions" })
     end,
 })
+
+whichKey.add({
+    { "<leader>l", group = "LSP actions", },
+})
+
+vim.keymap.set({ "n", "x" }, "<leader>lf", function()
+        conform.format({ async = true })
+    end,
+    { buffer = vim.api.nvim_get_current_buf(), desc = "Format" })
 
 cmp.setup({
     formatting = {
@@ -144,6 +149,8 @@ conform.setup({
         return { timeout_ms = 500, lsp_format = "fallback" }
     end,
 })
+
+masonConform.setup()
 
 local capabilities = cmpNvimLsp.default_capabilities()
 

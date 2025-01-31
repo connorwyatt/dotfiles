@@ -8,6 +8,9 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
+        opts = {
+            max_lines = 5,
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",

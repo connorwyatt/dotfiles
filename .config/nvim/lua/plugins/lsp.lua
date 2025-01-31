@@ -1,21 +1,6 @@
 return {
     { "neovim/nvim-lspconfig", },
 
-    -- Stop LSPs after inactivity.
-    {
-        "hinell/lsp-timeout.nvim",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-        init = function()
-            vim.g.lspTimeoutConfig = {
-                stopTimeout  = 1000 * 60 * 5,
-                startTimeout = 0,
-                silent       = true,
-            }
-        end
-    },
-
     -- LSP Installation
     { "williamboman/mason.nvim", },
     {
@@ -25,6 +10,9 @@ return {
             "neovim/nvim-lspconfig",
         },
     },
+
+    -- Specific LSPs
+    { "Hoffs/omnisharp-extended-lsp.nvim", },
 
     -- Autocompletion
     {
@@ -82,7 +70,14 @@ return {
 
     -- Formatting
     {
-        'stevearc/conform.nvim',
+        "stevearc/conform.nvim",
         config = true,
+    },
+    {
+        "zapling/mason-conform.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "stevearc/conform.nvim",
+        },
     },
 }
