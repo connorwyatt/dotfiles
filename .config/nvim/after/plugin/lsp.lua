@@ -134,11 +134,16 @@ cmp.setup.cmdline(":", {
 
 luasnipLoadersFromVscode.lazy_load()
 
+local conform_formatters = {
+    ["*"] = { "trim_whitespace" },
+}
+
+if vim.fn.executable("dotnet") == 1 then
+    conform_formatters.cs = { "csharpier", "fallback", stop_after_first = true }
+end
+
 conform.setup({
-    formatters_by_ft = {
-        cs = { "csharpier", "fallback", stop_after_first = true },
-        ["*"] = { "trim_whitespace" },
-    },
+    formatters_by_ft = conform_formatters,
     default_format_opts = {
         lsp_format = "fallback",
     },
