@@ -37,7 +37,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %{$yellow_foreground%}$plus_minus_glyph%{%f%}"
 #%{$magenta_foreground%}$%{%f%} "
 
 PROMPT="\
-%{$blue_foreground%}%n%{%f%}\
+%{$cyan_foreground%}%n%{%f%}\
  %{$white_foreground%}in%{%f%} \
 %{$yellow_foreground%}$directory_glyph  %~%{$reset_color%}%{%f%}\
 ${git_info}
