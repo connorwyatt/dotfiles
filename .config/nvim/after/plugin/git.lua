@@ -23,7 +23,6 @@ gitsigns.setup({
         changedelete = { text = '~' },
         untracked    = { text = '?' },
     },
-    attach_to_untracked     = true,
     signs_staged_enable     = true,
     signcolumn              = true,
     numhl                   = true,
