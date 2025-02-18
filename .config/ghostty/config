@@ -6,10 +6,10 @@ window-padding-x = 8
 window-padding-y = 8
 window-padding-color = extend
 
-#background-opacity = 1
-#background-blur-radius = 32
+background-opacity = 0.9
+background-blur-radius = 64
 
-#macos-titlebar-style = hidden
+macos-titlebar-style = hidden
 
 font-family = "CommitMono"
 
