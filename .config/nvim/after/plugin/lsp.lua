@@ -20,12 +20,6 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.INFO] = "",
         },
     },
-    virtual_text = {},
-    virtual_lines = {
-        format = function(diagnostic)
-            return "TEST"
-        end
-    },
 })
 
 mason.setup()
