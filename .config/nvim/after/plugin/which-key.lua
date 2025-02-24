@@ -4,6 +4,13 @@ whichKey.setup({
     spec = {
         { "<leader>t", group = "Toggles", },
         {
+            "<leader>ti",
+            function()
+                vim.o.list = not vim.o.list
+            end,
+            desc = "Toggle invisible characters",
+        },
+        {
             "<leader>tr",
             function()
                 vim.o.relativenumber = not vim.o.relativenumber

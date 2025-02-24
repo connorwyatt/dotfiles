@@ -7,24 +7,8 @@ whichKey.add({
 })
 
 gitsigns.setup({
-    signs                   = {
-        add          = { text = '+' },
-        change       = { text = '~' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '?' },
-    },
-    signs_staged            = {
-        add          = { text = '+' },
-        change       = { text = '~' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '?' },
-    },
-    signs_staged_enable     = true,
-    signcolumn              = true,
+    signs_staged_enable     = false,
+    signcolumn              = false,
     numhl                   = true,
     linehl                  = false,
     word_diff               = false,
@@ -33,7 +17,7 @@ gitsigns.setup({
         virt_text = true,
         virt_text_pos = "eol",
         delay = 0,
-        ignore_whitespace = true,
+        ignore_whitespace = false,
         virt_text_priority = 100,
         use_focus = true,
     },

@@ -5,10 +5,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Show line numbers.
+-- Line numbers.
 vim.opt.number = true
--- Use relative line numbers.
-vim.opt.relativenumber = true
+-- Relative line numbers.
+vim.opt.relativenumber = false
 
 -- Indentation.
 vim.opt.tabstop = 4
@@ -29,7 +29,7 @@ vim.opt.cursorline = true
 -- Enable mouse mode, useful for resizing splits.
 vim.opt.mouse = "a"
 
--- Disable mode display, it's already in lualine.
+-- Disable mode display, it's already in heirline.
 vim.opt.showmode = false
 
 -- Enable break indent.
@@ -54,7 +54,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.ttimeoutlen = 0
 
 -- Decrease update time.
-vim.opt.updatetime = 1000
+vim.opt.updatetime = 250
 
 -- Preview replacements inline.
 vim.opt.inccommand = "split"
@@ -64,8 +64,8 @@ vim.opt.scrolloff = 10
 
 vim.opt.termguicolors = true
 
--- Show invisible characters.
-vim.opt.list = true
+-- Invisible characters.
+vim.opt.list = false
 vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
 
 -- nvim-ufo suggested folding configuration.
@@ -99,6 +99,14 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Use escape to exit terminal mode.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+-- Enable spell check
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
 
 -------------
 -- PLUGINS --
