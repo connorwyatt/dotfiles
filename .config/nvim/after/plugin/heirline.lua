@@ -6,10 +6,6 @@ local Spacer = {
     provider = " ",
 }
 
-local Divider = {
-    provider = "|",
-}
-
 local Align = {
     provider = "%=",
 }
@@ -241,9 +237,12 @@ local Git = {
     },
 }
 
-local Ruler = utils.insert(ModeHighlights, {
-    provider = " [%l/%L]:%c ",
-})
+local Ruler = {
+    condition = conditions.is_active,
+    utils.insert(ModeHighlights, {
+        provider = " [%l/%L]:%c ",
+    })
+}
 
 local Statusline = {
     Mode,

@@ -3,17 +3,19 @@ return {
         "connorwyatt/sakura.nvim",
     },
     {
-        "xiyaowong/transparent.nvim",
+        "f-person/auto-dark-mode.nvim",
         opts = {
-            exclude_groups = {
-                "CursorLine",
-                "CursorLineNr",
-            },
-            extra_groups = {
-                "NeoTree",
-                "lualine_c",
-                "lualine_x",
-            },
+            update_interval = 1000,
+            set_dark_mode = function()
+                local dark_mode_theme = "sakura-night"
+                vim.api.nvim_set_option_value("background", "dark", {})
+                vim.cmd("colorscheme " .. dark_mode_theme)
+            end,
+            set_light_mode = function()
+                local light_mode_theme = "sakura-day"
+                vim.api.nvim_set_option_value("background", "light", {})
+                vim.cmd("colorscheme " .. light_mode_theme)
+            end,
         },
     },
 }

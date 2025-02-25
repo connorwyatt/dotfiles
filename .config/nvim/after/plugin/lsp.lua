@@ -12,7 +12,7 @@ local whichKey = require("which-key")
 
 vim.diagnostic.config({
     underline = true,
-    update_in_insert = true,
+    update_in_insert = false,
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "",

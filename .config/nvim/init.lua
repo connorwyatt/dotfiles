@@ -100,14 +100,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Use escape to exit terminal mode.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Enable spell check
-vim.opt.spell = true
-vim.opt.spelllang = { "en_us" }
-
 -------------
 -- PLUGINS --
 -------------
