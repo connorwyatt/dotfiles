@@ -41,7 +41,7 @@ PROMPT="\
  %{$white_foreground%}in%{%f%} \
 %{$yellow_foreground%}$directory_glyph  %~%{$reset_color%}%{%f%}\
 ${git_info}
-%{$magenta_foreground%}$%{%f%} "
+%{$red_foreground%}%(?..[%?] )%{$reset_color%}%{$magenta_foreground%}$%{%f%} "
 
 # Background Colors
 
