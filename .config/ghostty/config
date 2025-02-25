@@ -11,7 +11,7 @@ window-padding-color = extend
 
 macos-titlebar-style = hidden
 
-font-family = "CommitMono"
+font-family = "JetBrains Mono"
 
 #font-feature = -calt
 #font-feature = -liga
