@@ -6,7 +6,6 @@ return {
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
     },
-    event = "VeryLazy",
     opts = {
         use_popups_for_input = false,
         window = {

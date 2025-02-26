@@ -30,7 +30,7 @@
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "quicker.nvim": { "branch": "master", "commit": "76bfadd8f29895e79429fe0d30f0b3df82cd466a" },
   "refjump.nvim": { "branch": "main", "commit": "3459d17ad750d49458fec5b315e3181c525c6b27" },
-  "sakura.nvim": { "branch": "main", "commit": "35a46e3ea0f883a294d4c6e34889643e262e5e23" },
+  "sakura.nvim": { "branch": "main", "commit": "676c5d84720a8e29d5e8e7a772977f24f69ec2ef" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "2a5ceff981501cff8f46871d5402cd3378a8ab6a" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },

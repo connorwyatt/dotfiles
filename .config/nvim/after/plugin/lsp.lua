@@ -1,8 +1,5 @@
 local blink = require("blink.cmp")
-local conform = require("conform")
-local luasnipLoadersFromVscode = require("luasnip.loaders.from_vscode")
 local mason = require("mason")
-local masonConform = require("mason-conform")
 local masonLspconfig = require("mason-lspconfig")
 local telescopeBuiltin = require("telescope.builtin")
 local whichKey = require("which-key")
@@ -62,36 +59,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 whichKey.add({
     { "<leader>l", group = "LSP actions", },
 })
-
-vim.keymap.set({ "n", "x" }, "<leader>lf", function()
-        conform.format({ async = true })
-    end,
-    { buffer = vim.api.nvim_get_current_buf(), desc = "Format" })
-
-luasnipLoadersFromVscode.lazy_load()
-
-local conform_formatters = {
-    ["*"] = { "trim_whitespace" },
-}
-
-if vim.fn.executable("dotnet") == 1 then
-    conform_formatters.cs = { "csharpier", "fallback", stop_after_first = true }
-end
-
-conform.setup({
-    formatters_by_ft = conform_formatters,
-    default_format_opts = {
-        lsp_format = "fallback",
-    },
-    format_on_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            return
-        end
-        return { timeout_ms = 500, lsp_format = "fallback" }
-    end,
-})
-
-masonConform.setup()
 
 masonLspconfig.setup_handlers({
     function(server_name)

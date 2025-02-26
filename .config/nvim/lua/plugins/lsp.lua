@@ -17,12 +17,12 @@ return {
     -- Autocompletion
     {
         "saghen/blink.cmp",
-        dependencies = {
-            "rafamadriz/friendly-snippets",
-        },
         version = "v0.12.4",
         opts = {
-            keymap = { preset = "super-tab" },
+            keymap = {
+                preset = "enter",
+                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
+            },
             appearance = {
                 use_nvim_cmp_as_default = true,
                 nerd_font_variant = "mono"
@@ -30,30 +30,30 @@ return {
             completion = {
                 documentation = {
                     auto_show = true,
-                    auto_show_delay_ms = 500,
+                    auto_show_delay_ms = 0,
+                },
+                list = {
+                    selection = {
+                        preselect = false,
+                        auto_insert = true,
+                    },
                 },
                 ghost_text = {
-                    enabled = true,
+                    enabled = false,
                 },
+            },
+            signature = {
+                enabled = true,
             },
             sources = {
                 default = {
                     "lsp",
                     "path",
-                    "snippets",
                     "buffer",
                 },
             },
         },
         opts_extend = { "sources.default" }
-    },
-
-    -- Snippets
-    {
-        "L3MON4D3/LuaSnip",
-        dependencies = {
-            "rafamadriz/friendly-snippets",
-        },
     },
 
     -- Formatting

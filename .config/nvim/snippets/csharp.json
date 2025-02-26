@@ -1,0 +1,11 @@
+{
+  "File-scoped namespace": {
+    "prefix": "namespace",
+    "body": [
+      "namespace ${1:Name};",
+      "",
+      "$0"
+    ],
+    "description": "File-scoped namespace"
+  }
+}
