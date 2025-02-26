@@ -1,8 +1,5 @@
-local cmp = require("cmp")
-local cmpNvimLsp = require("cmp_nvim_lsp")
+local blink = require("blink.cmp")
 local conform = require("conform")
-local lspkind = require("lspkind")
-local luasnip = require("luasnip")
 local luasnipLoadersFromVscode = require("luasnip.loaders.from_vscode")
 local mason = require("mason")
 local masonConform = require("mason-conform")
@@ -71,81 +68,6 @@ vim.keymap.set({ "n", "x" }, "<leader>lf", function()
     end,
     { buffer = vim.api.nvim_get_current_buf(), desc = "Format" })
 
-cmp.setup({
-    formatting = {
-        format = lspkind.cmp_format({
-            mode = "symbol_text",
-        }),
-    },
-    sources = {
-        { name = "nvim_lsp", },
-        { name = "nvim_lsp_signature_help", },
-        { name = "path", },
-        { name = "luasnip", },
-        { name = "buffer", },
-    },
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                if luasnip.expandable() then
-                    luasnip.expand()
-                else
-                    cmp.confirm({
-                        select = true,
-                    })
-                end
-            else
-                fallback()
-            end
-        end),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.locally_jumpable(1) then
-                luasnip.jump(1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    }),
-    preselect = "item",
-})
-
-cmp.setup.cmdline({ "/", "?" }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = "nvim_lsp_document_symbol", },
-        { name = "buffer", },
-    }
-})
-
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "path", },
-        { name = "cmdline", },
-    }),
-    matching = { disallow_symbol_nonprefix_matching = false }
-})
-
 luasnipLoadersFromVscode.lazy_load()
 
 local conform_formatters = {
@@ -171,17 +93,15 @@ conform.setup({
 
 masonConform.setup()
 
-local capabilities = cmpNvimLsp.default_capabilities()
-
 masonLspconfig.setup_handlers({
     function(server_name)
         require("lspconfig")[server_name].setup({
-            capabilities = capabilities,
+            capabilities = blink.get_lsp_capabilities(),
         })
     end,
     ["omnisharp"] = function()
         require("lspconfig").omnisharp.setup {
-            capabilities = capabilities,
+            capabilities = blink.get_lsp_capabilities(),
             settings = {
                 RoslynExtensionsOptions = {
                     EnableDecompilationSupport = true,

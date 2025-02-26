@@ -16,47 +16,36 @@ return {
 
     -- Autocompletion
     {
-        "hrsh7th/nvim-cmp",
+        "saghen/blink.cmp",
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
-            "onsails/lspkind.nvim",
+            "rafamadriz/friendly-snippets",
         },
-    },
-    {
-        "hrsh7th/cmp-buffer",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
+        version = "v0.12.4",
+        opts = {
+            keymap = { preset = "super-tab" },
+            appearance = {
+                use_nvim_cmp_as_default = true,
+                nerd_font_variant = "mono"
+            },
+            completion = {
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 500,
+                },
+                ghost_text = {
+                    enabled = true,
+                },
+            },
+            sources = {
+                default = {
+                    "lsp",
+                    "path",
+                    "snippets",
+                    "buffer",
+                },
+            },
         },
-    },
-    {
-        "hrsh7th/cmp-nvim-lsp",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
-    },
-    {
-        "hrsh7th/cmp-nvim-lsp-signature-help",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
-    },
-    {
-        "hrsh7th/cmp-nvim-lsp-document-symbol",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
-    },
-    {
-        "hrsh7th/cmp-path",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
-    },
-    {
-        "hrsh7th/cmp-cmdline",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
+        opts_extend = { "sources.default" }
     },
 
     -- Snippets
@@ -66,7 +55,6 @@ return {
             "rafamadriz/friendly-snippets",
         },
     },
-    { "saadparwaiz1/cmp_luasnip", },
 
     -- Formatting
     {

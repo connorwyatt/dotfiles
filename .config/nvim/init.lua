@@ -127,6 +127,8 @@ require("lazy").setup({
         enabled = true,
         -- One week
         frequency = 604800,
+        notify = false,
+        check_pinned = true,
     },
     change_detection = {
         notify = false,
