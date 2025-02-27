@@ -21,9 +21,7 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<Esc>"] = { "hide", "fallback", },
                 ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
-                ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
             },
             appearance = {
                 nerd_font_variant = "normal"
@@ -36,19 +34,9 @@ return {
                 },
                 list = {
                     selection = {
-                        preselect = false,
+                        preselect = true,
                         auto_insert = true,
                     },
-                },
-                menu = {
-                    draw = {
-                        treesitter = { "lsp" },
-                    },
-                },
-                ghost_text = {
-                    enabled = true,
-                    show_with_selection = true,
-                    show_without_selection = true,
                 },
             },
             signature = {
@@ -61,8 +49,18 @@ return {
                     "buffer",
                 },
             },
+            cmdline = {
+                keymap = {
+                    ["<Tab>"] = { "show", "select_next", },
+                    ["<S-Tab>"] = { "show", "select_prev", },
+                },
+                completion = {
+                    menu = {
+                        auto_show = false,
+                    },
+                },
+            },
         },
-        opts_extend = { "sources.default" }
     },
 
     -- Formatting
