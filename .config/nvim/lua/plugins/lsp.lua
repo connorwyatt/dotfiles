@@ -39,9 +39,6 @@ return {
                     },
                 },
             },
-            signature = {
-                enabled = true,
-            },
             sources = {
                 default = {
                     "lsp",
