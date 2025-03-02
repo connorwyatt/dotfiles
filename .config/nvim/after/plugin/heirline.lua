@@ -6,6 +6,11 @@ local Spacer = {
     provider = " ",
 }
 
+local Divider = {
+    provider = " | ",
+    hl = "StatusLineDivider",
+}
+
 local Align = {
     provider = "%=",
 }
@@ -115,16 +120,30 @@ local FileName = {
     },
     Spacer,
     {
-        provider = function(self)
+        init = function(self)
             local directory = self.directory
 
             if self.base_name ~= "" then
                 directory = directory .. "/"
             end
 
-            return directory
+            self.directory_string = directory
         end,
         hl = "StatusLineFileDirectory",
+        flexible = 10,
+        {
+            provider = function(self)
+                return self.directory_string
+            end,
+        },
+        {
+            provider = function(self)
+                return vim.fn.pathshorten(self.directory_string)
+            end,
+        },
+        {
+            provider = "",
+        },
     },
     {
         provider = function(self)
@@ -134,20 +153,26 @@ local FileName = {
 
             return self.base_name
         end,
-        hl = "StatusLineFileBaseName",
+        hl = function(self)
+            if self.is_file_buffer and vim.bo.modified then
+                return "StatusLineFileBaseNameModified"
+            else
+                return "StatusLineFileBaseName"
+            end
+        end,
     },
     {
         condition = function(self)
             return self.is_file_buffer and vim.bo.modified
         end,
-        provider = " ",
+        provider = " ",
         hl = "StatusLineFileModified",
     },
     {
         condition = function(self)
             return self.is_file_buffer and (not vim.bo.modifiable or vim.bo.readonly)
         end,
-        provider = " ",
+        provider = " ",
         hl = "StatusLineFileReadonly",
     },
     Spacer,
@@ -157,6 +182,19 @@ local FileName = {
 local FileEncoding = {
     hl = "StatusLineFileEncoding",
     Spacer,
+    {
+        provider = function()
+            return ""
+        end,
+        hl = function()
+            if vim.g.enable_autoformat then
+                return "StatusLineAutoformatEnabled"
+            else
+                return "StatusLineAutoformatDisabled"
+            end
+        end,
+    },
+    Divider,
     {
         provider = function()
             return (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc
@@ -177,25 +215,25 @@ local Diagnostics = {
     Spacer,
     {
         provider = function(self)
-            return self.errors > 0 and (" " .. self.errors)
+            return self.errors > 0 and (" " .. self.errors)
         end,
         hl = "StatusLineDiagnosticError",
     },
     {
         provider = function(self)
-            return self.warnings > 0 and ("  " .. self.warnings)
+            return self.warnings > 0 and ("  " .. self.warnings)
         end,
         hl = "StatusLineDiagnosticWarning",
     },
     {
         provider = function(self)
-            return self.info > 0 and ("  " .. self.info)
+            return self.info > 0 and ("  " .. self.info)
         end,
         hl = "StatusLineDiagnosticInfo",
     },
     {
         provider = function(self)
-            return self.hints > 0 and ("  " .. self.hints)
+            return self.hints > 0 and ("  " .. self.hints)
         end,
         hl = "StatusLineDiagnosticHint",
     },
@@ -210,28 +248,28 @@ local Git = {
     hl = "StatusLineGit",
     {
         provider = function(self)
-            return "  " .. self.status_dict.head
+            return "  " .. self.status_dict.head
         end,
         hl = "StatusLineGitBranch",
     },
     {
         provider = function(self)
             local count = self.status_dict.added or 0
-            return count > 0 and ("  " .. count)
+            return count > 0 and ("  " .. count)
         end,
         hl = "StatusLineGitAdded",
     },
     {
         provider = function(self)
             local count = self.status_dict.changed or 0
-            return count > 0 and ("  " .. count)
+            return count > 0 and ("  " .. count)
         end,
         hl = "StatusLineGitChanged",
     },
     {
         provider = function(self)
             local count = self.status_dict.removed or 0
-            return count > 0 and ("  " .. count)
+            return count > 0 and ("  " .. count)
         end,
         hl = "StatusLineGitRemoved",
     },
@@ -240,7 +278,7 @@ local Git = {
 local Ruler = {
     condition = conditions.is_active,
     utils.insert(ModeHighlights, {
-        provider = " [%l/%L]:%c ",
+        provider = " %l:%c ",
     })
 }
 
