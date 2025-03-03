@@ -48,17 +48,6 @@ return {
         quickfile = {
             enabled = true,
         },
-        scroll = {
-            enabled = true,
-            animate = {
-                duration = { step = 10, total = 100 },
-                easing = "linear",
-            },
-            filter = function(buf)
-                return vim.g.snacks_scroll ~= false and vim.b[buf].snacks_scroll ~= false and
-                    vim.bo[buf].buftype ~= "terminal"
-            end,
-        },
         statuscolumn = {
             enabled = true,
         },
