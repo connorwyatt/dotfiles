@@ -7,5 +7,15 @@
       "$0"
     ],
     "description": "File-scoped namespace"
+  },
+  "Constructor": {
+    "prefix": "ctor",
+    "body": [
+      "${1:public} ${2:$TM_FILENAME_BASE}(${3:Parameters})",
+      "{",
+      "\t$0",
+      "}"
+    ],
+    "description": "Constructor"
   }
 }

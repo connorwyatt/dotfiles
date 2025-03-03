@@ -21,7 +21,6 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
             },
             appearance = {
                 nerd_font_variant = "normal"
@@ -44,6 +43,7 @@ return {
                     "lsp",
                     "path",
                     "buffer",
+                    "snippets",
                 },
             },
             cmdline = {
