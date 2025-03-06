@@ -8,7 +8,7 @@ whichKey.add({
     { "<leader>bl", "<cmd>lua require('dap').list_breakpoints()<cr>",  desc = "List breakpoints", },
     { "<leader>bx", "<cmd>lua require('dap').clear_breakpoints()<cr>", desc = "Clear breakpoints", },
     { "<leader>bc", "<cmd>lua require('dap').continue()<cr>",          desc = "Continue", },
-    { "<leader>bh", "<cmd>lua require('dap').restart()<cr>",           desc = "Restart", },
+    { "<leader>br", "<cmd>lua require('dap').restart()<cr>",           desc = "Restart", },
     { "<leader>bq", "<cmd>lua require('dap').terminate()<cr>",         desc = "Terminate", },
     { "<leader>bl", "<cmd>lua require('dap').step_over()<cr>",         desc = "Step over", },
     { "<leader>bj", "<cmd>lua require('dap').step_into()<cr>",         desc = "Step into", },
@@ -16,7 +16,14 @@ whichKey.add({
     { "<leader>bu", "<cmd>lua require('dapui').toggle()<cr>",          desc = "Toggle UI", },
 })
 
-dap.configurations.cs = config
+vim.fn.sign_define("DapBreakpoint",
+    { text = "", texthl = "DapBreakpointSign", linehl = "DapBreakpointLine", numhl = "DapBreakpointLineNumber", })
+
+dap.adapters.cs = {
+    type = "executable",
+    command = vim.fn.exepath("netcoredbg"),
+    args = { "--interpreter=vscode" }
+}
 
 dap.listeners.before.attach.dapui_config = function()
     dapui.open()
