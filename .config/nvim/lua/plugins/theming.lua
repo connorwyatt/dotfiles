@@ -1,6 +1,7 @@
 return {
     {
         "connorwyatt/sakura.nvim",
+        priority = 10000,
     },
     {
         "f-person/auto-dark-mode.nvim",
