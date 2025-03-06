@@ -12,14 +12,14 @@ window-padding-color = extend
 macos-titlebar-style = hidden
 
 #font-family = "JetBrains Mono"
-font-family = "Iosevka Extended"
-font-family-italic = "Iosevka Extended Oblique"
+font-family = "Iosevka Medium Extended"
+font-family-italic = "Iosevka Medium Extended Oblique"
 font-family-bold = "Iosevka Heavy Extended"
 font-family-bold-italic = "Iosevka Heavy Extended Oblique"
 
-#font-feature = -calt
-#font-feature = -liga
-#font-feature = -dlig
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 font-size = 14
 
