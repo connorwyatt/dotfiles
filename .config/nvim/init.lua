@@ -54,7 +54,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.ttimeoutlen = 0
 
 -- Decrease update time.
-vim.opt.updatetime = 250
+vim.opt.updatetime = 33
 
 -- Preview replacements inline.
 vim.opt.inccommand = "split"
