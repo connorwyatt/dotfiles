@@ -25,6 +25,7 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
+                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
             },
             appearance = {
                 nerd_font_variant = "normal"
@@ -38,7 +39,7 @@ return {
                 list = {
                     selection = {
                         preselect = true,
-                        auto_insert = true,
+                        auto_insert = false,
                     },
                 },
             },
