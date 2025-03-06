@@ -42,7 +42,7 @@ return {
                     modified  = " ",
                     renamed   = " ",
                     -- Status type
-                    untracked = " ",
+                    untracked = "",
                     ignored   = "",
                     unstaged  = "",
                     staged    = "",
