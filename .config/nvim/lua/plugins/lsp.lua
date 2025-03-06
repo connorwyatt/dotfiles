@@ -12,7 +12,11 @@ return {
     },
 
     -- Specific LSPs
-    { "Hoffs/omnisharp-extended-lsp.nvim", },
+    {
+        "seblyng/roslyn.nvim",
+        ft = "cs",
+        config = true,
+    },
 
     -- Autocompletion
     {

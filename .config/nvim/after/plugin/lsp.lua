@@ -65,17 +65,4 @@ masonLspconfig.setup_handlers({
             capabilities = blink.get_lsp_capabilities(),
         })
     end,
-    ["omnisharp"] = function()
-        require("lspconfig").omnisharp.setup {
-            capabilities = blink.get_lsp_capabilities(),
-            settings = {
-                RoslynExtensionsOptions = {
-                    EnableDecompilationSupport = true,
-                    EnableAnalyzersSupport = nil,
-                    EnableImportCompletion = true,
-                    AnalyzeOpenDocumentsOnly = true,
-                },
-            },
-        }
-    end
 })
