@@ -34,14 +34,6 @@ return {
                 hl = "SnacksIndentScope",
             },
         },
-        picker = {
-            enabled = true,
-            ui_select = true,
-            matcher = {
-                sort_empty = true,
-                frecency = true,
-            },
-        },
         notifier = {
             enabled = true,
         },
