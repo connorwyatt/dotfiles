@@ -16,15 +16,6 @@ return {
                 only_current = false,
                 hl = "SnacksIndent",
             },
-            animate = {
-                enabled = vim.fn.has("nvim-0.10") == 1,
-                style = "out",
-                easing = "linear",
-                duration = {
-                    step = 20,
-                    total = 500,
-                },
-            },
             scope = {
                 enabled = true,
                 priority = 200,
