@@ -248,13 +248,13 @@ local FileName = {
             return not vim.bo.modifiable or vim.bo.readonly
         end,
         hl = highlights.file.readonly,
-        provider = " ",
+        provider = " ",
     },
 }
 
 local AutoformatIcon = {
     provider = function()
-        return ""
+        return ""
     end,
     hl = function()
         if vim.g.enable_autoformat then
@@ -297,7 +297,7 @@ local Diagnostics = {
     {
         hl = highlights.diagnostics.error,
         provider = function(self)
-            return self.errors > 0 and (" " .. self.errors)
+            return self.errors > 0 and (" " .. self.errors)
         end,
     },
     {
@@ -309,7 +309,7 @@ local Diagnostics = {
     {
         hl = highlights.diagnostics.warning,
         provider = function(self)
-            return self.warnings > 0 and (" " .. self.warnings)
+            return self.warnings > 0 and (" " .. self.warnings)
         end,
     },
     {
@@ -321,7 +321,7 @@ local Diagnostics = {
     {
         hl = highlights.diagnostics.info,
         provider = function(self)
-            return self.info > 0 and (" " .. self.info)
+            return self.info > 0 and (" " .. self.info)
         end,
     },
     {
@@ -333,7 +333,7 @@ local Diagnostics = {
     {
         hl = highlights.diagnostics.hint,
         provider = function(self)
-            return self.hints > 0 and (" " .. self.hints)
+            return self.hints > 0 and (" " .. self.hints)
         end,
     },
 }
@@ -346,28 +346,28 @@ local Git = {
     {
         hl = highlights.git.branch,
         provider = function(self)
-            return " " .. self.status_dict.head
+            return " " .. self.status_dict.head
         end,
     },
     {
         hl = highlights.git.added,
         provider = function(self)
             local count = self.status_dict.added or 0
-            return count > 0 and ("  " .. count)
+            return count > 0 and ("  " .. count)
         end,
     },
     {
         hl = highlights.git.changed,
         provider = function(self)
             local count = self.status_dict.changed or 0
-            return count > 0 and ("  " .. count)
+            return count > 0 and ("  " .. count)
         end,
     },
     {
         hl = highlights.git.removed,
         provider = function(self)
             local count = self.status_dict.removed or 0
-            return count > 0 and ("  " .. count)
+            return count > 0 and ("  " .. count)
         end,
     },
 }
