@@ -54,6 +54,7 @@ return {
             scan_mode = "deep",
             filtered_items = {
                 show_hidden_count = false,
+                visible = true,
                 never_show = {
                     ".DS_Store",
                 },
