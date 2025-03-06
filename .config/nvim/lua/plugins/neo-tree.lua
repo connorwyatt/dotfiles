@@ -101,40 +101,40 @@ return {
             },
         },
         nesting_rules = {
-            ["*.cs"] = {
+            ["*.cs"]             = {
                 files = { "%1%.*%.cs", },
                 pattern = "(.*)%.cs$"
             },
-            ["*.csproj"] = {
-                files = { "appsettings%.*", },
-                pattern = "(.*)%.csproj$"
+            ["appsettings.json"] = {
+                files = { "appsettings%.*%.json", },
+                pattern = "appsettings.json"
             },
-            ["*.db"] = {
+            ["*.db"]             = {
                 files = { "*%.db-shm", "*%.db-wal" },
                 pattern = "(.*)%.db$"
             },
-            ["*.tsx"] = {
+            ["*.tsx"]            = {
                 files = { "%1-styles%.ts", },
                 pattern = "(.*)%.tsx$"
             },
-            [".gitignore"] = {
+            [".gitignore"]       = {
                 files = { "%.gitattributes", },
                 pattern = "%.gitignore$"
             },
-            ["Cargo.toml"] = {
+            ["Cargo.toml"]       = {
                 files = { "%.rustfmt%.toml", "cargo%.lock", "Cargo%.lock", "rustfmt%.toml" },
                 pattern = "Cargo%.toml$"
             },
-            Dockerfile = {
+            Dockerfile           = {
                 files = { "dockerfile*", "*%.dockerfile", "%.dockerignore", "docker-compose%.*", },
                 pattern = "Dockerfile$"
             },
-            ["README.*"] = {
+            ["README.*"]         = {
                 files = { "AUTHORS", "BACKERS*", "CHANGELOG*", "CITATION*", "CODE_OF_CONDUCT*", "CODEOWNERS", "CONTRIBUTING*", "CONTRIBUTORS", "COPYING*", "CREDITS", "GOVERNANCE%.MD", "HISTORY%.MD", "LICENSE*", "MAINTAINERS", "README_*", "RELEASE_NOTES*", "ROADMAP%.MD", "SECURITY%.MD", "SPONSORS*", "README-*" },
                 ignore_case = true,
                 pattern = "README%.(.*)$"
             },
-            ["package.json"] = {
+            ["package.json"]     = {
                 files = { "package-lock%.json", "%.eslint*", "%.prettier*", "eslint*", "prettier*", "tslint*", },
                 pattern = "package%.json$"
             },

@@ -1,5 +1,5 @@
 vim.filetype.add({
-  extension = {
-    html = "html",
-  },
+    extension = {
+        html = "html",
+    },
 })
