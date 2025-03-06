@@ -5,8 +5,10 @@ local utils = require("heirline.utils")
 local highlights = {
     statusline = "StatusLine",
     statusline_inactive = "StatusLineInactive",
-    alternate_section = "StatusLineAlternateSection",
-    alternate_section_inactive = "StatusLineAlternateSectionInactive",
+    section_a = "StatusLineSectionA",
+    section_a_inactive = "StatusLineSectionAInactive",
+    section_b = "StatusLineSectionB",
+    section_b_inactive = "StatusLineSectionBInactive",
     divider = "StatusLineDivider",
     modes = {
         normal   = "StatusLineModeNormal",
@@ -17,6 +19,16 @@ local highlights = {
         replace  = "StatusLineModeReplace",
         prompt   = "StatusLineModePrompt",
         terminal = "StatusLineModeTerminal",
+    },
+    modes_text = {
+        normal   = "StatusLineModeNormalText",
+        insert   = "StatusLineModeInsertText",
+        visual   = "StatusLineModeVisualText",
+        command  = "StatusLineModeCommandText",
+        select   = "StatusLineModeSelectText",
+        replace  = "StatusLineModeReplaceText",
+        prompt   = "StatusLineModePromptText",
+        terminal = "StatusLineModeTerminalText",
     },
     cwd = "StatusLineCwd",
     file = {
@@ -86,14 +98,55 @@ local ModeHighlights = {
     end,
 }
 
-local AlternateSelectionHighlights = {
+local ModeTextHighlights = {
+    static = {
+        mode_highlight_groups = {
+            n = highlights.modes_text.normal,
+            i = highlights.modes_text.insert,
+            v = highlights.modes_text.visual,
+            V = highlights.modes_text.visual,
+            ["\22"] = highlights.modes_text.visual,
+            c = highlights.modes_text.command,
+            s = highlights.modes_text.select,
+            S = highlights.modes_text.select,
+            ["\19"] = highlights.modes_text.select,
+            R = highlights.modes_text.replace,
+            r = highlights.modes_text.prompt,
+            ["!"] = highlights.modes_text.command,
+            t = highlights.modes_text.terminal,
+        },
+    },
+    init = function(self)
+        self.mode = vim.fn.mode(1)
+    end,
+    hl = function(self)
+        local mode = self.mode:sub(1, 1)
+        return self.mode_highlight_groups[mode]
+    end,
+}
+
+local SectionAHighlights = {
     hl = function()
         if conditions.is_active() then
-            return highlights.alternate_section
+            return highlights.section_a
         else
-            return highlights.alternate_section_inactive
+            return highlights.section_a_inactive
         end
     end,
+}
+
+local SectionBHighlights = {
+    hl = function()
+        if conditions.is_active() then
+            return highlights.section_b
+        else
+            return highlights.section_b_inactive
+        end
+    end,
+}
+
+local NeovimLogo = {
+    provider = ""
 }
 
 local VimMode = {
@@ -378,8 +431,9 @@ local Ruler = {
 
 local DefaultStatusline = {
     hl = highlights.statusline,
-    utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
-    utils.insert(AlternateSelectionHighlights, Spacer, FileName, Spacer),
+    utils.insert(ModeHighlights, Spacer),
+    utils.insert(SectionAHighlights, Spacer, utils.insert(ModeTextHighlights,VimMode), Spacer),
+    utils.insert(SectionBHighlights, Spacer, FileName, Spacer),
     Spacer,
     Git,
 
@@ -387,14 +441,14 @@ local DefaultStatusline = {
 
     Diagnostics,
     Spacer,
-    utils.insert(AlternateSelectionHighlights, Spacer, AutoformatIcon, Divider, FileEncoding, Spacer),
-    utils.insert(ModeHighlights, Spacer, Ruler, Spacer),
+    utils.insert(SectionBHighlights, Spacer, AutoformatIcon, Divider, FileEncoding, Spacer),
+    utils.insert(SectionAHighlights, Spacer, Ruler, Spacer),
 }
 
 local InactiveStatusline = {
     condition = conditions.is_not_active,
     hl = highlights.statusline_inactive,
-    utils.insert(AlternateSelectionHighlights, Spacer, FileName, Spacer),
+    utils.insert(SectionBHighlights, Spacer, FileName, Spacer),
     Spacer,
     Git,
 
@@ -402,7 +456,7 @@ local InactiveStatusline = {
 
     Diagnostics,
     Spacer,
-    utils.insert(AlternateSelectionHighlights, Spacer, FileEncoding, Spacer),
+    utils.insert(SectionBHighlights, Spacer, FileEncoding, Spacer),
 }
 
 local EmptyStatusline = {
@@ -418,7 +472,7 @@ local NeoTreeStatusline = {
         return vim.bo.filetype == "neo-tree"
     end,
     hl = highlights.statusline,
-    utils.insert(AlternateSelectionHighlights, Spacer, Cwd, Spacer),
+    utils.insert(SectionBHighlights, Spacer, Cwd, Spacer),
     Spacer,
     Git,
 
