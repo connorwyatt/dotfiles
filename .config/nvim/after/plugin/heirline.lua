@@ -432,7 +432,7 @@ local Ruler = {
 local DefaultStatusline = {
     hl = highlights.statusline,
     utils.insert(ModeHighlights, Spacer),
-    utils.insert(SectionAHighlights, Spacer, utils.insert(ModeTextHighlights,VimMode), Spacer),
+    utils.insert(SectionAHighlights, Spacer, utils.insert(ModeTextHighlights, VimMode), Spacer),
     utils.insert(SectionBHighlights, Spacer, FileName, Spacer),
     Spacer,
     Git,
