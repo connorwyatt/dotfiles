@@ -1,1 +1,1 @@
---height 10 --layout reverse --style full --color=bg+:-1,hl:3,hl+:3,border:5,prompt:3,pointer:3,marker:4,info:2
+--height 10 --layout reverse --style full --border sharp --input-border none --list-border none --color=fg+:-1,bg+:-1,hl:3,hl+:3,border:5,prompt:3,pointer:3,marker:4,info:2
