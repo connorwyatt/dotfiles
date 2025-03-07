@@ -72,10 +72,13 @@ return {
                     ["h"] = { "toggle_node", desc = "Toggle node", },
                     ["l"] = { "toggle_node", desc = "Toggle node", },
                     ["p"] = { "paste_from_clipboard", desc = "Paste from clipboard", },
+                    ["P"] = { "toggle_preview", desc = "Toggle preview", },
                     ["r"] = { "rename", desc = "Rename", },
                     ["s"] = { "filter_as_you_type", desc = "Search", },
                     ["x"] = { "cut_to_clipboard", desc = "Cut to clipboard", },
                     ["y"] = { "copy_to_clipboard", desc = "Copy to clipboard", },
+                    ["[s"] = { "prev_source", desc = "Previous source", },
+                    ["]s"] = { "next_source", desc = "Next source", },
                 },
             },
         },
@@ -84,7 +87,10 @@ return {
                 mappings = {
                     ["b"] = { "rename_basename", desc = "Rename basename", },
                     ["d"] = { "buffer_delete", desc = "Delete", },
+                    ["P"] = { "toggle_preview", desc = "Toggle preview", },
                     ["r"] = { "rename", desc = "Rename", },
+                    ["[s"] = { "prev_source", desc = "Previous source", },
+                    ["]s"] = { "next_source", desc = "Next source", },
                 },
             },
         },
@@ -95,48 +101,55 @@ return {
                     ["b"] = { "rename_basename", desc = "Rename basename", },
                     ["h"] = { "toggle_node", desc = "Toggle node", },
                     ["l"] = { "toggle_node", desc = "Toggle node", },
+                    ["P"] = { "toggle_preview", desc = "Toggle preview", },
                     ["s"] = { "filter_as_you_type", desc = "Search", },
                     ["r"] = { "rename", desc = "Rename", },
+                    ["[s"] = { "prev_source", desc = "Previous source", },
+                    ["]s"] = { "next_source", desc = "Next source", },
                 },
             },
         },
         nesting_rules = {
             ["*.cs"]             = {
                 files = { "%1%.*%.cs", },
-                pattern = "(.*)%.cs$"
+                pattern = "(.*)%.cs$",
             },
             ["appsettings.json"] = {
                 files = { "appsettings%.*%.json", },
-                pattern = "appsettings.json"
+                pattern = "appsettings.json",
             },
             ["*.db"]             = {
-                files = { "*%.db-shm", "*%.db-wal" },
-                pattern = "(.*)%.db$"
+                files = { "*%.db-shm", "*%.db-wal", },
+                pattern = "(.*)%.db$",
             },
             ["*.tsx"]            = {
                 files = { "%1-styles%.ts", },
-                pattern = "(.*)%.tsx$"
+                pattern = "(.*)%.tsx$",
             },
             [".gitignore"]       = {
                 files = { "%.gitattributes", },
-                pattern = "%.gitignore$"
+                pattern = "%.gitignore$",
             },
             ["Cargo.toml"]       = {
-                files = { "%.rustfmt%.toml", "cargo%.lock", "Cargo%.lock", "rustfmt%.toml" },
-                pattern = "Cargo%.toml$"
+                files = { "%.rustfmt%.toml", "cargo%.lock", "Cargo%.lock", "rustfmt%.toml", },
+                pattern = "Cargo%.toml$",
             },
             Dockerfile           = {
                 files = { "dockerfile*", "*%.dockerfile", "%.dockerignore", "docker-compose%.*", },
-                pattern = "Dockerfile$"
+                pattern = "Dockerfile$",
             },
             ["README.*"]         = {
-                files = { "AUTHORS", "BACKERS*", "CHANGELOG*", "CITATION*", "CODE_OF_CONDUCT*", "CODEOWNERS", "CONTRIBUTING*", "CONTRIBUTORS", "COPYING*", "CREDITS", "GOVERNANCE%.MD", "HISTORY%.MD", "LICENSE*", "MAINTAINERS", "README_*", "RELEASE_NOTES*", "ROADMAP%.MD", "SECURITY%.MD", "SPONSORS*", "README-*" },
+                files = { "AUTHORS", "BACKERS*", "CHANGELOG*", "CITATION*", "CODE_OF_CONDUCT*", "CODEOWNERS", "CONTRIBUTING*", "CONTRIBUTORS", "COPYING*", "CREDITS", "GOVERNANCE%.MD", "HISTORY%.MD", "LICENSE*", "MAINTAINERS", "README_*", "RELEASE_NOTES*", "ROADMAP%.MD", "SECURITY%.MD", "SPONSORS*", "README-*", },
                 ignore_case = true,
-                pattern = "README%.(.*)$"
+                pattern = "README%.(.*)$",
             },
             ["package.json"]     = {
                 files = { "package-lock%.json", "%.eslint*", "%.prettier*", "eslint*", "prettier*", "tslint*", },
-                pattern = "package%.json$"
+                pattern = "package%.json$",
+            },
+            ["build.zig"]        = {
+                files = { "build.zig.zon", },
+                pattern = "build.zig",
             },
         },
     },
