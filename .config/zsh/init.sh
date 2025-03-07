@@ -3,13 +3,21 @@ source "$HOME/.config/zsh/oh-my-zsh.sh"
 export EDITOR="nvim"
 
 path+=("$HOME/.bin")
+path+=("$HOME/.bin-local")
 
 autoload -Uz compinit
 compinit
 
-FILES_STR=$(fd --glob '*.sh' ~/.config/zsh/sources)
-FILES=($(echo $FILES_STR | tr '\n' ' '))
+SOURCES_FILES_STR=$(fd --glob '*.sh' ~/.config/zsh/sources)
+SOURCES_FILES=($(echo $SOURCES_FILES_STR | tr '\n' ' '))
 
-for FILE in $FILES; do
+for FILE in $SOURCES_FILES; do
+    source $FILE
+done
+
+SOURCES_LOCAL_FILES_STR=$(fd --glob '*.sh' ~/.config/zsh/sources-local)
+SOURCES_LOCAL_FILES=($(echo $SOURCES_LOCAL_FILES_STR | tr '\n' ' '))
+
+for FILE in $SOURCES_LOCAL_FILES; do
     source $FILE
 done
