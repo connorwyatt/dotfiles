@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+selected=$(tmux ls | sd '^(?<session_name>.*?):.*?(?<attached>\(attached\))?$' '$session_name $attached' | sd '\(attached\)' '[attached]' | sd '^(.*?)\s*$' '$1' | fzf --nth 1 --accept-nth 1)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+if [[ -z $TMUX ]]; then
+    tmux attach -t $selected
+    exit 0
+fi
+
+tmux switch-client -t $selected

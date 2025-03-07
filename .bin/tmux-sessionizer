@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    selected=$(find ~/Code -mindepth 1 -maxdepth 1 -type d | fzf --height 10 --style full)
-fi
+selected=$(find ~/Code -mindepth 1 -maxdepth 1 -type d | fzf)
 
 if [[ -z $selected ]]; then
     exit 0
