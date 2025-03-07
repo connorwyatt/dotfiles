@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+selected=$(fd '\.csproj$' --type f | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+dotnet run --project $selected "$@"
+exit 0
