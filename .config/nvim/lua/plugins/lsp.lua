@@ -73,6 +73,18 @@ return {
         },
     },
 
+    -- Debugging
+    { "mfussenegger/nvim-dap", },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio",
+        },
+        opts = {},
+    },
+    { "jay-babu/mason-nvim-dap.nvim", },
+
     -- Formatting
     {
         "stevearc/conform.nvim",
