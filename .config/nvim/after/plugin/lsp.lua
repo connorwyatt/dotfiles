@@ -95,6 +95,26 @@ which_key.add({
 
 vim.fn.sign_define("DapBreakpoint",
     { text = "", texthl = "DapBreakpointSign", linehl = "DapBreakpointLine", numhl = "DapBreakpointLineNumber", })
+vim.fn.sign_define("DapBreakpointCondition",
+    {
+        text = "",
+        texthl = "DapBreakpointConditionSign",
+        linehl = "DapBreakpointConditionLine",
+        numhl =
+        "DapBreakpointConditionLineNumber",
+    })
+vim.fn.sign_define("DapLogPoint",
+    { text = "", texthl = "DapLogPointSign", linehl = "DapLogPointLine", numhl = "DapLogPointLineNumber", })
+vim.fn.sign_define("DapStopped",
+    { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedLine", numhl = "DapStoppedLineNumber", })
+vim.fn.sign_define("DapBreakpointRejected",
+    {
+        text = "",
+        texthl = "DapBreakpointRejectedSign",
+        linehl = "DapBreakpointRejectedLine",
+        numhl =
+        "DapBreakpointRejectedLineNumber",
+    })
 
 mason_nvim_dap.setup({
     handlers = {
