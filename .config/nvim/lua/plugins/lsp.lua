@@ -21,7 +21,7 @@ return {
     -- Autocompletion
     {
         "saghen/blink.cmp",
-        version = "v0.12.4",
+        version = "v0.13.1",
         opts = {
             keymap = {
                 preset = "enter",
@@ -61,14 +61,23 @@ return {
             },
             cmdline = {
                 keymap = {
-                    ["<Tab>"] = { "show", "select_next", },
-                    ["<S-Tab>"] = { "show", "select_prev", },
+                    ["<Tab>"] = { "show_and_insert", "select_next", },
+                    ["<S-Tab>"] = { "show_and_insert", "select_prev", },
                 },
                 completion = {
                     menu = {
                         auto_show = false,
                     },
+                    list = {
+                        selection = {
+                            preselect = true,
+                            auto_insert = true,
+                        },
+                    },
                 },
+            },
+            signature = {
+                enabled = true,
             },
         },
     },
