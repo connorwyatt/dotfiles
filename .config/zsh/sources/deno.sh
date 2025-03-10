@@ -1,1 +1,0 @@
-. "/Users/connorwyatt/.deno/env"
