@@ -60,11 +60,16 @@ local Spacer = {
     provider = " ",
 }
 
+-- local Divider = {
+--     hl = highlights.divider,
+--     Spacer,
+--     { provider = "|", },
+--     Spacer,
+-- }
+
 local Divider = {
     hl = highlights.divider,
-    Spacer,
-    { provider = "|", },
-    Spacer,
+    { provider = "❘ ", },
 }
 
 local Align = {
@@ -152,40 +157,40 @@ local NeovimLogo = {
 local VimMode = {
     static = {
         mode_names = {
-            n = "NORMAL",
-            no = "NORMAL",
-            nov = "NORMAL",
-            noV = "NORMAL",
-            ["no\22"] = "NORMAL",
-            niI = "NORMAL",
-            niR = "NORMAL",
-            niV = "NORMAL",
-            nt = "NORMAL",
-            v = "VISUAL",
-            vs = "VISUAL",
-            V = "VISUAL-LINE",
-            Vs = "VISUAL-LINE",
-            ["\22"] = "VISUAL-BLOCK",
-            ["\22s"] = "VISUAL-BLOCK",
-            s = "SELECT",
-            S = "SELECT-LINE",
-            ["\19"] = "SELECT-BLOCK",
-            i = "INSERT",
-            ic = "INSERT",
-            ix = "INSERT",
-            R = "REPLACE",
-            Rc = "REPLACE",
-            Rx = "REPLACE",
-            Rv = "REPLACE",
-            Rvc = "REPLACE",
-            Rvx = "REPLACE",
-            c = "COMMAND",
-            cv = "COMMAND",
-            r = "PROMPT",
-            rm = "PROMPT",
-            ["r?"] = "PROMPT",
-            ["!"] = "COMMAND",
-            t = "TERMINAL",
+            n = "Normal",
+            no = "Normal",
+            nov = "Normal",
+            noV = "Normal",
+            ["no\22"] = "Normal",
+            niI = "Normal",
+            niR = "Normal",
+            niV = "Normal",
+            nt = "Normal",
+            v = "Visual",
+            vs = "Visual",
+            V = "Visual-Line",
+            Vs = "Visual-Line",
+            ["\22"] = "Visual-Block",
+            ["\22s"] = "Visual-Block",
+            s = "Select",
+            S = "Select-Line",
+            ["\19"] = "Select-Block",
+            i = "Insert",
+            ic = "Insert",
+            ix = "Insert",
+            R = "Replace",
+            Rc = "Replace",
+            Rx = "Replace",
+            Rv = "Replace",
+            Rvc = "Replace",
+            Rvx = "Replace",
+            c = "Command",
+            cv = "Command",
+            r = "Prompt",
+            rm = "Prompt",
+            ["r?"] = "Prompt",
+            ["!"] = "Command",
+            t = "Terminal",
         },
     },
     init = function(self)
@@ -201,7 +206,8 @@ local VimMode = {
         end),
     },
     provider = function(self)
-        return self.mode_names[self.mode]
+        local mode_name = self.mode_names[self.mode]
+        return mode_name and string.upper(mode_name)
     end,
 }
 
@@ -226,7 +232,7 @@ local Cwd = {
     },
 }
 
-local FileName = {
+local FileInfoProvider = {
     init = function(self)
         self.filename = vim.api.nvim_buf_get_name(0)
         self.directory = vim.fn.fnamemodify(self.filename, ":.:h")
@@ -235,6 +241,42 @@ local FileName = {
         self.icon, self.icon_color = require("nvim-web-devicons")
             .get_icon_color(self.filename, extension, { default = true })
     end,
+}
+
+local FileName = utils.insert(FileInfoProvider, {
+    {
+        hl = function()
+            if vim.bo.modified then
+                return highlights.file.basename_modified
+            else
+                return highlights.file.basename
+            end
+        end,
+        provider = function(self)
+            if self.base_name == "" and self.directory == "" then
+                return "[No Name]"
+            end
+
+            return self.base_name
+        end,
+    },
+    {
+        condition = function()
+            return vim.bo.modified
+        end,
+        hl = highlights.file.modified,
+        provider = "*",
+    },
+    {
+        condition = function()
+            return not vim.bo.modifiable or vim.bo.readonly
+        end,
+        hl = highlights.file.readonly,
+        provider = " ",
+    },
+})
+
+local FilePath = utils.insert(FileInfoProvider, {
     {
         hl = function(self)
             return { fg = self.icon_color, }
@@ -273,41 +315,13 @@ local FileName = {
             provider = "",
         },
     },
-    {
-        hl = function()
-            if vim.bo.modified then
-                return highlights.file.basename_modified
-            else
-                return highlights.file.basename
-            end
-        end,
-        provider = function(self)
-            if self.base_name == "" and self.directory == "" then
-                return "[No Name]"
-            end
+    FileName,
+})
 
-            return self.base_name
-        end,
-    },
-    {
-        condition = function()
-            return vim.bo.modified
-        end,
-        hl = highlights.file.modified,
-        provider = "*",
-    },
-    {
-        condition = function()
-            return not vim.bo.modifiable or vim.bo.readonly
-        end,
-        hl = highlights.file.readonly,
-        provider = " ",
-    },
-}
 
 local AutoformatIcon = {
     provider = function()
-        return ""
+        return "󰙴 "
     end,
     hl = function()
         if vim.g.enable_autoformat then
@@ -431,31 +445,41 @@ local Ruler = {
 
 local DefaultStatusline = {
     hl = highlights.statusline,
-    utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
-    utils.insert(SectionBHighlights, Spacer, FileName, Spacer),
+    utils.insert(ModeHighlights, Spacer),
     Spacer,
+    utils.insert(ModeTextHighlights, VimMode),
+    {
+        condition = conditions.is_git_repo,
+        Divider,
+    },
     Git,
 
     Align,
+    FilePath,
+    Align,
 
     Diagnostics,
+    {
+        condition = conditions.has_diagnostics,
+        Divider,
+    },
+    AutoformatIcon,
+    Divider,
+    FileEncoding,
+    Divider,
+    utils.insert(ModeTextHighlights, Ruler),
     Spacer,
-    utils.insert(SectionBHighlights, Spacer, AutoformatIcon, Divider, FileEncoding, Spacer),
-    utils.insert(SectionAHighlights, Spacer, Ruler, Spacer),
+    utils.insert(ModeHighlights, Spacer),
 }
 
 local InactiveStatusline = {
     condition = conditions.is_not_active,
     hl = highlights.statusline_inactive,
-    utils.insert(SectionBHighlights, Spacer, FileName, Spacer),
-    Spacer,
-    Git,
 
     Align,
+    FilePath,
+    Align,
 
-    Diagnostics,
-    Spacer,
-    utils.insert(SectionBHighlights, Spacer, FileEncoding, Spacer),
 }
 
 local EmptyStatusline = {
@@ -471,10 +495,10 @@ local NeoTreeStatusline = {
         return vim.bo.filetype == "neo-tree"
     end,
     hl = highlights.statusline,
-    utils.insert(SectionBHighlights, Spacer, Cwd, Spacer),
-    Spacer,
     Git,
 
+    Align,
+    Cwd,
     Align,
 }
 
