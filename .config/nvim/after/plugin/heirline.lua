@@ -60,16 +60,11 @@ local Spacer = {
     provider = " ",
 }
 
--- local Divider = {
---     hl = highlights.divider,
---     Spacer,
---     { provider = "|", },
---     Spacer,
--- }
-
 local Divider = {
     hl = highlights.divider,
-    { provider = "❘ ", },
+    Spacer,
+    { provider = "|", },
+    Spacer,
 }
 
 local Align = {
@@ -466,6 +461,8 @@ local DefaultStatusline = {
     AutoformatIcon,
     Divider,
     FileEncoding,
+    Divider,
+    FileType,
     Divider,
     utils.insert(ModeTextHighlights, Ruler),
     Spacer,
