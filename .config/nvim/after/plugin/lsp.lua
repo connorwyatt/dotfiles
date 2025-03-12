@@ -1,6 +1,7 @@
 local blink = require("blink.cmp")
 local dap = require("dap")
 local dapui = require("dapui")
+local luasnip = require("luasnip")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local mason_nvim_dap = require("mason-nvim-dap")
@@ -136,3 +137,29 @@ end
 dap.listeners.before.launch.dapui_config = function()
     dapui.open()
 end
+
+-- Snippets
+require("luasnip.loaders.from_lua").lazy_load({
+    paths = { "../../snippets", },
+})
+
+which_key.add({
+    {
+        mode = { "i", },
+        { "<C-s>", function() luasnip.expand() end, silent = true, },
+    },
+    {
+        mode = { "i", "s", },
+        { "<C-Up>",   function() luasnip.jump(1) end,  silent = true, },
+        { "<C-Down>", function() luasnip.jump(-1) end, silent = true, },
+        {
+            "<C-e>",
+            function()
+                if luasnip.choice_active() then
+                    luasnip.change_choice(1)
+                end
+            end,
+            silent = true,
+        }
+    },
+})

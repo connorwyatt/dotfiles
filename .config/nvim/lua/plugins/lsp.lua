@@ -21,7 +21,7 @@ return {
     -- Autocompletion
     {
         "saghen/blink.cmp",
-        version = "v0.13.1",
+        version = "v0.13.*",
         opts = {
             keymap = {
                 preset = "enter",
@@ -42,6 +42,9 @@ return {
                         auto_insert = false,
                     },
                 },
+            },
+            snippets = {
+                preset = "luasnip",
             },
             sources = {
                 default = {
@@ -80,6 +83,13 @@ return {
                 enabled = true,
             },
         },
+    },
+
+    -- Snippets
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
     },
 
     -- Debugging
