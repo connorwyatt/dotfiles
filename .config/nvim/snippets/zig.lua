@@ -26,10 +26,16 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
-ls.add_snippets({
-    zig = {
-        s("print", {
-            t('std.debug.print("'), i(1, "message"), t('", .{ '), i(0, "args"), t(' });')
-        }),
-    },
-})
+return {
+    s(
+        {
+            trig = "print",
+            desc = "Print using std.debug",
+        },
+        {
+            -- TODO: Make the arguments insertion conditional based on if there are
+            -- any interpolations.
+            t('std.debug.print("'), i(1, "message"), t('", .{ '), i(0, "args"), t(' });'),
+        }
+    ),
+}

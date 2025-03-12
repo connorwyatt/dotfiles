@@ -70,10 +70,20 @@ which_key.add({
     { "<leader>l", group = "LSP actions", },
 })
 
+local lsp_capabilities = blink.get_lsp_capabilities({
+    textDocument = {
+        completion = {
+            completionItem = {
+                snippetSupport = false,
+            },
+        }
+    },
+})
+
 mason_lspconfig.setup_handlers({
     function(server_name)
         require("lspconfig")[server_name].setup({
-            capabilities = blink.get_lsp_capabilities(),
+            capabilities = lsp_capabilities,
         })
     end,
 })
@@ -139,27 +149,9 @@ dap.listeners.before.launch.dapui_config = function()
 end
 
 -- Snippets
-require("luasnip.loaders.from_lua").lazy_load({
-    paths = { "../../snippets", },
-})
 
-which_key.add({
-    {
-        mode = { "i", },
-        { "<C-s>", function() luasnip.expand() end, silent = true, },
-    },
-    {
-        mode = { "i", "s", },
-        { "<C-Up>",   function() luasnip.jump(1) end,  silent = true, },
-        { "<C-Down>", function() luasnip.jump(-1) end, silent = true, },
-        {
-            "<C-e>",
-            function()
-                if luasnip.choice_active() then
-                    luasnip.change_choice(1)
-                end
-            end,
-            silent = true,
-        }
+require("luasnip.loaders.from_lua").load({
+    paths = {
+        vim.fn.stdpath('config') .. "/snippets",
     },
 })
