@@ -39,6 +39,7 @@ return {
         },
         words = {
             enabled = true,
+            debounce = 0,
         },
     },
 }

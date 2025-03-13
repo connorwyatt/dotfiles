@@ -2,6 +2,7 @@ local blink = require("blink.cmp")
 local dap = require("dap")
 local dapui = require("dapui")
 local luasnip = require("luasnip")
+local luasnip_types = require("luasnip.util.types")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local mason_nvim_dap = require("mason-nvim-dap")
@@ -170,6 +171,27 @@ dap.listeners.before.launch.dapui_config = function()
 end
 
 -- Snippets
+luasnip.setup({
+    update_events = { "TextChanged", "TextChangedI", },
+    ext_opts = {
+        [luasnip_types.choiceNode] = {
+            active = {
+                hl_group = "LuasnipChoiceNodeActive",
+            },
+            passive = {
+                hl_group = "LuasnipChoiceNodePassive",
+            },
+        },
+        [luasnip_types.insertNode] = {
+            active = {
+                hl_group = "LuasnipInsertNodeActive",
+            },
+            passive = {
+                hl_group = "LuasnipInsertNodePassive",
+            },
+        }
+    },
+})
 
 require("luasnip.loaders.from_lua").load({
     paths = {
