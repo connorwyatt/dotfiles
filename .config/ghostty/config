@@ -10,7 +10,7 @@ window-padding-color = extend-always
 #background-blur-radius = 32
 
 #macos-titlebar-style = hidden
-window-decoration = none
+#window-decoration = none
 
 #font-family = "JetBrains Mono"
 
