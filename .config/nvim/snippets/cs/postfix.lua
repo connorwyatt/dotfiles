@@ -27,15 +27,21 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 return {
-    postfix(".foreach", {
-        t("foreach (var "),
-        i(1, "element"),
-        t(" in "),
-        f(function(_, parent)
-            return parent.snippet.env.POSTFIX_MATCH
-        end, {}),
-        t({ ")", "{", "\t", }),
-        i(0),
-        t({ "", "}", }),
-    })
+    postfix(
+        {
+            trig = ".fe",
+            desc = "Foreach",
+        },
+        {
+            t("foreach (var "),
+            i(1, "element"),
+            t(" in "),
+            f(function(_, parent)
+                return parent.snippet.env.POSTFIX_MATCH
+            end, {}),
+            t({ ")", "{", "\t", }),
+            i(0),
+            t({ "", "}", }),
+        }
+    )
 }

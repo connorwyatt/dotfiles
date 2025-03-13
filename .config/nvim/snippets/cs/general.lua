@@ -29,7 +29,7 @@ local k = require("luasnip.nodes.key_indexer").new_key
 return {
     s(
         {
-            trig = "namespace",
+            trig = "ns",
             desc = "File-scoped namespace",
         },
         {
@@ -38,12 +38,32 @@ return {
     ),
     s(
         {
-            trig = "class",
+            trig = "cl",
             desc = "Class",
         },
         {
             -- TODO: Make the visibility modifier into a conditional choice node.
             t("public class "), i(1, "ClassName"), t({ " {", "\t" }), i(0), t({ "", "}" }),
+        }
+    ),
+    s(
+        {
+            trig = "meth",
+            desc = "Method",
+        },
+        {
+            -- TODO: Make the visibility modifier into a conditional choice node.
+            t("public "), i(2, "Type"), t(" "), i(1, "Name"), t("("), i(3), t({ ")", "{", "\t", }), i(0), t({ "", "}", }),
+        }
+    ),
+    s(
+        {
+            trig = "prop",
+            desc = "Property",
+        },
+        {
+            -- TODO: Make the visibility modifier into a conditional choice node.
+            t("public "), i(2, "Type"), t(" "), i(1, "Name"), t(" { get; set; }"), i(0),
         }
     ),
 }
