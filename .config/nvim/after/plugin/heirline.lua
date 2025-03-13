@@ -319,10 +319,10 @@ local AutoformatIcon = {
         return "󰙴 "
     end,
     hl = function()
-        if vim.g.enable_autoformat then
-            return highlights.autoformat.enabled
-        else
+        if vim.g.disable_autoformat then
             return highlights.autoformat.disabled
+        else
+            return highlights.autoformat.enabled
         end
     end,
 }

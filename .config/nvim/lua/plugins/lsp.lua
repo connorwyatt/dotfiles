@@ -25,7 +25,10 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
+                ["<Tab>"] = {},
+                ["<S-Tab>"] = {},
+                ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+                ["<C-k>"] = {},
             },
             appearance = {
                 nerd_font_variant = "normal"
@@ -81,6 +84,11 @@ return {
             },
             signature = {
                 enabled = true,
+                trigger = {
+                    show_on_keyword = true,
+                    show_on_trigger_character = true,
+                    show_on_insert = true,
+                },
             },
         },
     },

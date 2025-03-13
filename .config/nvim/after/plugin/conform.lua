@@ -38,7 +38,7 @@ conform.setup({
         lsp_format = "fallback",
     },
     format_on_save = function(bufnr)
-        if not vim.g.enable_autoformat and not vim.b[bufnr].enable_autoformat then
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
         end
         return { timeout_ms = 2000, }
@@ -69,9 +69,9 @@ end, { range = true })
 vim.api.nvim_create_user_command("ReformatToggle", function(args)
     if args.bang then
         -- ReformatToggle! will toggle formatting just for this buffer
-        vim.b.enable_autoformat = not vim.b.enable_autoformat
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
     else
-        vim.g.enable_autoformat = not vim.g.enable_autoformat
+        vim.g.disable_autoformat = not vim.g.disabled_autoformat
     end
 end, {
     desc = "Toggle auto reformat on save",
