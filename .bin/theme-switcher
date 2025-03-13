@@ -4,15 +4,15 @@ printf "\033]2;theme-switcher\a"
 
 appearance=$(echo "light,dark" | tr , "\n" | fzf --height=4 --no-input)
 
-theme=$(cat "themes-${appearance}.txt" | fzf)
+theme=$(cat "${HOME}/.bin/themes-${appearance}.txt" | fzf)
 
 # Update ghostty theme
-sd "^(theme.*${appearance}:)[A-Za-z-]+(.*)$" "\${1}${theme}\${2}" ~/.config/ghostty/config
+sd "^(theme.*${appearance}:)[A-Za-z-]+(.*)$" "\${1}${theme}\${2}" $HOME/.config/ghostty/config
 
 # Update initial nvim theme
 if [ $appearance = "dark" ]; then
-    sd "^(.*colorscheme )[A-Za-z-]+(.*)$" "\${1}${theme}\${2}" ~/.config/nvim/after/plugin/theming.lua
+    sd "^(.*colorscheme )[A-Za-z-]+(.*)$" "\${1}${theme}\${2}" $HOME/.config/nvim/after/plugin/theming.lua
 fi
 
 # Update nvim theme
-sd "^(.*${appearance}_mode_theme.*\")[A-Za-z-]+(\".*)$" "\${1}${theme}\${2}" ~/.config/nvim/lua/plugins/theming.lua
+sd "^(.*${appearance}_mode_theme.*\")[A-Za-z-]+(\".*)$" "\${1}${theme}\${2}" $HOME/.config/nvim/lua/plugins/theming.lua
