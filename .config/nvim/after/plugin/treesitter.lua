@@ -1,6 +1,12 @@
 local configs = require("nvim-treesitter.configs")
+local which_key = require("which-key")
 
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+
+which_key.add({
+    { "<leader>[", group = "swap node with previous", },
+    { "<leader>]", group = "swap node with next", },
+})
 
 configs.setup({
     auto_install = true,
@@ -24,10 +30,12 @@ configs.setup({
         swap = {
             enable = true,
             swap_next = {
-                ["<leader>[p"] = "@parameter.inner",
+                ["<leader>]m"] = { query = "@function.outer", desc = "function", },
+                ["<leader>]p"] = { query = "@parameter.inner", desc = "parameter", },
             },
             swap_previous = {
-                ["<leader>]p"] = "@parameter.inner",
+                ["<leader>[m"] = { query = "@function.outer", desc = "function", },
+                ["<leader>[p"] = { query = "@parameter.inner", desc = "parameter", },
             },
         },
         move = {

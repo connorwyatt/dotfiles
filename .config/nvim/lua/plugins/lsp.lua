@@ -27,6 +27,7 @@ return {
                 preset = "enter",
                 ["<Tab>"] = {},
                 ["<S-Tab>"] = {},
+                ["<C-Tab>"] = { function(cmp) cmp.show({ providers = { "snippets", }, }) end, },
                 ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
                 ["<C-k>"] = {},
             },
