@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+printf "\033]2;tmux-attacher\a"
+
 selected=$(tmux ls | sd '^(?<session_name>.*?):.*?(?<attached>\(attached\))?$' '$session_name $attached' | sd '\(attached\)' '[attached]' | sd '^(.*?)\s*$' '$1' | fzf --nth 1 --accept-nth 1)
 
 if [[ -z $selected ]]; then
     exit 0
 fi
+
+printf "\033]2;tmux [$selected]\a"
 
 if [[ -z $TMUX ]]; then
     tmux attach -t $selected

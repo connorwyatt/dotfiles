@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+printf "\033]2;tmux-sessionizer\a"
+
 selected=$(find ~/Code -mindepth 1 -maxdepth 1 -type d | fzf)
 
 if [[ -z $selected ]]; then
@@ -7,6 +9,8 @@ if [[ -z $selected ]]; then
 fi
 
 selected_name=$(basename "$selected" | tr . _)
+
+printf "\033]2;tmux [$selected_name]\a"
 
 if [[ -z $TMUX ]]; then
     tmux new-session -A -s $selected_name -c $selected
