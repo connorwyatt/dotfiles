@@ -2,15 +2,13 @@
 
 printf "\033]2;tmux-sessionizer\a"
 
-selected=$(find ~/Code -mindepth 1 -maxdepth 1 -type d | fzf)
+selected=$(find ~/Code -mindepth 1 -maxdepth 1 -type d | fzf --exit-0)
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
-
-printf "\033]2;tmux [$selected_name]\a"
 
 if [[ -z $TMUX ]]; then
     tmux new-session -A -s $selected_name -c $selected
