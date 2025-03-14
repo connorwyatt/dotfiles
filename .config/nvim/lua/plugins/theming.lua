@@ -1,6 +1,6 @@
 return {
     {
-        "connorwyatt/themes.nvim",
+        "connorwyatt/sakura.nvim",
         priority = 10000,
     },
     {
