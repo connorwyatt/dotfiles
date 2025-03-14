@@ -133,6 +133,9 @@ require("lazy").setup({
     change_detection = {
         notify = false,
     },
+    dev = {
+        path = "~/Code",
+    },
     ui = {
         size = {
             width = 1,

@@ -1,6 +1,7 @@
 return {
     {
         "connorwyatt/sakura.nvim",
+        dev = true,
         priority = 10000,
     },
     {
