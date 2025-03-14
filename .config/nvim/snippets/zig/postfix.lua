@@ -27,15 +27,21 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 return {
-    s(
+    postfix(
         {
-            trig = "print",
-            desc = "Print using std.debug",
+            trig = ".for",
+            desc = "For",
         },
         {
-            -- TODO: Make the arguments insertion conditional based on if there are
-            -- any interpolations.
-            t('std.debug.print("'), i(1, "message"), t('", .{ '), i(0, "args"), t(' });'),
+            t("for ("),
+            f(function(_, parent)
+                return parent.snippet.env.POSTFIX_MATCH
+            end, {}),
+            t(") |"),
+            i(1, "element"),
+            t({ "| {", "\t", }),
+            i(0),
+            t({ "", "}", }),
         }
-    ),
+    )
 }
