@@ -33,6 +33,7 @@ local highlights = {
     cwd = "StatusLineCwd",
     file = {
         directory = "StatusLineFileDirectory",
+        directory_icon = "Directory",
         basename = "StatusLineFileBaseName",
         basename_modified = "StatusLineFileBaseNameModified",
         modified = "StatusLineFileModified",
@@ -210,20 +211,51 @@ local Cwd = {
     init = function(self)
         self.cwd = vim.fn.getcwd()
     end,
-    hl = highlights.cwd,
-    flexible = 10,
+    { provider = "", hl = highlights.file.directory_icon, },
+    Spacer,
     {
-        provider = function(self)
-            return self.cwd
-        end,
+        hl = highlights.cwd,
+        flexible = 10,
+        {
+            provider = function(self)
+                return self.cwd
+            end,
+        },
+        {
+            provider = function(self)
+                return vim.fn.pathshorten(self.cwd)
+            end,
+        },
+        {
+            provider = "",
+        },
     },
+}
+
+local OilCwd = {
+    init = function(self)
+        local oil_prefix = "oil://"
+        local filename = vim.api.nvim_buf_get_name(0)
+        self.cwd = filename:sub(#oil_prefix + 1)
+    end,
+    { provider = "", hl = highlights.file.directory_icon, },
+    Spacer,
     {
-        provider = function(self)
-            return vim.fn.pathshorten(self.cwd)
-        end,
-    },
-    {
-        provider = "",
+        hl = highlights.cwd,
+        flexible = 10,
+        {
+            provider = function(self)
+                return self.cwd
+            end,
+        },
+        {
+            provider = function(self)
+                return vim.fn.pathshorten(self.cwd)
+            end,
+        },
+        {
+            provider = "",
+        },
     },
 }
 
@@ -487,6 +519,18 @@ local EmptyStatusline = {
     Align,
 }
 
+local OilStatusline = {
+    condition = function()
+        return vim.bo.filetype == "oil"
+    end,
+    hl = highlights.statusline,
+    Git,
+
+    Align,
+    OilCwd,
+    Align,
+}
+
 local NeoTreeStatusline = {
     condition = function()
         return vim.bo.filetype == "neo-tree"
@@ -503,6 +547,7 @@ local Statusline = {
     fallthrough = false,
 
     NeoTreeStatusline,
+    OilStatusline,
     EmptyStatusline,
     InactiveStatusline,
     DefaultStatusline,
