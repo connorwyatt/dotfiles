@@ -9,7 +9,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         opts = {
-            max_lines = 2,
+            max_lines = 3,
         },
     },
     {

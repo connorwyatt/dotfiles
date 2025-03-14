@@ -59,8 +59,8 @@ vim.opt.updatetime = 33
 -- Preview replacements inline.
 vim.opt.inccommand = "split"
 
--- Show at least 1 line either side of cursor.
-vim.opt.scrolloff = 1
+-- Show at least 5 lines either side of cursor.
+vim.opt.scrolloff = 5
 
 vim.opt.termguicolors = true
 
