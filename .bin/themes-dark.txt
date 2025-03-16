@@ -1,3 +1,4 @@
+sakura-afterglow
 sakura-dusk
 sakura-midnight
 sakura-night
