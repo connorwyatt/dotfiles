@@ -193,31 +193,21 @@ luasnip.setup({
     },
 })
 
-require("luasnip.loaders.from_lua").load({
-    paths = {
-        vim.fn.stdpath('config') .. "/snippets",
-    },
+local load_luasnip_snippets = function()
+    require("luasnip.loaders.from_lua").load({
+        paths = {
+            vim.fn.stdpath("config") .. "/snippets",
+        },
+    })
+end
+
+vim.api.nvim_create_user_command("ReloadSnippets", load_luasnip_snippets, {
+    nargs = 0,
+    desc = "Reload snippets",
 })
 
-vim.keymap.set({ "i", "s", }, "<Tab>",
-    function()
-        if luasnip.expandable() then
-            blink.cancel({
-                callback = function()
-                    luasnip.expand()
-                end
-            })
-            return true
-        else
-            luasnip.jump(1)
-        end
-    end,
-    { silent = true })
-vim.keymap.set({ "i", "s", }, "<S-Tab>",
-    function()
-        luasnip.jump(-1)
-    end,
-    { silent = true })
+load_luasnip_snippets()
+
 vim.keymap.set({ "i", "s" }, "<C-c>",
     function()
         if luasnip.choice_active() then
