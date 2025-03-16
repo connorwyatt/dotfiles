@@ -8,7 +8,7 @@ vim.g.maplocalleader = "\\"
 -- Line numbers.
 vim.opt.number = true
 -- Relative line numbers.
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- Indentation.
 vim.opt.tabstop = 4
