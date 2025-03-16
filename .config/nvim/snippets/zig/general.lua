@@ -52,4 +52,13 @@ return {
             t({ "", "};" }),
         }
     ),
+    s(
+        {
+            trig = "arraylist",
+            desc = "Array list",
+        },
+        {
+            t("std.ArrayList("), i(1, "Type"), t(").init();"), i(0),
+        }
+    ),
 }
