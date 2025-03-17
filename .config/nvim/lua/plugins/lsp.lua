@@ -46,7 +46,7 @@ return {
                     update_delay_ms = 0,
                 },
                 ghost_text = {
-                    enabled = true,
+                    enabled = false,
                 },
                 list = {
                     selection = {
@@ -113,7 +113,7 @@ return {
                         should_show_items = true,
                         max_items = nil,
                         min_keyword_length = 0,
-                        fallbacks = { "buffer", },
+                        fallbacks = {},
                         score_offset = 50,
                     },
                     path = {
@@ -145,7 +145,7 @@ return {
                         transform_items = nil,
                         should_show_items = true,
                         max_items = 5,
-                        min_keyword_length = 0,
+                        min_keyword_length = 3,
                         fallbacks = {},
                         score_offset = 0,
                     },
