@@ -135,6 +135,7 @@ require("lazy").setup({
     },
     dev = {
         path = "~/Code",
+        fallback = true,
     },
     ui = {
         size = {
