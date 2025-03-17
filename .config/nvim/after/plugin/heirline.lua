@@ -30,9 +30,9 @@ local highlights = {
         prompt   = "StatusLineModePromptText",
         terminal = "StatusLineModeTerminalText",
     },
-    cwd = "StatusLineCwd",
     file = {
         directory = "StatusLineFileDirectory",
+        directory_modified = "StatusLineFileDirectoryModified",
         directory_icon = "Directory",
         basename = "StatusLineFileBaseName",
         basename_modified = "StatusLineFileBaseNameModified",
@@ -207,6 +207,14 @@ local VimMode = {
     end,
 }
 
+local FileModifiedIndicator = {
+    condition = function()
+        return vim.bo.modified
+    end,
+    hl = highlights.file.modified,
+    provider = "*",
+}
+
 local Cwd = {
     init = function(self)
         self.cwd = vim.fn.getcwd()
@@ -214,7 +222,7 @@ local Cwd = {
     { provider = "", hl = highlights.file.directory_icon, },
     Spacer,
     {
-        hl = highlights.cwd,
+        hl = highlights.file.basename,
         flexible = 10,
         {
             provider = function(self)
@@ -236,12 +244,18 @@ local OilCwd = {
     init = function(self)
         local oil_prefix = "oil://"
         local filename = vim.api.nvim_buf_get_name(0)
-        self.cwd = filename:sub(#oil_prefix + 1)
+        self.cwd = filename:sub(#oil_prefix + 1, -2)
     end,
     { provider = "", hl = highlights.file.directory_icon, },
     Spacer,
     {
-        hl = highlights.cwd,
+        hl = function()
+            if vim.bo.modified then
+                return highlights.file.basename_modified
+            else
+                return highlights.file.basename
+            end
+        end,
         flexible = 10,
         {
             provider = function(self)
@@ -257,6 +271,7 @@ local OilCwd = {
             provider = "",
         },
     },
+    FileModifiedIndicator,
 }
 
 local FileInfoProvider = {
@@ -287,13 +302,7 @@ local FileName = utils.insert(FileInfoProvider, {
             return self.base_name
         end,
     },
-    {
-        condition = function()
-            return vim.bo.modified
-        end,
-        hl = highlights.file.modified,
-        provider = "*",
-    },
+    FileModifiedIndicator,
     {
         condition = function()
             return not vim.bo.modifiable or vim.bo.readonly
@@ -326,7 +335,13 @@ local FilePath = utils.insert(FileInfoProvider, {
         condition = function(self)
             return self.directory ~= "."
         end,
-        hl = highlights.file.directory,
+        hl = function()
+            if vim.bo.modified then
+                return highlights.file.directory_modified
+            else
+                return highlights.file.directory
+            end
+        end,
         flexible = 10,
         {
             provider = function(self)
