@@ -11,6 +11,7 @@ local which_key = require("which-key")
 -- Diagnostics
 
 vim.diagnostic.config({
+    virtual_text = false,
     underline = true,
     update_in_insert = false,
     signs = {
@@ -21,6 +22,24 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.INFO] = " ",
         },
     },
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+        if vim.lsp.buf_is_attached() and vim.api.nvim_get_mode().mode == "n" then
+            vim.diagnostic.open_float(0, {
+                scope = "cursor",
+                focusable = false,
+                close_events = {
+                    "CursorMoved",
+                    "CursorMovedI",
+                    "BufHidden",
+                    "InsertCharPre",
+                    "WinLeave",
+                },
+            })
+        end
+    end,
 })
 
 -- Mason
@@ -86,7 +105,7 @@ mason_lspconfig.setup_handlers({
         require("lspconfig")[server_name].setup({
             completion = {
                 capable = {
-                    snippets = 'add_parenthesis'
+                    snippets = "add_parenthesis"
                 }
             }
         })
@@ -96,8 +115,8 @@ mason_lspconfig.setup_handlers({
             settings = {
                 Lua = {
                     completion = {
-                        callSnippet = 'Disable',
-                        keywordSnippet = 'Disable',
+                        callSnippet = "Disable",
+                        keywordSnippet = "Disable",
                     }
                 }
             }
