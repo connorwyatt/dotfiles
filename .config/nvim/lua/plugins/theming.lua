@@ -6,7 +6,13 @@ return {
     },
     {
         "xiyaowong/transparent.nvim",
-        config = true
+        opts = {
+            exclude_groups = {
+                "CursorLine",
+                "CursorLineNr",
+                "StatusLine",
+            },
+        },
     },
     {
         "f-person/auto-dark-mode.nvim",

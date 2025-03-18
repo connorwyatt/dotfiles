@@ -67,6 +67,7 @@ vim.opt.termguicolors = true
 -- Invisible characters.
 vim.opt.list = false
 vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
+vim.opt.fillchars:append { diff = "╱" }
 
 -- nvim-ufo suggested folding configuration.
 vim.o.foldlevel = 99

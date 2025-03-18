@@ -8,7 +8,7 @@ window-padding-color = extend
 # window-padding-color = extend-always
 
 # macos-titlebar-style = hidden
-# window-decoration = none
+window-decoration = none
 
 font-family = "JetBrains Mono Regular Regular"
 font-family-italic = "JetBrains Mono Italic Italic"
