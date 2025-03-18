@@ -4,11 +4,11 @@ local utils = require("heirline.utils")
 
 local highlights = {
     statusline = "StatusLine",
-    statusline_inactive = "StatusLineInactive",
+    statusline_nc = "StatusLineNC",
     section_a = "StatusLineSectionA",
-    section_a_inactive = "StatusLineSectionAInactive",
+    section_a_nc = "StatusLineSectionANC",
     section_b = "StatusLineSectionB",
-    section_b_inactive = "StatusLineSectionBInactive",
+    section_b_nc = "StatusLineSectionBNC",
     divider = "StatusLineDivider",
     modes = {
         normal   = "StatusLineModeNormal",
@@ -131,7 +131,7 @@ local SectionAHighlights = {
         if conditions.is_active() then
             return highlights.section_a
         else
-            return highlights.section_a_inactive
+            return highlights.section_a_nc
         end
     end,
 }
@@ -141,7 +141,7 @@ local SectionBHighlights = {
         if conditions.is_active() then
             return highlights.section_b
         else
-            return highlights.section_b_inactive
+            return highlights.section_b_nc
         end
     end,
 }
@@ -388,7 +388,7 @@ local BufType = {
 
 local FileType = {
     provider = function()
-        return vim.bo.filetype
+        return vim.bo.filetype or "unknown"
     end,
 }
 
@@ -487,12 +487,10 @@ local Ruler = {
 
 local DefaultStatusline = {
     hl = highlights.statusline,
-    utils.insert(ModeHighlights, Spacer),
-    Spacer,
-    utils.insert(ModeTextHighlights, VimMode),
+    utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
     {
         condition = conditions.is_git_repo,
-        Divider,
+        Spacer,
     },
     Git,
 
@@ -511,14 +509,14 @@ local DefaultStatusline = {
     Divider,
     FileType,
     Divider,
-    utils.insert(ModeTextHighlights, Ruler),
+    Ruler,
     Spacer,
     utils.insert(ModeHighlights, Spacer),
 }
 
 local InactiveStatusline = {
     condition = conditions.is_not_active,
-    hl = highlights.statusline_inactive,
+    hl = highlights.statusline_nc,
 
     Align,
     FilePath,
