@@ -7,9 +7,6 @@ mouse-hide-while-typing = true
 window-padding-color = extend
 # window-padding-color = extend-always
 
-# background-opacity = 0.9
-# background-blur-radius = 32
-
 # macos-titlebar-style = hidden
 # window-decoration = none
 
