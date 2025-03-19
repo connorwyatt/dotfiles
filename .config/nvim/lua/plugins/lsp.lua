@@ -56,7 +56,7 @@ return {
                 },
                 menu = {
                     draw = {
-                        columns = { { "kind_icon", "label", gap = 1, }, },
+                        columns = { { "kind_icon", "label", "source_name", gap = 1, }, },
                         padding = { 0, 1, },
                         components = {
                             kind_icon = {
@@ -98,25 +98,16 @@ return {
                     "path",
                     "snippets",
                     "buffer",
+                    "ripgrep",
                 },
                 providers = {
                     lazydev = {
-                        name = "LazyDev",
+                        name = "",
                         module = "lazydev.integrations.blink",
-                        score_offset = 100,
-                    },
-                    lsp = {
-                        enabled = true,
-                        async = false,
-                        timeout_ms = 50,
-                        transform_items = nil,
-                        should_show_items = true,
-                        max_items = nil,
-                        min_keyword_length = 0,
-                        fallbacks = {},
                         score_offset = 50,
                     },
-                    path = {
+                    lsp = {
+                        name = "",
                         enabled = true,
                         async = false,
                         timeout_ms = 50,
@@ -125,9 +116,22 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 75,
+                        score_offset = 40,
+                    },
+                    path = {
+                        name = "",
+                        enabled = true,
+                        async = false,
+                        timeout_ms = 50,
+                        transform_items = nil,
+                        should_show_items = true,
+                        max_items = nil,
+                        min_keyword_length = 0,
+                        fallbacks = {},
+                        score_offset = 30,
                     },
                     snippets = {
+                        name = "",
                         enabled = true,
                         async = false,
                         timeout_ms = 50,
@@ -136,9 +140,23 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 25,
+                        score_offset = 20,
                     },
                     buffer = {
+                        name = " ",
+                        enabled = true,
+                        async = false,
+                        timeout_ms = 50,
+                        transform_items = nil,
+                        should_show_items = true,
+                        max_items = 5,
+                        min_keyword_length = 3,
+                        fallbacks = { "ripgrep", },
+                        score_offset = 10,
+                    },
+                    ripgrep = {
+                        module = "blink-ripgrep",
+                        name = " ",
                         enabled = true,
                         async = false,
                         timeout_ms = 50,
@@ -148,6 +166,20 @@ return {
                         min_keyword_length = 3,
                         fallbacks = {},
                         score_offset = 0,
+                        -- the options below are optional, some default values are shown
+                        ---@module "blink-ripgrep"
+                        ---@type blink-ripgrep.Options
+                        opts = {
+                            prefix_min_len = 3,
+                            context_size = 5,
+                            max_filesize = "1M",
+                            project_root_marker = {},
+                            project_root_fallback = true,
+                            search_casing = "--smart-case",
+                            fallback_to_regex_highlighting = true,
+                            ignore_paths = {},
+                            additional_paths = {},
+                        },
                     },
                 },
             },
@@ -177,6 +209,9 @@ return {
                 },
             },
         },
+    },
+    {
+        "mikavilpas/blink-ripgrep.nvim",
     },
     {
         "xzbdmw/colorful-menu.nvim",
