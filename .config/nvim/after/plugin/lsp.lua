@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { buffer = event.buf, desc = "Go to implementation" })
         vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>",
             { buffer = event.buf, desc = "Go to type definition" })
-        vim.keymap.set("n", "gr", "<cmd>lue vim.lsp.buf.references()<cr>",
+        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>",
             { buffer = event.buf, desc = "Find references" })
         vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>",
             { buffer = event.buf, desc = "Show signature help" })
