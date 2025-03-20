@@ -33,9 +33,19 @@ return {
             desc = "Print using std.debug",
         },
         {
-            -- TODO: Make the arguments insertion conditional based on if there are
-            -- any interpolations.
-            t('std.debug.print("'), i(1, "message"), t('", .{ '), i(0, "args"), t(' });'),
+            t('std.debug.print("'),
+            i(1, "message"),
+            t('", .{'),
+            d(2, function(args)
+                if not args[1][1]:find("{.*}") then
+                    return sn(nil, {})
+                end
+
+                return sn(nil, {
+                    i(1),
+                })
+            end, { 1 }),
+            t('});'),
         }
     ),
     s(
@@ -44,9 +54,11 @@ return {
             desc = "Struct",
         },
         {
-            -- TODO: Make visibility a choice node.
-            t("pub const "),
-            i(1, "StructName"),
+            c(1, {
+                t("const "),
+                t("pub const "),
+            }),
+            i(2, "StructName"),
             t({ " = struct {", "\t", }),
             i(0),
             t({ "", "};" }),
@@ -58,7 +70,9 @@ return {
             desc = "Array list",
         },
         {
-            t("std.ArrayList("), i(1, "Type"), t(").init();"), i(0),
+            t("std.ArrayList("),
+            i(1, "Type"),
+            t(").init();"),
         }
     ),
 }

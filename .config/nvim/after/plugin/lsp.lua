@@ -196,17 +196,29 @@ luasnip.setup({
         [luasnip_types.choiceNode] = {
             active = {
                 hl_group = "LuasnipChoiceNodeActive",
+                virt_text = { { "", "LuasnipChoiceNodeActiveVirtualText" } },
             },
-            passive = {
-                hl_group = "LuasnipChoiceNodePassive",
+            unvisited = {
+                hl_group = "LuasnipChoiceNodeUnvisited",
+                virt_text = { { "", "LuasnipChoiceNodeUnvisitedVirtualText" } },
+            },
+            visited = {
+                hl_group = "LuasnipChoiceNodeVisited",
+                virt_text = { { "", "LuasnipChoiceNodeVisitedVirtualText" } },
             },
         },
         [luasnip_types.insertNode] = {
             active = {
                 hl_group = "LuasnipInsertNodeActive",
+                virt_text = { { "", "LuasnipInsertNodeActiveVirtualText" } },
             },
-            passive = {
-                hl_group = "LuasnipInsertNodePassive",
+            unvisited = {
+                hl_group = "LuasnipInsertNodeUnvisited",
+                virt_text = { { "", "LuasnipInsertNodeUnvisitedVirtualText" } },
+            },
+            visited = {
+                hl_group = "LuasnipInsertNodeVisited",
+                virt_text = { { "", "LuasnipInsertNodeVisitedVirtualText" } },
             },
         }
     },
@@ -227,6 +239,11 @@ vim.api.nvim_create_user_command("ReloadSnippets", load_luasnip_snippets, {
 
 load_luasnip_snippets()
 
+vim.keymap.set("n", "<C-s>",
+    function()
+        luasnip.unlink_current()
+    end,
+    { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-c>",
     function()
         if luasnip.choice_active() then

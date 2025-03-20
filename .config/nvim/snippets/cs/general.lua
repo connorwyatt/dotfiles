@@ -42,8 +42,16 @@ return {
             desc = "Class",
         },
         {
-            -- TODO: Make the visibility modifier into a conditional choice node.
-            t("public class "), i(1, "ClassName"), t({ " {", "\t" }), i(0), t({ "", "}" }),
+            c(1, {
+                t("public"),
+                t("internal"),
+                t("private"),
+            }),
+            t(" class "),
+            i(2, "ClassName"),
+            t({ " {", "\t" }),
+            i(0),
+            t({ "", "}" }),
         }
     ),
     s(
@@ -52,8 +60,20 @@ return {
             desc = "Method",
         },
         {
-            -- TODO: Make the visibility modifier into a conditional choice node.
-            t("public "), i(2, "Type"), t(" "), i(1, "Name"), t("("), i(3), t({ ")", "{", "\t", }), i(0), t({ "", "}", }),
+            c(1, {
+                t("public"),
+                t("internal"),
+                t("private"),
+            }),
+            t(" "),
+            i(3, "Type"),
+            t(" "),
+            i(2, "Name"),
+            t("("),
+            i(4),
+            t({ ")", "{", "\t", }),
+            i(0),
+            t({ "", "}", }),
         }
     ),
     s(
@@ -62,8 +82,16 @@ return {
             desc = "Property",
         },
         {
-            -- TODO: Make the visibility modifier into a conditional choice node.
-            t("public "), i(2, "Type"), t(" "), i(1, "Name"), t(" { get; set; }"), i(0),
+            c(1, {
+                t("public"),
+                t("internal"),
+                t("private"),
+            }),
+            t(" "),
+            i(2, "Type"),
+            t(" "),
+            i(1, "Name"),
+            t(" { get; set; }"),
         }
     ),
 }
