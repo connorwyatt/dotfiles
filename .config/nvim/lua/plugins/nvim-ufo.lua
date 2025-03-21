@@ -8,12 +8,9 @@ return {
             close_fold_kinds_for_ft = {
                 default = { "imports", "comment" },
             },
-            provider_selector = function()
-                return { "treesitter", "indent", }
-            end,
             fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
                 local newVirtText = {}
-                local suffix = ("  %d lines "):format(endLnum - lnum)
+                local suffix = (" 󰛑  %d lines folded"):format(endLnum - lnum)
                 local sufWidth = vim.fn.strdisplaywidth(suffix)
                 local targetWidth = width - sufWidth
                 local curWidth = 0
@@ -35,7 +32,7 @@ return {
                     end
                     curWidth = curWidth + chunkWidth
                 end
-                table.insert(newVirtText, { suffix, "MoreMsg" })
+                table.insert(newVirtText, { suffix, "Comment" })
                 return newVirtText
             end,
         },
