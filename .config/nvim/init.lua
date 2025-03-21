@@ -23,8 +23,8 @@ vim.opt.colorcolumn = "80"
 -- Don't wrap by default.
 vim.opt.wrap = false
 
--- Don't highlight line that cursor is on.
-vim.opt.cursorline = false
+-- Highlight line that cursor is on.
+vim.opt.cursorline = true
 
 -- Enable mouse mode, useful for resizing splits.
 vim.opt.mouse = "a"
@@ -54,7 +54,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.ttimeoutlen = 0
 
 -- Decrease update time.
-vim.opt.updatetime = 33
+vim.opt.updatetime = 16
 
 -- Preview replacements inline.
 vim.opt.inccommand = "split"

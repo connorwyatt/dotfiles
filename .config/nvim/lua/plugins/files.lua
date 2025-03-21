@@ -74,14 +74,14 @@ return {
             default_component_configs = {
                 indent = {
                     with_expanders = true,
-                    expander_collapsed = "",
-                    expander_expanded = "",
+                    expander_collapsed = "󰅂",
+                    expander_expanded = "󰅀",
                 },
                 icon = {
-                    folder_closed = "",
-                    folder_open = "",
-                    folder_empty = "",
-                    folder_empty_open = "",
+                    folder_closed = "󰉋",
+                    folder_open = "󰝰",
+                    folder_empty = "󰉖",
+                    folder_empty_open = "󰷏",
                 },
                 modified = {
                     symbol = "",
@@ -89,16 +89,16 @@ return {
                 git_status = {
                     symbols = {
                         -- Change type
-                        added     = " ",
-                        deleted   = " ",
-                        modified  = " ",
-                        renamed   = " ",
+                        added     = "",
+                        deleted   = "",
+                        modified  = "",
+                        renamed   = "",
                         -- Status type
                         untracked = "",
                         ignored   = "",
                         unstaged  = "",
                         staged    = "",
-                        conflict  = " ",
+                        conflict  = "",
                     },
                 },
             },
@@ -118,7 +118,6 @@ return {
                         ["."] = { "set_root", desc = "Set root", },
                         ["H"] = { "toggle_hidden", desc = "Toggle hidden", },
                         ["a"] = { "add", desc = "Add", config = { show_path = "relative", }, },
-                        ["b"] = { "rename_basename", desc = "Rename basename", },
                         ["c"] = { "close_all_nodes", desc = "Close all nodes", },
                         ["d"] = { "delete", desc = "Delete", },
                         ["h"] = { "toggle_node", desc = "Toggle node", },
@@ -137,7 +136,6 @@ return {
             buffers = {
                 window = {
                     mappings = {
-                        ["b"] = { "rename_basename", desc = "Rename basename", },
                         ["d"] = { "buffer_delete", desc = "Delete", },
                         ["P"] = { "toggle_preview", desc = "Toggle preview", },
                         ["r"] = { "rename", desc = "Rename", },
@@ -150,7 +148,6 @@ return {
                 window = {
                     mappings = {
                         ["<cr>"] = { "open", desc = "Open", },
-                        ["b"] = { "rename_basename", desc = "Rename basename", },
                         ["h"] = { "toggle_node", desc = "Toggle node", },
                         ["l"] = { "toggle_node", desc = "Toggle node", },
                         ["P"] = { "toggle_preview", desc = "Toggle preview", },
