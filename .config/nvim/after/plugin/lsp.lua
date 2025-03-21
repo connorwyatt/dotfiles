@@ -206,8 +206,11 @@ dap.listeners.before.launch.dapui_config = function()
 end
 
 -- Snippets
+
 luasnip.setup({
     update_events = { "TextChanged", "TextChangedI", },
+    region_check_events = { "CursorMoved", "CursorMovedI", },
+    store_selection_keys = "<Tab>",
     ext_opts = {
         [luasnip_types.choiceNode] = {
             active = {

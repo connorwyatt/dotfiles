@@ -29,7 +29,7 @@ local k = require("luasnip.nodes.key_indexer").new_key
 return {
     s(
         {
-            trig = "ns",
+            trig = "namespace",
             desc = "File-scoped namespace",
         },
         {
@@ -38,7 +38,7 @@ return {
     ),
     s(
         {
-            trig = "cl",
+            trig = "class",
             desc = "Class",
         },
         {
@@ -56,7 +56,7 @@ return {
     ),
     s(
         {
-            trig = "meth",
+            trig = "method",
             desc = "Method",
         },
         {
@@ -78,7 +78,7 @@ return {
     ),
     s(
         {
-            trig = "prop",
+            trig = "property",
             desc = "Property",
         },
         {

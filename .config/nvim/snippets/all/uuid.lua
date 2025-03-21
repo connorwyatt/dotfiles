@@ -26,22 +26,38 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
+local function execute_shell_command(command)
+    local file = io.popen(command, "r")
+    local res = {}
+
+    if file == nil then
+        return res
+    end
+
+    for line in file:lines() do
+        table.insert(res, line)
+    end
+
+    return res
+end
+
 return {
-    postfix(
+    s(
         {
-            trig = ".for",
-            desc = "For",
+            trig = "uuid",
+            desc = "Generate a uuid",
         },
         {
-            t("for ("),
-            f(function(_, parent)
-                return parent.snippet.env.POSTFIX_MATCH
-            end, {}),
-            t(") |"),
-            i(1, "element"),
-            t({ "| {", "\t", }),
-            i(0),
-            t({ "", "}", }),
+            d(1, function()
+                local uuid = execute_shell_command("uuidgen")[1]
+
+                return sn(nil, {
+                    c(1, {
+                        t(uuid:lower()),
+                        t(uuid:upper()),
+                    })
+                })
+            end),
         }
-    )
+    ),
 }

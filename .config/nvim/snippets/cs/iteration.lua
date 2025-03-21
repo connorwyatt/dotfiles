@@ -26,22 +26,35 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
+local visual_selection_or_insert = function(default_insert_text)
+    return function(args, parent)
+        if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+            return sn(nil, t(parent.snippet.env.LS_SELECT_RAW))
+        else
+            return sn(nil, i(1, default_insert_text))
+        end
+    end
+end
+
 return {
-    postfix(
+    s(
         {
-            trig = ".fe",
-            desc = "Foreach",
+            trig = "foreach",
+            desc = "Foreach statement",
         },
-        {
-            t("foreach (var "),
-            i(1, "element"),
-            t(" in "),
-            f(function(_, parent)
-                return parent.snippet.env.POSTFIX_MATCH
-            end, {}),
-            t({ ")", "{", "\t", }),
-            i(0),
-            t({ "", "}", }),
-        }
-    )
+        fmta(
+            [[
+            foreach (var <> in <>)
+            {
+                <>
+            }
+            ]],
+            {
+                -- TODO: Use function node to generate a good default name for this
+                i(2, "item"),
+                d(1, visual_selection_or_insert("items")),
+                i(0),
+            }
+        )
+    ),
 }
