@@ -1,4 +1,4 @@
-local blink = require("blink.cmp")
+local blink = require("blink-cmp")
 local dap = require("dap")
 local dapui = require("dapui")
 local luasnip = require("luasnip")
@@ -126,6 +126,22 @@ mason_lspconfig.setup_handlers({
         require("lspconfig")[server_name].setup({
             capabilities = lsp_capabilities,
         })
+    end,
+})
+
+-- Completion
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "TextChanged", "TextChangedI" }, {
+    callback = function()
+        if blink.is_signature_visible() then
+            blink.hide_signature()
+        end
+
+        vim.schedule(function()
+            if vim.fn.mode() ~= "n" then
+                blink.show_signature()
+            end
+        end)
     end,
 })
 
