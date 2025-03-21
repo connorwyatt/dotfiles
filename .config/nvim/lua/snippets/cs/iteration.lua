@@ -25,54 +25,27 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
+local utils = require("snippets.utils")
 
 return {
     s(
         {
-            trig = "print",
-            desc = "Print using std.debug",
+            trig = "foreach",
+            desc = "Foreach statement",
         },
-        {
-            t('std.debug.print("'),
-            i(1, "message"),
-            t('", .{'),
-            d(2, function(args)
-                if not args[1][1]:find("{.*}") then
-                    return sn(nil, {})
-                end
-
-                return sn(nil, {
-                    i(1),
-                })
-            end, { 1 }),
-            t('});'),
-        }
-    ),
-    s(
-        {
-            trig = "struct",
-            desc = "Struct",
-        },
-        {
-            c(1, {
-                t("const "),
-                t("pub const "),
-            }),
-            i(2, "StructName"),
-            t({ " = struct {", "\t", }),
-            i(0),
-            t({ "", "};" }),
-        }
-    ),
-    s(
-        {
-            trig = "arraylist",
-            desc = "Array list",
-        },
-        {
-            t("std.ArrayList("),
-            i(1, "Type"),
-            t(").init();"),
-        }
+        fmta(
+            [[
+            foreach (var <> in <>)
+            {
+                <>
+            }
+            ]],
+            {
+                -- TODO: Use function node to generate a good default name for this
+                i(2, "item"),
+                d(1, utils.visual_selection_or_insert("items")),
+                i(0),
+            }
+        )
     ),
 }

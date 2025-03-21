@@ -26,38 +26,16 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
-local function execute_shell_command(command)
-    local file = io.popen(command, "r")
-    local res = {}
+local M = {}
 
-    if file == nil then
-        return res
+M.visual_selection_or_insert = function(default_insert_text)
+    return function(args, parent)
+        if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+            return sn(nil, t(parent.snippet.env.LS_SELECT_RAW))
+        else
+            return sn(nil, i(1, default_insert_text))
+        end
     end
-
-    for line in file:lines() do
-        table.insert(res, line)
-    end
-
-    return res
 end
 
-return {
-    s(
-        {
-            trig = "uuid",
-            desc = "Generate a uuid",
-        },
-        {
-            d(1, function()
-                local uuid = execute_shell_command("uuidgen")[1]
-
-                return sn(nil, {
-                    c(1, {
-                        t(uuid:lower()),
-                        t(uuid:upper()),
-                    })
-                })
-            end),
-        }
-    ),
-}
+return M

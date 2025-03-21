@@ -25,16 +25,7 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
-
-local visual_selection_or_insert = function(default_insert_text)
-    return function(args, parent)
-        if (#parent.snippet.env.LS_SELECT_RAW > 0) then
-            return sn(nil, t(parent.snippet.env.LS_SELECT_RAW))
-        else
-            return sn(nil, i(1, default_insert_text))
-        end
-    end
-end
+local utils = require("snippets.utils")
 
 return {
     s(
@@ -52,7 +43,7 @@ return {
             {
                 -- TODO: Use function node to generate a good default name for this
                 i(2, "item"),
-                d(1, visual_selection_or_insert("items")),
+                d(1, utils.visual_selection_or_insert("items")),
                 i(0),
             }
         )

@@ -248,7 +248,7 @@ local load_luasnip_snippets = function()
     loader.clean()
     loader.lazy_load({
         paths = {
-            vim.fn.stdpath("config") .. "/snippets",
+            vim.fn.stdpath("config") .. "/lua/snippets",
         },
     })
 end
