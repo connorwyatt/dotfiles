@@ -1,5 +1,5 @@
-background-opacity = 0.9
-background-blur-radius = 64
+# background-opacity = 0.9
+# background-blur-radius = 64
 
 palette = 0=#dfe1eb
 palette = 1=#d97c7c
