@@ -1,6 +1,7 @@
 return {
     {
         "connorwyatt/nvim-ufo",
+        branch = "close_fold_current_line",
         dependencies = {
             "kevinhwang91/promise-async",
         },
