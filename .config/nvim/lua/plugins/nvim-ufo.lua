@@ -1,13 +1,15 @@
 return {
     {
-        "kevinhwang91/nvim-ufo",
+        "connorwyatt/nvim-ufo",
         dependencies = {
             "kevinhwang91/promise-async",
         },
+        dev = true,
         opts = {
             close_fold_kinds_for_ft = {
                 default = { "imports", "comment" },
             },
+            close_fold_current_line = true,
             fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
                 local newVirtText = {}
                 local suffix = (" 󰛑  %d lines folded"):format(endLnum - lnum)
@@ -35,6 +37,13 @@ return {
                 table.insert(newVirtText, { suffix, "Comment" })
                 return newVirtText
             end,
+            preview = {
+                win_config = {
+                    border = "none",
+                    winhighlight = "NormalFloat:NormalFloat",
+                    winblend = 0,
+                },
+            },
         },
     },
 }

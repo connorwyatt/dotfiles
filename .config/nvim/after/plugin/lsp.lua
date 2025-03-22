@@ -96,7 +96,11 @@ local lsp_capabilities = blink.get_lsp_capabilities({
             completionItem = {
                 snippetSupport = false,
             },
-        }
+        },
+        foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true
+        },
     },
 })
 
