@@ -1,6 +1,10 @@
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
+-- Disable netrw.
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Make space the leader key and backslash the local leader key.
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"

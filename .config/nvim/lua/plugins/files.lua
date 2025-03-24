@@ -4,12 +4,13 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        lazy = false,
         keys = {
             { "<leader>fo", "<cmd>:Oil<cr>", desc = "Oil", },
         },
+        lazy = true,
+        cmd = "Oil",
         opts = {
-            default_file_explorer = true,
+            default_file_explorer = false,
             columns = {
                 { "mtime", },
                 { "size", },
@@ -50,7 +51,6 @@ return {
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
-        lazy = true,
         keys = {
             { "<leader>ff", "<cmd>:Neotree reveal<cr>",                      desc = "File browser", },
             { "<leader>fb", "<cmd>:Neotree reveal source=buffers<cr>",       desc = "Open buffers", },
@@ -58,6 +58,8 @@ return {
 
             { "<leader>e",  "<cmd>:Neotree reveal position=left toggle<cr>", desc = "Toggle file browser sidebar", }
         },
+        lazy = false,
+        priority = 999,
         opts = {
             use_popups_for_input = true,
             popup_border_style = "single",
@@ -103,6 +105,7 @@ return {
                 },
             },
             filesystem = {
+                hijack_netrw_behavior = "open_current",
                 scan_mode = "deep",
                 filtered_items = {
                     show_hidden_count = false,
@@ -120,8 +123,24 @@ return {
                         ["a"] = { "add", desc = "Add", config = { show_path = "relative", }, },
                         ["c"] = { "close_all_nodes", desc = "Close all nodes", },
                         ["d"] = { "delete", desc = "Delete", },
-                        ["h"] = { "toggle_node", desc = "Toggle node", },
-                        ["l"] = { "toggle_node", desc = "Toggle node", },
+                        ["h"] = { function(state)
+                            local node = state.tree:get_node()
+                            if node.type == 'directory' and node:is_expanded() then
+                                require 'neo-tree.sources.filesystem'.toggle_directory(state, node)
+                            else
+                                require 'neo-tree.ui.renderer'.focus_node(state, node:get_parent_id())
+                            end
+                        end, },
+                        ["l"] = { function(state)
+                            local node = state.tree:get_node()
+                            if node.type == 'directory' then
+                                if not node:is_expanded() then
+                                    require 'neo-tree.sources.filesystem'.toggle_directory(state, node)
+                                elseif node:has_children() then
+                                    require 'neo-tree.ui.renderer'.focus_node(state, node:get_child_ids()[1])
+                                end
+                            end
+                        end, },
                         ["p"] = { "paste_from_clipboard", desc = "Paste from clipboard", },
                         ["P"] = { "toggle_preview", desc = "Toggle preview", },
                         ["r"] = { "rename", desc = "Rename", },
@@ -148,8 +167,6 @@ return {
                 window = {
                     mappings = {
                         ["<cr>"] = { "open", desc = "Open", },
-                        ["h"] = { "toggle_node", desc = "Toggle node", },
-                        ["l"] = { "toggle_node", desc = "Toggle node", },
                         ["P"] = { "toggle_preview", desc = "Toggle preview", },
                         ["s"] = { "filter_as_you_type", desc = "Search", },
                         ["r"] = { "rename", desc = "Rename", },
