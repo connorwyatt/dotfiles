@@ -24,22 +24,46 @@ vim.diagnostic.config({
     },
 })
 
+local float_options = {
+    focusable = false,
+    close_events = {
+        "CursorMoved",
+        "CursorMovedI",
+        "BufHidden",
+        "InsertCharPre",
+        "WinLeave",
+    },
+}
+
 which_key.add({
+    {
+        "[d",
+        function()
+            vim.diagnostic.goto_prev({
+                float = float_options,
+            })
+        end,
+        desc = "Jump to the previous diagnostic",
+    },
+    {
+        "]d",
+        function()
+            vim.diagnostic.goto_next({
+                float = float_options,
+            })
+        end,
+        desc = "Jump to the next diagnostic",
+    },
     {
         "<leader>dK",
         function()
             if vim.lsp.buf_is_attached() and vim.api.nvim_get_mode().mode == "n" then
-                vim.diagnostic.open_float(0, {
-                    scope = "cursor",
-                    focusable = false,
-                    close_events = {
-                        "CursorMoved",
-                        "CursorMovedI",
-                        "BufHidden",
-                        "InsertCharPre",
-                        "WinLeave",
-                    },
-                })
+                vim.diagnostic.open_float(
+                    0,
+                    vim.tbl_extend("force", float_options, {
+                        scope = "cursor",
+                    })
+                )
             end
         end,
         desc = "Show diagnostic",
