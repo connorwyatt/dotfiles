@@ -264,11 +264,6 @@ vim.api.nvim_create_user_command("ReloadSnippets", load_luasnip_snippets, {
 
 load_luasnip_snippets()
 
-vim.keymap.set("n", "<C-s>",
-    function()
-        luasnip.unlink_current()
-    end,
-    { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-c>",
     function()
         if luasnip.choice_active() then
