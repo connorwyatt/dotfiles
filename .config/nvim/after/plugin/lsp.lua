@@ -227,7 +227,7 @@ luasnip.setup({
             },
             visited = {
                 hl_group = "LuasnipChoiceNodeVisited",
-                virt_text = { { "", "LuasnipChoiceNodeVisitedVirtualText" } },
+                virt_text = { { "", "LuasnipChoiceNodeVisitedVirtualText" } },
             },
         },
         [luasnip_types.insertNode] = {
@@ -241,7 +241,7 @@ luasnip.setup({
             },
             visited = {
                 hl_group = "LuasnipInsertNodeVisited",
-                virt_text = { { "", "LuasnipInsertNodeVisitedVirtualText" } },
+                virt_text = { { "", "LuasnipInsertNodeVisitedVirtualText" } },
             },
         }
     },
