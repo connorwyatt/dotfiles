@@ -436,7 +436,7 @@ local Diagnostics = {
                     table.insert(children, Spacer)
                 end
                 table.insert(children, {
-                    hl = highlights.diagnostics.hints,
+                    hl = highlights.diagnostics.hint,
                     provider = "󰋗 " .. self.hints,
                 })
             end

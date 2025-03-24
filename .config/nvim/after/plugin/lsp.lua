@@ -24,7 +24,7 @@ vim.diagnostic.config({
     },
 })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged" }, {
+vim.api.nvim_create_autocmd("CursorHold", {
     callback = function()
         if vim.lsp.buf_is_attached() and vim.api.nvim_get_mode().mode == "n" then
             vim.diagnostic.open_float(0, {

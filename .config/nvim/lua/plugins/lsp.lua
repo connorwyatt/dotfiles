@@ -100,9 +100,19 @@ return {
                     "buffer",
                     "ripgrep",
                 },
+                per_filetype = {
+                    gitcommit = {
+                        "path",
+                        "snippets",
+                        "buffer",
+                    },
+                },
                 providers = {
                     lazydev = {
                         name = "",
+                        enabled = function()
+                            return vim.bo.filetype == "lua"
+                        end,
                         module = "lazydev.integrations.blink",
                         score_offset = 20,
                     },
