@@ -104,7 +104,7 @@ return {
                     lazydev = {
                         name = "",
                         module = "lazydev.integrations.blink",
-                        score_offset = 50,
+                        score_offset = 20,
                     },
                     lsp = {
                         name = "",
@@ -116,7 +116,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 40,
+                        score_offset = 20,
                     },
                     path = {
                         name = "",
@@ -128,7 +128,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 30,
+                        score_offset = 20,
                     },
                     snippets = {
                         name = "",
@@ -151,7 +151,7 @@ return {
                         should_show_items = true,
                         max_items = 5,
                         min_keyword_length = 3,
-                        fallbacks = { "ripgrep", },
+                        fallbacks = {},
                         score_offset = 10,
                     },
                     ripgrep = {
@@ -166,7 +166,6 @@ return {
                         min_keyword_length = 3,
                         fallbacks = {},
                         score_offset = 0,
-                        -- the options below are optional, some default values are shown
                         ---@module "blink-ripgrep"
                         ---@type blink-ripgrep.Options
                         opts = {
