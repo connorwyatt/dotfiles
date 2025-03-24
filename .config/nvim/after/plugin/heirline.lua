@@ -399,85 +399,113 @@ local Diagnostics = {
         self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN, })
         self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO, })
         self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT, })
-        self.errors_spacing = self.warnings > 0 or self.info > 0 or self.hints > 0
-        self.warnings_spacing = self.info > 0 or self.hints > 0
-        self.info_spacing = self.hints > 0
     end,
     {
-        hl = highlights.diagnostics.error,
-        provider = function(self)
-            return self.errors > 0 and ("󰀨 " .. self.errors)
+        init = function(self)
+            local children = {}
+
+            if self.errors > 0 then
+                table.insert(children, {
+                    hl = highlights.diagnostics.error,
+                    provider = "󰀨 " .. self.errors,
+                })
+            end
+
+            if self.warnings > 0 then
+                if #children > 0 then
+                    table.insert(children, Spacer)
+                end
+                table.insert(children, {
+                    hl = highlights.diagnostics.warning,
+                    provider = "󰀦 " .. self.warnings,
+                })
+            end
+
+            if self.info > 0 then
+                if #children > 0 then
+                    table.insert(children, Spacer)
+                end
+                table.insert(children, {
+                    hl = highlights.diagnostics.info,
+                    provider = "󰋼 " .. self.info,
+                })
+            end
+
+            if self.hints > 0 then
+                if #children > 0 then
+                    table.insert(children, Spacer)
+                end
+                table.insert(children, {
+                    hl = highlights.diagnostics.hints,
+                    provider = "󰋗 " .. self.hints,
+                })
+            end
+
+            if #children > 0 then
+                table.insert(children, 1, Spacer)
+            end
+
+            self.children = self:new(children, 1)
         end,
-    },
-    {
-        condition = function(self)
-            return self.errors_spacing
-        end,
-        Spacer,
-    },
-    {
-        hl = highlights.diagnostics.warning,
-        provider = function(self)
-            return self.warnings > 0 and ("󰀦 " .. self.warnings)
-        end,
-    },
-    {
-        condition = function(self)
-            return self.warnings_spacing
-        end,
-        Spacer,
-    },
-    {
-        hl = highlights.diagnostics.info,
-        provider = function(self)
-            return self.info > 0 and ("󰋼 " .. self.info)
-        end,
-    },
-    {
-        condition = function(self)
-            return self.info_spacing
-        end,
-        Spacer,
-    },
-    {
-        hl = highlights.diagnostics.hint,
-        provider = function(self)
-            return self.hints > 0 and ("󰋗 " .. self.hints)
-        end,
+        provider = function(self) return self.children:eval() end,
     },
 }
 
 local Git = {
     condition = conditions.is_git_repo,
     init = function(self)
-        self.status_dict = vim.b.gitsigns_status_dict
+        local status_dict = vim.b.gitsigns_status_dict
+        self.head = status_dict.head
     end,
     {
         hl = highlights.git.branch,
         provider = function(self)
-            return "󰊢 " .. self.status_dict.head
+            return "󰊢 " .. self.head
         end,
     },
     {
-        hl = highlights.git.added,
-        provider = function(self)
-            local count = self.status_dict.added or 0
-            return count > 0 and (" 󰐖 " .. count)
+        init = function(self)
+            local status_dict = vim.b.gitsigns_status_dict
+            local added = status_dict.added or 0
+            local changed = status_dict.changed or 0
+            local removed = status_dict.removed or 0
+
+            local children = {}
+
+            if added > 0 then
+                table.insert(children, {
+                    hl = highlights.git.added,
+                    provider = "󰐖 " .. added,
+                })
+            end
+
+            if changed > 0 then
+                if #children > 0 then
+                    table.insert(children, Spacer)
+                end
+                table.insert(children, {
+                    hl = highlights.git.changed,
+                    provider = "󰦓 " .. changed,
+                })
+            end
+
+            if removed > 0 then
+                if #children > 0 then
+                    table.insert(children, Spacer)
+                end
+                table.insert(children, {
+                    hl = highlights.git.removed,
+                    provider = "󰍵 " .. removed,
+                })
+            end
+
+            if #children > 0 then
+                table.insert(children, 1, Spacer)
+            end
+
+            self.children = self:new(children, 1)
         end,
-    },
-    {
-        hl = highlights.git.changed,
-        provider = function(self)
-            local count = self.status_dict.changed or 0
-            return count > 0 and (" 󰦓 " .. count)
-        end,
-    },
-    {
-        hl = highlights.git.removed,
-        provider = function(self)
-            local count = self.status_dict.removed or 0
-            return count > 0 and (" 󰍵 " .. count)
-        end,
+        provider = function(self) return self.children:eval() end,
     },
 }
 
