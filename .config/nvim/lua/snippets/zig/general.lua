@@ -171,4 +171,32 @@ return {
             }
         )
     ),
+    s(
+        {
+            trig = "test",
+            desc = "Test",
+        },
+        fmta(
+            [[
+            test "<>" {
+                const testing = std.testing;
+
+                <>
+            }
+            ]],
+            {
+                i(1, "test name"),
+                i(0),
+            }
+        )
+    ),
+    s(
+        {
+            trig = "testing",
+            desc = "Import testing",
+        },
+        {
+            t("const testing = std.testing;"),
+        }
+    ),
 }

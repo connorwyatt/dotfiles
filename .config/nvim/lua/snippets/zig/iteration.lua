@@ -30,20 +30,19 @@ local utils = require("snippets.utils")
 return {
     s(
         {
-            trig = "foreach",
-            desc = "Foreach statement",
+            trig = "for",
+            desc = "For statement",
         },
         fmta(
             [[
-            foreach (var <> in <>)
-            {
+            for (<>) |<>| {
                 <>
             }
             ]],
             {
+                d(1, utils.visual_selection_or_insert("items")),
                 -- TODO: Use function node to generate a good default name for this
                 i(2, "item"),
-                d(1, utils.visual_selection_or_insert("items")),
                 i(0),
             }
         )
