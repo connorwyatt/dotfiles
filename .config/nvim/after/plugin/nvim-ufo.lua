@@ -6,10 +6,11 @@ whichKey.add({
     { "zM", ufo.closeAllFolds,        desc = "Close all folds", },
     { "zr", ufo.openFoldsExceptKinds, desc = "Fold less", },
     { "zm", ufo.closeFoldsWith,       desc = "Fold more", },
-})
-
-vim.api.nvim_create_autocmd("CursorHold", {
-    callback = function()
-        ufo.peekFoldedLinesUnderCursor()
-    end,
+    {
+        "zK",
+        function()
+            ufo.peekFoldedLinesUnderCursor()
+        end,
+        desc = "Peek folded lines",
+    },
 })

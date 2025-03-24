@@ -16,30 +16,34 @@ vim.diagnostic.config({
     update_in_insert = false,
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = "󰀨 ",
-            [vim.diagnostic.severity.WARN] = "󰀦 ",
-            [vim.diagnostic.severity.HINT] = "󰋼 ",
-            [vim.diagnostic.severity.INFO] = "󰋗 ",
+            [vim.diagnostic.severity.ERROR] = "󰀨",
+            [vim.diagnostic.severity.WARN] = "󰀦",
+            [vim.diagnostic.severity.HINT] = "󰋼",
+            [vim.diagnostic.severity.INFO] = "󰋗",
         },
     },
 })
 
-vim.api.nvim_create_autocmd("CursorHold", {
-    callback = function()
-        if vim.lsp.buf_is_attached() and vim.api.nvim_get_mode().mode == "n" then
-            vim.diagnostic.open_float(0, {
-                scope = "cursor",
-                focusable = false,
-                close_events = {
-                    "CursorMoved",
-                    "CursorMovedI",
-                    "BufHidden",
-                    "InsertCharPre",
-                    "WinLeave",
-                },
-            })
-        end
-    end,
+which_key.add({
+    {
+        "<leader>dK",
+        function()
+            if vim.lsp.buf_is_attached() and vim.api.nvim_get_mode().mode == "n" then
+                vim.diagnostic.open_float(0, {
+                    scope = "cursor",
+                    focusable = false,
+                    close_events = {
+                        "CursorMoved",
+                        "CursorMovedI",
+                        "BufHidden",
+                        "InsertCharPre",
+                        "WinLeave",
+                    },
+                })
+            end
+        end,
+        desc = "Show diagnostic",
+    },
 })
 
 -- Mason
