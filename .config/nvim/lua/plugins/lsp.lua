@@ -154,7 +154,7 @@ return {
                         score_offset = 20,
                     },
                     buffer = {
-                        name = " ",
+                        name = "",
                         enabled = true,
                         async = false,
                         timeout_ms = 50,
@@ -167,7 +167,7 @@ return {
                     },
                     ripgrep = {
                         module = "blink-ripgrep",
-                        name = " ",
+                        name = "",
                         enabled = true,
                         async = false,
                         timeout_ms = 50,
