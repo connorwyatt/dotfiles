@@ -1,7 +1,9 @@
 return {
     {
         "lukas-reineke/virt-column.nvim",
-        config = true,
+        opts = {
+            char = "│",
+            highlight = "VirtColumn",
+        },
     },
 }
-
