@@ -11,23 +11,23 @@ local highlights = {
     section_b_nc = "StatusLineSectionBNC",
     divider = "StatusLineDivider",
     modes = {
-        normal   = "StatusLineModeNormal",
-        insert   = "StatusLineModeInsert",
-        visual   = "StatusLineModeVisual",
-        command  = "StatusLineModeCommand",
-        select   = "StatusLineModeSelect",
-        replace  = "StatusLineModeReplace",
-        prompt   = "StatusLineModePrompt",
+        normal = "StatusLineModeNormal",
+        insert = "StatusLineModeInsert",
+        visual = "StatusLineModeVisual",
+        command = "StatusLineModeCommand",
+        select = "StatusLineModeSelect",
+        replace = "StatusLineModeReplace",
+        prompt = "StatusLineModePrompt",
         terminal = "StatusLineModeTerminal",
     },
     modes_text = {
-        normal   = "StatusLineModeNormalText",
-        insert   = "StatusLineModeInsertText",
-        visual   = "StatusLineModeVisualText",
-        command  = "StatusLineModeCommandText",
-        select   = "StatusLineModeSelectText",
-        replace  = "StatusLineModeReplaceText",
-        prompt   = "StatusLineModePromptText",
+        normal = "StatusLineModeNormalText",
+        insert = "StatusLineModeInsertText",
+        visual = "StatusLineModeVisualText",
+        command = "StatusLineModeCommandText",
+        select = "StatusLineModeSelectText",
+        replace = "StatusLineModeReplaceText",
+        prompt = "StatusLineModePromptText",
         terminal = "StatusLineModeTerminalText",
     },
     file = {
@@ -64,7 +64,7 @@ local Spacer = {
 local Divider = {
     hl = highlights.divider,
     Spacer,
-    { provider = "|", },
+    { provider = "|" },
     Spacer,
 }
 
@@ -147,7 +147,7 @@ local SectionBHighlights = {
 }
 
 local NeovimLogo = {
-    provider = ""
+    provider = "",
 }
 
 local VimMode = {
@@ -219,7 +219,7 @@ local Cwd = {
     init = function(self)
         self.cwd = vim.fn.getcwd()
     end,
-    { provider = "󰉋", hl = highlights.file.directory_icon, },
+    { provider = "󰉋", hl = highlights.file.directory_icon },
     Spacer,
     {
         hl = highlights.file.basename,
@@ -246,7 +246,7 @@ local OilCwd = {
         local filename = vim.api.nvim_buf_get_name(0)
         self.cwd = filename:sub(#oil_prefix + 1, -2)
     end,
-    { provider = "󰉋", hl = highlights.file.directory_icon, },
+    { provider = "󰉋", hl = highlights.file.directory_icon },
     Spacer,
     {
         hl = function()
@@ -315,7 +315,7 @@ local FileName = utils.insert(FileInfoProvider, {
 local FilePath = utils.insert(FileInfoProvider, {
     {
         hl = function(self)
-            return { fg = self.icon_color, }
+            return { fg = self.icon_color }
         end,
         provider = function(self)
             return self.icon
@@ -395,10 +395,10 @@ local FileType = {
 local Diagnostics = {
     condition = conditions.has_diagnostics,
     init = function(self)
-        self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR, })
-        self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN, })
-        self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO, })
-        self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT, })
+        self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+        self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+        self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+        self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
     end,
     {
         init = function(self)

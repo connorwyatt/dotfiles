@@ -168,7 +168,7 @@ return {
             desc = "Array list",
         },
         fmta(
-            'std.ArrayList(<>).init();',
+            "std.ArrayList(<>).init();",
             {
                 i(1, "Type"),
             }

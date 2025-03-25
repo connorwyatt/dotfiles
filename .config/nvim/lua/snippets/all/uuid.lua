@@ -56,7 +56,7 @@ return {
                     c(1, {
                         t(uuid:lower()),
                         t(uuid:upper()),
-                    })
+                    }),
                 })
             end),
         }

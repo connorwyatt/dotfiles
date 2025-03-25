@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP actions",
     callback = function(event)
         which_key.add({
-            { "<leader>lt", group = "Toggles", },
+            { "<leader>lt", group = "Toggles" },
             {
                 "<leader>lti",
                 function()
@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 which_key.add({
-    { "<leader>l", group = "LSP actions", },
+    { "<leader>l", group = "LSP actions" },
 })
 
 local lsp_capabilities = blink.get_lsp_capabilities({
@@ -127,7 +127,7 @@ local lsp_capabilities = blink.get_lsp_capabilities({
         },
         foldingRange = {
             dynamicRegistration = false,
-            lineFoldingOnly = true
+            lineFoldingOnly = true,
         },
     },
 })
@@ -137,9 +137,9 @@ mason_lspconfig.setup_handlers({
         require("lspconfig")[server_name].setup({
             completion = {
                 capable = {
-                    snippets = "add_parenthesis"
-                }
-            }
+                    snippets = "add_parenthesis",
+                },
+            },
         })
     end,
     lua_ls = function(server_name)
@@ -149,9 +149,9 @@ mason_lspconfig.setup_handlers({
                     completion = {
                         callSnippet = "Disable",
                         keywordSnippet = "Disable",
-                    }
-                }
-            }
+                    },
+                },
+            },
         })
     end,
     function(server_name)
@@ -180,21 +180,21 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "TextChanged", "TextC
 -- Debugging
 
 which_key.add({
-    { "<leader>b",  group = "Debugging", },
-    { "<leader>bb", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle breakpoint", },
-    { "<leader>bl", "<cmd>lua require('dap').list_breakpoints()<cr>",  desc = "List breakpoints", },
-    { "<leader>bx", "<cmd>lua require('dap').clear_breakpoints()<cr>", desc = "Clear breakpoints", },
-    { "<leader>bc", "<cmd>lua require('dap').continue()<cr>",          desc = "Continue", },
-    { "<leader>br", "<cmd>lua require('dap').restart()<cr>",           desc = "Restart", },
-    { "<leader>bq", "<cmd>lua require('dap').terminate()<cr>",         desc = "Terminate", },
-    { "<leader>bl", "<cmd>lua require('dap').step_over()<cr>",         desc = "Step over", },
-    { "<leader>bj", "<cmd>lua require('dap').step_into()<cr>",         desc = "Step into", },
-    { "<leader>bk", "<cmd>lua require('dap').step_out()<cr>",          desc = "Step out", },
-    { "<leader>bu", "<cmd>lua require('dapui').toggle()<cr>",          desc = "Toggle UI", },
+    { "<leader>b", group = "Debugging" },
+    { "<leader>bb", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle breakpoint" },
+    { "<leader>bl", "<cmd>lua require('dap').list_breakpoints()<cr>", desc = "List breakpoints" },
+    { "<leader>bx", "<cmd>lua require('dap').clear_breakpoints()<cr>", desc = "Clear breakpoints" },
+    { "<leader>bc", "<cmd>lua require('dap').continue()<cr>", desc = "Continue" },
+    { "<leader>br", "<cmd>lua require('dap').restart()<cr>", desc = "Restart" },
+    { "<leader>bq", "<cmd>lua require('dap').terminate()<cr>", desc = "Terminate" },
+    { "<leader>bl", "<cmd>lua require('dap').step_over()<cr>", desc = "Step over" },
+    { "<leader>bj", "<cmd>lua require('dap').step_into()<cr>", desc = "Step into" },
+    { "<leader>bk", "<cmd>lua require('dap').step_out()<cr>", desc = "Step out" },
+    { "<leader>bu", "<cmd>lua require('dapui').toggle()<cr>", desc = "Toggle UI" },
 })
 
 vim.fn.sign_define("DapBreakpoint",
-    { text = "", texthl = "DapBreakpointSign", linehl = "DapBreakpointLine", numhl = "DapBreakpointLineNumber", })
+    { text = "", texthl = "DapBreakpointSign", linehl = "DapBreakpointLine", numhl = "DapBreakpointLineNumber" })
 vim.fn.sign_define("DapBreakpointCondition",
     {
         text = "",
@@ -204,9 +204,9 @@ vim.fn.sign_define("DapBreakpointCondition",
         "DapBreakpointConditionLineNumber",
     })
 vim.fn.sign_define("DapLogPoint",
-    { text = "", texthl = "DapLogPointSign", linehl = "DapLogPointLine", numhl = "DapLogPointLineNumber", })
+    { text = "", texthl = "DapLogPointSign", linehl = "DapLogPointLine", numhl = "DapLogPointLineNumber" })
 vim.fn.sign_define("DapStopped",
-    { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedLine", numhl = "DapStoppedLineNumber", })
+    { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedLine", numhl = "DapStoppedLineNumber" })
 vim.fn.sign_define("DapBreakpointRejected",
     {
         text = "",
@@ -222,7 +222,7 @@ mason_nvim_dap.setup({
             config.adapters = {
                 type = "executable",
                 command = vim.fn.exepath("netcoredbg"),
-                args = { "--interpreter=vscode" }
+                args = { "--interpreter=vscode" },
             }
 
             require("mason-nvim-dap").default_setup(config)
@@ -240,8 +240,8 @@ end
 -- Snippets
 
 luasnip.setup({
-    update_events = { "TextChanged", "TextChangedI", },
-    region_check_events = { "CursorMoved", "CursorMovedI", },
+    update_events = { "TextChanged", "TextChangedI" },
+    region_check_events = { "CursorMoved", "CursorMovedI" },
     store_selection_keys = "<Tab>",
     ext_opts = {
         [luasnip_types.choiceNode] = {
@@ -271,7 +271,7 @@ luasnip.setup({
                 hl_group = "LuasnipInsertNodeVisited",
                 virt_text = { { "", "LuasnipInsertNodeVisitedVirtualText" } },
             },
-        }
+        },
     },
 })
 

@@ -1,8 +1,8 @@
 return {
-    { "neovim/nvim-lspconfig", },
+    { "neovim/nvim-lspconfig" },
 
     -- LSP Installation
-    { "williamboman/mason.nvim", },
+    { "williamboman/mason.nvim" },
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
@@ -34,7 +34,7 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end, },
+                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
                 ["<C-k>"] = {},
             },
             appearance = {
@@ -57,8 +57,8 @@ return {
                 },
                 menu = {
                     draw = {
-                        columns = { { "kind_icon", "label", "source_name", gap = 1, }, },
-                        padding = { 0, 1, },
+                        columns = { { "kind_icon", "label", "source_name", gap = 1 } },
+                        padding = { 0, 1 },
                         components = {
                             kind_icon = {
                                 ellipsis = false,
@@ -78,7 +78,7 @@ return {
                                 end,
                             },
                             label = {
-                                text      = function(ctx)
+                                text = function(ctx)
                                     return require("colorful-menu").blink_components_text(ctx)
                                 end,
                                 highlight = function(ctx)
@@ -195,8 +195,8 @@ return {
             },
             cmdline = {
                 keymap = {
-                    ["<Tab>"] = { "show_and_insert", "select_next", },
-                    ["<S-Tab>"] = { "show_and_insert", "select_prev", },
+                    ["<Tab>"] = { "show_and_insert", "select_next" },
+                    ["<S-Tab>"] = { "show_and_insert", "select_prev" },
                 },
                 completion = {
                     menu = {
@@ -237,7 +237,7 @@ return {
     },
 
     -- Debugging
-    { "mfussenegger/nvim-dap", },
+    { "mfussenegger/nvim-dap" },
     {
         "rcarriga/nvim-dap-ui",
         dependencies = {
@@ -246,7 +246,7 @@ return {
         },
         opts = {},
     },
-    { "jay-babu/mason-nvim-dap.nvim", },
+    { "jay-babu/mason-nvim-dap.nvim" },
 
     -- Formatting
     {

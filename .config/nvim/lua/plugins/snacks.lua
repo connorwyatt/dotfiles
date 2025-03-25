@@ -40,7 +40,7 @@ return {
         words = {
             enabled = true,
             debounce = 0,
-            modes = { "n", },
+            modes = { "n" },
         },
     },
 }

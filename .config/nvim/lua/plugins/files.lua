@@ -5,16 +5,16 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader>fo", "<cmd>:Oil<cr>", desc = "Oil", },
+            { "<leader>fo", "<cmd>:Oil<cr>", desc = "Oil" },
         },
         lazy = true,
         cmd = "Oil",
         opts = {
             default_file_explorer = false,
             columns = {
-                { "mtime", },
-                { "size", },
-                { "icon", },
+                { "mtime" },
+                { "size" },
+                { "icon" },
             },
             watch_for_changes = true,
             use_default_keymaps = false,
@@ -35,7 +35,7 @@ return {
             view_options = {
                 show_hidden = true,
                 sort = {
-                    { "name", "asc", },
+                    { "name", "asc" },
                 },
                 is_always_hidden = function(name)
                     return name == ".DS_Store"
@@ -52,11 +52,11 @@ return {
             "MunifTanjim/nui.nvim",
         },
         keys = {
-            { "<leader>ff", "<cmd>:Neotree reveal<cr>",                      desc = "File browser", },
-            { "<leader>fb", "<cmd>:Neotree reveal source=buffers<cr>",       desc = "Open buffers", },
-            { "<leader>fg", "<cmd>:Neotree reveal source=git_status<cr>",    desc = "Git changed files", },
+            { "<leader>ff", "<cmd>:Neotree reveal<cr>", desc = "File browser" },
+            { "<leader>fb", "<cmd>:Neotree reveal source=buffers<cr>", desc = "Open buffers" },
+            { "<leader>fg", "<cmd>:Neotree reveal source=git_status<cr>", desc = "Git changed files" },
 
-            { "<leader>e",  "<cmd>:Neotree reveal position=left toggle<cr>", desc = "Toggle file browser sidebar", }
+            { "<leader>e", "<cmd>:Neotree reveal position=left toggle<cr>", desc = "Toggle file browser sidebar" },
         },
         lazy = false,
         priority = 999,
@@ -91,16 +91,16 @@ return {
                 git_status = {
                     symbols = {
                         -- Change type
-                        added     = "",
-                        deleted   = "",
-                        modified  = "",
-                        renamed   = "",
+                        added = "",
+                        deleted = "",
+                        modified = "",
+                        renamed = "",
                         -- Status type
                         untracked = "",
-                        ignored   = "",
-                        unstaged  = "",
-                        staged    = "",
-                        conflict  = "",
+                        ignored = "",
+                        unstaged = "",
+                        staged = "",
+                        conflict = "",
                     },
                 },
             },
@@ -116,105 +116,105 @@ return {
                 },
                 window = {
                     mappings = {
-                        ["<cr>"] = { "open", desc = "Open", },
-                        ["<bs>"] = { "navigate_up", desc = "Navigate up", },
-                        ["."] = { "set_root", desc = "Set root", },
-                        ["H"] = { "toggle_hidden", desc = "Toggle hidden", },
-                        ["a"] = { "add", desc = "Add", config = { show_path = "relative", }, },
-                        ["c"] = { "close_all_nodes", desc = "Close all nodes", },
-                        ["d"] = { "delete", desc = "Delete", },
+                        ["<cr>"] = { "open", desc = "Open" },
+                        ["<bs>"] = { "navigate_up", desc = "Navigate up" },
+                        ["."] = { "set_root", desc = "Set root" },
+                        ["H"] = { "toggle_hidden", desc = "Toggle hidden" },
+                        ["a"] = { "add", desc = "Add", config = { show_path = "relative" } },
+                        ["c"] = { "close_all_nodes", desc = "Close all nodes" },
+                        ["d"] = { "delete", desc = "Delete" },
                         ["h"] = { function(state)
                             local node = state.tree:get_node()
-                            if node.type == 'directory' and node:is_expanded() then
-                                require 'neo-tree.sources.filesystem'.toggle_directory(state, node)
+                            if node.type == "directory" and node:is_expanded() then
+                                require "neo-tree.sources.filesystem".toggle_directory(state, node)
                             else
-                                require 'neo-tree.ui.renderer'.focus_node(state, node:get_parent_id())
+                                require "neo-tree.ui.renderer".focus_node(state, node:get_parent_id())
                             end
-                        end, },
+                        end },
                         ["l"] = { function(state)
                             local node = state.tree:get_node()
-                            if node.type == 'directory' then
+                            if node.type == "directory" then
                                 if not node:is_expanded() then
-                                    require 'neo-tree.sources.filesystem'.toggle_directory(state, node)
+                                    require "neo-tree.sources.filesystem".toggle_directory(state, node)
                                 elseif node:has_children() then
-                                    require 'neo-tree.ui.renderer'.focus_node(state, node:get_child_ids()[1])
+                                    require "neo-tree.ui.renderer".focus_node(state, node:get_child_ids()[1])
                                 end
                             end
-                        end, },
-                        ["p"] = { "paste_from_clipboard", desc = "Paste from clipboard", },
-                        ["P"] = { "toggle_preview", desc = "Toggle preview", },
-                        ["r"] = { "rename", desc = "Rename", },
-                        ["s"] = { "filter_as_you_type", desc = "Search", },
-                        ["x"] = { "cut_to_clipboard", desc = "Cut to clipboard", },
-                        ["y"] = { "copy_to_clipboard", desc = "Copy to clipboard", },
-                        ["[s"] = { "prev_source", desc = "Previous source", },
-                        ["]s"] = { "next_source", desc = "Next source", },
+                        end },
+                        ["p"] = { "paste_from_clipboard", desc = "Paste from clipboard" },
+                        ["P"] = { "toggle_preview", desc = "Toggle preview" },
+                        ["r"] = { "rename", desc = "Rename" },
+                        ["s"] = { "filter_as_you_type", desc = "Search" },
+                        ["x"] = { "cut_to_clipboard", desc = "Cut to clipboard" },
+                        ["y"] = { "copy_to_clipboard", desc = "Copy to clipboard" },
+                        ["[s"] = { "prev_source", desc = "Previous source" },
+                        ["]s"] = { "next_source", desc = "Next source" },
                     },
                 },
             },
             buffers = {
                 window = {
                     mappings = {
-                        ["d"] = { "buffer_delete", desc = "Delete", },
-                        ["P"] = { "toggle_preview", desc = "Toggle preview", },
-                        ["r"] = { "rename", desc = "Rename", },
-                        ["[s"] = { "prev_source", desc = "Previous source", },
-                        ["]s"] = { "next_source", desc = "Next source", },
+                        ["d"] = { "buffer_delete", desc = "Delete" },
+                        ["P"] = { "toggle_preview", desc = "Toggle preview" },
+                        ["r"] = { "rename", desc = "Rename" },
+                        ["[s"] = { "prev_source", desc = "Previous source" },
+                        ["]s"] = { "next_source", desc = "Next source" },
                     },
                 },
             },
             git_status = {
                 window = {
                     mappings = {
-                        ["<cr>"] = { "open", desc = "Open", },
-                        ["P"] = { "toggle_preview", desc = "Toggle preview", },
-                        ["s"] = { "filter_as_you_type", desc = "Search", },
-                        ["r"] = { "rename", desc = "Rename", },
-                        ["[s"] = { "prev_source", desc = "Previous source", },
-                        ["]s"] = { "next_source", desc = "Next source", },
+                        ["<cr>"] = { "open", desc = "Open" },
+                        ["P"] = { "toggle_preview", desc = "Toggle preview" },
+                        ["s"] = { "filter_as_you_type", desc = "Search" },
+                        ["r"] = { "rename", desc = "Rename" },
+                        ["[s"] = { "prev_source", desc = "Previous source" },
+                        ["]s"] = { "next_source", desc = "Next source" },
                     },
                 },
             },
             nesting_rules = {
-                ["*.cs"]             = {
-                    files = { "%1%.*%.cs", },
+                ["*.cs"] = {
+                    files = { "%1%.*%.cs" },
                     pattern = "(.*)%.cs$",
                 },
                 ["appsettings.json"] = {
-                    files = { "appsettings%.*%.json", },
+                    files = { "appsettings%.*%.json" },
                     pattern = "appsettings.json",
                 },
-                ["*.db"]             = {
-                    files = { "*%.db-shm", "*%.db-wal", },
+                ["*.db"] = {
+                    files = { "*%.db-shm", "*%.db-wal" },
                     pattern = "(.*)%.db$",
                 },
-                ["*.tsx"]            = {
-                    files = { "%1-styles%.ts", },
+                ["*.tsx"] = {
+                    files = { "%1-styles%.ts" },
                     pattern = "(.*)%.tsx$",
                 },
-                [".gitignore"]       = {
-                    files = { "%.gitattributes", },
+                [".gitignore"] = {
+                    files = { "%.gitattributes" },
                     pattern = "%.gitignore$",
                 },
-                ["Cargo.toml"]       = {
-                    files = { "%.rustfmt%.toml", "cargo%.lock", "Cargo%.lock", "rustfmt%.toml", },
+                ["Cargo.toml"] = {
+                    files = { "%.rustfmt%.toml", "cargo%.lock", "Cargo%.lock", "rustfmt%.toml" },
                     pattern = "Cargo%.toml$",
                 },
-                Dockerfile           = {
-                    files = { "dockerfile*", "*%.dockerfile", "%.dockerignore", "docker-compose%.*", },
+                Dockerfile = {
+                    files = { "dockerfile*", "*%.dockerfile", "%.dockerignore", "docker-compose%.*" },
                     pattern = "Dockerfile$",
                 },
-                ["README.*"]         = {
-                    files = { "AUTHORS", "BACKERS*", "CHANGELOG*", "CITATION*", "CODE_OF_CONDUCT*", "CODEOWNERS", "CONTRIBUTING*", "CONTRIBUTORS", "COPYING*", "CREDITS", "GOVERNANCE%.MD", "HISTORY%.MD", "LICENSE*", "MAINTAINERS", "README_*", "RELEASE_NOTES*", "ROADMAP%.MD", "SECURITY%.MD", "SPONSORS*", "README-*", },
+                ["README.*"] = {
+                    files = { "AUTHORS", "BACKERS*", "CHANGELOG*", "CITATION*", "CODE_OF_CONDUCT*", "CODEOWNERS", "CONTRIBUTING*", "CONTRIBUTORS", "COPYING*", "CREDITS", "GOVERNANCE%.MD", "HISTORY%.MD", "LICENSE*", "MAINTAINERS", "README_*", "RELEASE_NOTES*", "ROADMAP%.MD", "SECURITY%.MD", "SPONSORS*", "README-*" },
                     ignore_case = true,
                     pattern = "README%.(.*)$",
                 },
-                ["package.json"]     = {
-                    files = { "package-lock%.json", "%.eslint*", "%.prettier*", "eslint*", "prettier*", "tslint*", },
+                ["package.json"] = {
+                    files = { "package-lock%.json", "%.eslint*", "%.prettier*", "eslint*", "prettier*", "tslint*" },
                     pattern = "package%.json$",
                 },
-                ["build.zig"]        = {
-                    files = { "build.zig.zon", },
+                ["build.zig"] = {
+                    files = { "build.zig.zon" },
                     pattern = "build.zig",
                 },
             },

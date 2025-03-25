@@ -3,14 +3,14 @@ local masonConform = require("mason-conform")
 local whichKey = require("which-key")
 
 whichKey.add({
-    { "<leader>r", group = "Reformatting", },
+    { "<leader>r", group = "Reformatting" },
     {
         "<leader>rf",
         "<cmd>Reformat<cr>",
         mode = { "n", "v" },
         desc = "Reformat",
     },
-    { "<leader>ft", group = "Toggles", },
+    { "<leader>ft", group = "Toggles" },
     {
         "<leader>rtg",
         "<cmd>ReformatToggle<cr>",
@@ -41,7 +41,7 @@ conform.setup({
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
         end
-        return { timeout_ms = 2000, }
+        return { timeout_ms = 2000 }
     end,
 })
 
