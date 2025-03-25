@@ -21,13 +21,13 @@ plus_minus_glyph=''
 user_glyph=''
 
 local git_info='$(git_prompt_info)'
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$red_foreground%}$git_branch_glyph "
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$white_foreground%}on%{%f%} %{$red_foreground%}$git_branch_glyph "
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$cyan_foreground%}$plus_minus_glyph"
 
 PROMPT="\
 %{$magenta_foreground%}$user_glyph %n\
  %{$white_foreground%}in%{%f%} \
-%{$yellow_foreground%}$directory_glyph %~
+%{$yellow_foreground%}$directory_glyph %~\
+%{$git_info%}
 %{$red_foreground%}%(?..[%?] )%{$green_foreground%}$%{%f%} "
-RPROMPT="${git_info}"
