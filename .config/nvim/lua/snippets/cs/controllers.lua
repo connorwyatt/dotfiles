@@ -26,74 +26,33 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 local utils = require("snippets.utils")
-local cs_utils = require("snippets.cs.utils")
 
 return {
     s(
         {
-            trig = "namespace",
-            desc = "File-scoped namespace",
-        },
-        fmta(
-            "namespace <>;",
-            {
-                i(1, "Namespace"),
-            }
-        )
-    ),
-    s(
-        {
-            trig = "class",
-            desc = "Class",
+            trig = "endpoint",
+            desc = "HTTP endpoint",
         },
         fmta(
             [[
-            <> class <>
+            [<>("<>")]
+            public async Task<<IActionResult>> <>(<>)
             {
                 <>
             }
             ]],
             {
-                cs_utils.visibility_choice(1),
-                i(2, "ClassName"),
-                i(0),
-            }
-        )
-    ),
-    s(
-        {
-            trig = "method",
-            desc = "Method",
-        },
-        fmta(
-            [[
-            <> <> <>(<>)
-            {
-                <>
-            }
-            ]],
-            {
-                cs_utils.visibility_choice(1),
-                i(2, "Type"),
-                i(3, "Name"),
+                c(1, {
+                    t("HttpGet"),
+                    t("HttpPost"),
+                    t("HttpPatch"),
+                    t("HttpPut"),
+                    t("HttpDelete"),
+                }),
+                i(2, "path"),
+                i(3, "EndpointName"),
                 i(4),
                 i(0),
-            }
-        )
-    ),
-    s(
-        {
-            trig = "property",
-            desc = "Property",
-        },
-        fmta(
-            [[
-            <> <> <> { get; set; }
-            ]],
-            {
-                cs_utils.visibility_choice(1),
-                i(2, "Type"),
-                i(3, "Name"),
             }
         )
     ),
