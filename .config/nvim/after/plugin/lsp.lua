@@ -166,7 +166,7 @@ mason_lspconfig.setup_handlers({
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "TextChanged", "TextChangedI" }, {
     callback = function()
         if blink.is_signature_visible() then
-            blink.hide_signature()
+            return
         end
 
         vim.schedule(function()
