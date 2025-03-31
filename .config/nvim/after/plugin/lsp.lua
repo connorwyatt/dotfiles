@@ -86,31 +86,61 @@ vim.api.nvim_create_autocmd("LspAttach", {
             {
                 "<leader>lti",
                 function()
-                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }),
-                        { bufnr = 0 })
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
                 end,
                 desc = "Toggle inlay hints",
             },
         })
 
-        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>",
-            { buffer = event.buf, desc = "Show hover" })
-        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>",
-            { buffer = event.buf, desc = "Go to definition" })
-        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>",
-            { buffer = event.buf, desc = "Go to declaration" })
-        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>",
-            { buffer = event.buf, desc = "Go to implementation" })
-        vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>",
-            { buffer = event.buf, desc = "Go to type definition" })
-        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>",
-            { buffer = event.buf, desc = "Find references" })
-        vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>",
-            { buffer = event.buf, desc = "Show signature help" })
-        vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",
-            { buffer = event.buf, desc = "Rename symbol" })
-        vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",
-            { buffer = event.buf, desc = "Code actions" })
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Show hover" })
+        vim.keymap.set(
+            "n",
+            "gd",
+            "<cmd>lua vim.lsp.buf.definition()<cr>",
+            { buffer = event.buf, desc = "Go to definition" }
+        )
+        vim.keymap.set(
+            "n",
+            "gD",
+            "<cmd>lua vim.lsp.buf.declaration()<cr>",
+            { buffer = event.buf, desc = "Go to declaration" }
+        )
+        vim.keymap.set(
+            "n",
+            "gi",
+            "<cmd>lua vim.lsp.buf.implementation()<cr>",
+            { buffer = event.buf, desc = "Go to implementation" }
+        )
+        vim.keymap.set(
+            "n",
+            "go",
+            "<cmd>lua vim.lsp.buf.type_definition()<cr>",
+            { buffer = event.buf, desc = "Go to type definition" }
+        )
+        vim.keymap.set(
+            "n",
+            "gr",
+            "<cmd>lua vim.lsp.buf.references()<cr>",
+            { buffer = event.buf, desc = "Find references" }
+        )
+        vim.keymap.set(
+            "n",
+            "gs",
+            "<cmd>lua vim.lsp.buf.signature_help()<cr>",
+            { buffer = event.buf, desc = "Show signature help" }
+        )
+        vim.keymap.set(
+            "n",
+            "<leader>lr",
+            "<cmd>lua vim.lsp.buf.rename()<cr>",
+            { buffer = event.buf, desc = "Rename symbol" }
+        )
+        vim.keymap.set(
+            "n",
+            "<leader>la",
+            "<cmd>lua vim.lsp.buf.code_action()<cr>",
+            { buffer = event.buf, desc = "Code actions" }
+        )
     end,
 })
 
@@ -193,28 +223,30 @@ which_key.add({
     { "<leader>bu", "<cmd>lua require('dapui').toggle()<cr>", desc = "Toggle UI" },
 })
 
-vim.fn.sign_define("DapBreakpoint",
-    { text = "", texthl = "DapBreakpointSign", linehl = "DapBreakpointLine", numhl = "DapBreakpointLineNumber" })
-vim.fn.sign_define("DapBreakpointCondition",
-    {
-        text = "",
-        texthl = "DapBreakpointConditionSign",
-        linehl = "DapBreakpointConditionLine",
-        numhl =
-        "DapBreakpointConditionLineNumber",
-    })
-vim.fn.sign_define("DapLogPoint",
-    { text = "", texthl = "DapLogPointSign", linehl = "DapLogPointLine", numhl = "DapLogPointLineNumber" })
-vim.fn.sign_define("DapStopped",
-    { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedLine", numhl = "DapStoppedLineNumber" })
-vim.fn.sign_define("DapBreakpointRejected",
-    {
-        text = "",
-        texthl = "DapBreakpointRejectedSign",
-        linehl = "DapBreakpointRejectedLine",
-        numhl =
-        "DapBreakpointRejectedLineNumber",
-    })
+vim.fn.sign_define(
+    "DapBreakpoint",
+    { text = "", texthl = "DapBreakpointSign", linehl = "DapBreakpointLine", numhl = "DapBreakpointLineNumber" }
+)
+vim.fn.sign_define("DapBreakpointCondition", {
+    text = "",
+    texthl = "DapBreakpointConditionSign",
+    linehl = "DapBreakpointConditionLine",
+    numhl = "DapBreakpointConditionLineNumber",
+})
+vim.fn.sign_define(
+    "DapLogPoint",
+    { text = "", texthl = "DapLogPointSign", linehl = "DapLogPointLine", numhl = "DapLogPointLineNumber" }
+)
+vim.fn.sign_define(
+    "DapStopped",
+    { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedLine", numhl = "DapStoppedLineNumber" }
+)
+vim.fn.sign_define("DapBreakpointRejected", {
+    text = "",
+    texthl = "DapBreakpointRejectedSign",
+    linehl = "DapBreakpointRejectedLine",
+    numhl = "DapBreakpointRejectedLineNumber",
+})
 
 mason_nvim_dap.setup({
     handlers = {
@@ -292,10 +324,8 @@ vim.api.nvim_create_user_command("ReloadSnippets", load_luasnip_snippets, {
 
 load_luasnip_snippets()
 
-vim.keymap.set({ "i", "s" }, "<C-c>",
-    function()
-        if luasnip.choice_active() then
-            luasnip.change_choice(1)
-        end
-    end,
-    { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-c>", function()
+    if luasnip.choice_active() then
+        luasnip.change_choice(1)
+    end
+end, { silent = true })

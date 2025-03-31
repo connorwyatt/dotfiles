@@ -35,7 +35,7 @@ vim.opt.mouse = "a"
 
 -- Cursor
 vim.o.guicursor =
-"n-v-c:block,i-ci-ve-sm:ver25,r-cr:hor20,o:hor50,a:Cursor/lCursor,i-ci-ve-sm-r-cr-o:blinkwait400-blinkoff400-blinkon400"
+    "n-v-c:block,i-ci-ve-sm:ver25,r-cr:hor20,o:hor50,a:Cursor/lCursor,i-ci-ve-sm-r-cr-o:blinkwait400-blinkoff400-blinkon400"
 
 -- Disable mode display, it's already in heirline.
 vim.opt.showmode = false
@@ -75,7 +75,7 @@ vim.opt.termguicolors = true
 -- Invisible characters.
 vim.opt.list = false
 vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
-vim.opt.fillchars:append { diff = "╱" }
+vim.opt.fillchars:append({ diff = "╱" })
 
 -- nvim-ufo suggested folding configuration.
 vim.o.foldcolumn = "1"

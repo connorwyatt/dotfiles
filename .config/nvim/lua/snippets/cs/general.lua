@@ -34,12 +34,9 @@ return {
             trig = "namespace",
             desc = "File-scoped namespace",
         },
-        fmta(
-            "namespace <>;",
-            {
-                i(1, "Namespace"),
-            }
-        )
+        fmta("namespace <>;", {
+            i(1, "Namespace"),
+        })
     ),
     s(
         {

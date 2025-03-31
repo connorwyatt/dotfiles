@@ -30,7 +30,7 @@ local M = {}
 
 M.visual_selection_or_insert = function(default_insert_text)
     return function(args, parent)
-        if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+        if #parent.snippet.env.LS_SELECT_RAW > 0 then
             return sn(nil, t(parent.snippet.env.LS_SELECT_RAW))
         else
             return sn(nil, i(1, default_insert_text))

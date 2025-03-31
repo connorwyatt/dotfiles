@@ -43,22 +43,19 @@ local function execute_shell_command(command)
 end
 
 return {
-    s(
-        {
-            trig = "uuid",
-            desc = "Generate a uuid",
-        },
-        {
-            d(1, function()
-                local uuid = execute_shell_command("uuidgen")[1]
+    s({
+        trig = "uuid",
+        desc = "Generate a uuid",
+    }, {
+        d(1, function()
+            local uuid = execute_shell_command("uuidgen")[1]
 
-                return sn(nil, {
-                    c(1, {
-                        t(uuid:lower()),
-                        t(uuid:upper()),
-                    }),
-                })
-            end),
-        }
-    ),
+            return sn(nil, {
+                c(1, {
+                    t(uuid:lower()),
+                    t(uuid:upper()),
+                }),
+            })
+        end),
+    }),
 }

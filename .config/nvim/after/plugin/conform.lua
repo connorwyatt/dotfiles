@@ -25,7 +25,8 @@ whichKey.add({
 
 local conform_formatters = {
     ["*"] = { "trim_whitespace" },
-    ["json"] = { "jq" },
+    json = { "jq" },
+    lua = { "stylua" },
 }
 
 if vim.fn.executable("dotnet") == 1 then

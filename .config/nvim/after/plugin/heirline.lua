@@ -280,8 +280,8 @@ local FileInfoProvider = {
         self.directory = vim.fn.fnamemodify(self.filename, ":.:h")
         self.base_name = vim.fn.fnamemodify(self.filename, ":t")
         local extension = vim.fn.fnamemodify(self.filename, ":e")
-        self.icon, self.icon_color = require("nvim-web-devicons")
-            .get_icon_color(self.filename, extension, { default = true })
+        self.icon, self.icon_color =
+            require("nvim-web-devicons").get_icon_color(self.filename, extension, { default = true })
     end,
 }
 
@@ -359,7 +359,6 @@ local FilePath = utils.insert(FileInfoProvider, {
     },
     FileName,
 })
-
 
 local AutoformatIcon = {
     provider = function()
@@ -447,7 +446,9 @@ local Diagnostics = {
 
             self.children = self:new(children, 1)
         end,
-        provider = function(self) return self.children:eval() end,
+        provider = function(self)
+            return self.children:eval()
+        end,
     },
 }
 
@@ -505,7 +506,9 @@ local Git = {
 
             self.children = self:new(children, 1)
         end,
-        provider = function(self) return self.children:eval() end,
+        provider = function(self)
+            return self.children:eval()
+        end,
     },
 }
 
@@ -549,7 +552,6 @@ local InactiveStatusline = {
     Align,
     FilePath,
     Align,
-
 }
 
 local EmptyStatusline = {

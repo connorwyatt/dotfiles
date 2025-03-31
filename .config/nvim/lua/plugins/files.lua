@@ -123,24 +123,28 @@ return {
                         ["a"] = { "add", desc = "Add", config = { show_path = "relative" } },
                         ["c"] = { "close_all_nodes", desc = "Close all nodes" },
                         ["d"] = { "delete", desc = "Delete" },
-                        ["h"] = { function(state)
-                            local node = state.tree:get_node()
-                            if node.type == "directory" and node:is_expanded() then
-                                require "neo-tree.sources.filesystem".toggle_directory(state, node)
-                            else
-                                require "neo-tree.ui.renderer".focus_node(state, node:get_parent_id())
-                            end
-                        end },
-                        ["l"] = { function(state)
-                            local node = state.tree:get_node()
-                            if node.type == "directory" then
-                                if not node:is_expanded() then
-                                    require "neo-tree.sources.filesystem".toggle_directory(state, node)
-                                elseif node:has_children() then
-                                    require "neo-tree.ui.renderer".focus_node(state, node:get_child_ids()[1])
+                        ["h"] = {
+                            function(state)
+                                local node = state.tree:get_node()
+                                if node.type == "directory" and node:is_expanded() then
+                                    require("neo-tree.sources.filesystem").toggle_directory(state, node)
+                                else
+                                    require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
                                 end
-                            end
-                        end },
+                            end,
+                        },
+                        ["l"] = {
+                            function(state)
+                                local node = state.tree:get_node()
+                                if node.type == "directory" then
+                                    if not node:is_expanded() then
+                                        require("neo-tree.sources.filesystem").toggle_directory(state, node)
+                                    elseif node:has_children() then
+                                        require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+                                    end
+                                end
+                            end,
+                        },
                         ["p"] = { "paste_from_clipboard", desc = "Paste from clipboard" },
                         ["P"] = { "toggle_preview", desc = "Toggle preview" },
                         ["r"] = { "rename", desc = "Rename" },
@@ -205,7 +209,28 @@ return {
                     pattern = "Dockerfile$",
                 },
                 ["README.*"] = {
-                    files = { "AUTHORS", "BACKERS*", "CHANGELOG*", "CITATION*", "CODE_OF_CONDUCT*", "CODEOWNERS", "CONTRIBUTING*", "CONTRIBUTORS", "COPYING*", "CREDITS", "GOVERNANCE%.MD", "HISTORY%.MD", "LICENSE*", "MAINTAINERS", "README_*", "RELEASE_NOTES*", "ROADMAP%.MD", "SECURITY%.MD", "SPONSORS*", "README-*" },
+                    files = {
+                        "AUTHORS",
+                        "BACKERS*",
+                        "CHANGELOG*",
+                        "CITATION*",
+                        "CODE_OF_CONDUCT*",
+                        "CODEOWNERS",
+                        "CONTRIBUTING*",
+                        "CONTRIBUTORS",
+                        "COPYING*",
+                        "CREDITS",
+                        "GOVERNANCE%.MD",
+                        "HISTORY%.MD",
+                        "LICENSE*",
+                        "MAINTAINERS",
+                        "README_*",
+                        "RELEASE_NOTES*",
+                        "ROADMAP%.MD",
+                        "SECURITY%.MD",
+                        "SPONSORS*",
+                        "README-*",
+                    },
                     ignore_case = true,
                     pattern = "README%.(.*)$",
                 },

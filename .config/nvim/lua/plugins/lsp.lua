@@ -34,7 +34,11 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<C-s>"] = { function(cmp) cmp.show({ providers = { "snippets" } }) end },
+                ["<C-s>"] = {
+                    function(cmp)
+                        cmp.show({ providers = { "snippets" } })
+                    end,
+                },
                 ["<C-k>"] = {},
             },
             appearance = {

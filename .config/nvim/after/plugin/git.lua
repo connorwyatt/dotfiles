@@ -66,17 +66,14 @@ gitsigns.setup({
 
         map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "Hunk preview" })
         map("n", "<leader>gi", gitsigns.preview_hunk_inline, { desc = "Inline hunk preview" })
-        map("n", "<leader>gb",
-            gitsigns.blame
-            , { desc = "File blame" })
+        map("n", "<leader>gb", gitsigns.blame, { desc = "File blame" })
         map("n", "<leader>gl", function()
             gitsigns.blame_line({ full = true })
         end, { desc = "Line blame" })
         map("n", "<leader>gd", gitsigns.diffthis, { desc = "Line blame" })
 
         -- Toggles
-        map("n", "<leader>gtb", gitsigns.toggle_current_line_blame,
-            { desc = "Toggle current line blame" })
+        map("n", "<leader>gtb", gitsigns.toggle_current_line_blame, { desc = "Toggle current line blame" })
         map("n", "<leader>gtd", function()
             gitsigns.toggle_linehl()
             gitsigns.toggle_deleted()
