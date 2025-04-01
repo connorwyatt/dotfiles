@@ -324,8 +324,22 @@ vim.api.nvim_create_user_command("ReloadSnippets", load_luasnip_snippets, {
 
 load_luasnip_snippets()
 
+local function set_choice_callback(_, indx)
+    if not indx then
+        return
+    end
+    vim.api.nvim_feedkeys("i", "x", false)
+    luasnip.set_choice(indx)
+    luasnip.jump(1)
+end
+
+local function select_choice()
+    vim.ui.select(luasnip.get_current_choices(), { kind = "luasnip" }, set_choice_callback)
+end
+
 vim.keymap.set({ "i", "s" }, "<C-c>", function()
     if luasnip.choice_active() then
-        luasnip.change_choice(1)
+        select_choice()
+        -- luasnip.change_choice(1)
     end
 end, { silent = true })
