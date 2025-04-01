@@ -7,10 +7,10 @@ return {
         keys = {
             { "<leader>fo", "<cmd>:Oil<cr>", desc = "Oil" },
         },
-        lazy = true,
+        lazy = false,
         cmd = "Oil",
         opts = {
-            default_file_explorer = false,
+            default_file_explorer = true,
             columns = {
                 { "mtime" },
                 { "size" },
@@ -58,8 +58,8 @@ return {
 
             { "<leader>e", "<cmd>:Neotree reveal position=left toggle<cr>", desc = "Toggle file browser sidebar" },
         },
-        lazy = false,
-        priority = 999,
+        lazy = true,
+        -- priority = 999,
         opts = {
             use_popups_for_input = true,
             popup_border_style = "single",
