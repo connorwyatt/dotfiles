@@ -20,6 +20,16 @@ local highlights = {
         prompt = "StatusLineModePrompt",
         terminal = "StatusLineModeTerminal",
     },
+    modes_subtle = {
+        normal = "StatusLineModeNormalSubtle",
+        insert = "StatusLineModeInsertSubtle",
+        visual = "StatusLineModeVisualSubtle",
+        command = "StatusLineModeCommandSubtle",
+        select = "StatusLineModeSelectSubtle",
+        replace = "StatusLineModeReplaceSubtle",
+        prompt = "StatusLineModePromptSubtle",
+        terminal = "StatusLineModeTerminalSubtle",
+    },
     modes_text = {
         normal = "StatusLineModeNormalText",
         insert = "StatusLineModeInsertText",
@@ -88,6 +98,33 @@ local ModeHighlights = {
             r = highlights.modes.prompt,
             ["!"] = highlights.modes.command,
             t = highlights.modes.terminal,
+        },
+    },
+    init = function(self)
+        self.mode = vim.fn.mode(1)
+    end,
+    hl = function(self)
+        local mode = self.mode:sub(1, 1)
+        return self.mode_highlight_groups[mode]
+    end,
+}
+
+local ModeSubtleHighlights = {
+    static = {
+        mode_highlight_groups = {
+            n = highlights.modes_subtle.normal,
+            i = highlights.modes_subtle.insert,
+            v = highlights.modes_subtle.visual,
+            V = highlights.modes_subtle.visual,
+            ["\22"] = highlights.modes_subtle.visual,
+            c = highlights.modes_subtle.command,
+            s = highlights.modes_subtle.select,
+            S = highlights.modes_subtle.select,
+            ["\19"] = highlights.modes_subtle.select,
+            R = highlights.modes_subtle.replace,
+            r = highlights.modes_subtle.prompt,
+            ["!"] = highlights.modes_subtle.command,
+            t = highlights.modes_subtle.terminal,
         },
     },
     init = function(self)
@@ -516,8 +553,7 @@ local Ruler = {
     provider = "%l:%c",
 }
 
-local DefaultStatusline = {
-    hl = highlights.statusline,
+local DefaultStatusline = utils.insert(ModeSubtleHighlights, {
     utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
     {
         condition = conditions.is_git_repo,
@@ -543,10 +579,9 @@ local DefaultStatusline = {
     Ruler,
     Spacer,
     utils.insert(ModeHighlights, Spacer),
-}
+})
 
 local InactiveStatusline = {
-    condition = conditions.is_not_active,
     hl = highlights.statusline_nc,
 
     Align,
@@ -554,45 +589,56 @@ local InactiveStatusline = {
     Align,
 }
 
-local EmptyStatusline = {
-    condition = function()
-        return vim.bo.buftype == "nofile" or vim.bo.buftype == "prompt"
-    end,
-    hl = highlights.statusline,
+local EmptyStatusline = utils.insert(ModeSubtleHighlights, {
     Align,
-}
+})
 
-local OilStatusline = {
-    condition = function()
-        return vim.bo.filetype == "oil"
-    end,
-    hl = highlights.statusline,
+local OilStatusline = utils.insert(ModeSubtleHighlights, {
+    utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
+    {
+        condition = conditions.is_git_repo,
+        Spacer,
+    },
     Git,
 
     Align,
     OilCwd,
     Align,
-}
+})
 
-local NeoTreeStatusline = {
-    condition = function()
-        return vim.bo.filetype == "neo-tree"
-    end,
-    hl = highlights.statusline,
+local NeoTreeStatusline = utils.insert(ModeSubtleHighlights, {
     Git,
 
     Align,
     Cwd,
     Align,
-}
+})
 
 local Statusline = {
     fallthrough = false,
 
-    NeoTreeStatusline,
-    OilStatusline,
-    EmptyStatusline,
-    InactiveStatusline,
+    {
+        condition = function()
+            return vim.bo.filetype == "neo-tree"
+        end,
+        NeoTreeStatusline,
+    },
+    {
+        condition = function()
+            return vim.bo.filetype == "oil"
+        end,
+        OilStatusline,
+    },
+    {
+        condition = function()
+            return vim.bo.buftype == "nofile" or vim.bo.buftype == "prompt"
+        end,
+        EmptyStatusline,
+    },
+    {
+        condition = conditions.is_not_active,
+        InactiveStatusline,
+    },
     DefaultStatusline,
 }
 
