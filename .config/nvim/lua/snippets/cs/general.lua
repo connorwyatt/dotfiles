@@ -71,7 +71,7 @@ return {
             ]],
             {
                 cs_utils.visibility_choice(1),
-                i(2, "Type"),
+                i(2, "ReturnType"),
                 i(3, "Name"),
                 i(4),
                 i(0),
@@ -85,12 +85,44 @@ return {
         },
         fmta(
             [[
-            <> <> <> { get; set; }
+            <> <> <> { get; <>; }
             ]],
             {
                 cs_utils.visibility_choice(1),
                 i(2, "Type"),
                 i(3, "Name"),
+                c(4, {
+                    t("set"),
+                    t("private set"),
+                    t("init"),
+                    t("private init"),
+                }),
+            }
+        )
+    ),
+    s(
+        {
+            trig = "field",
+            desc = "Field",
+        },
+        fmta(
+            [[
+            <> <><><> <>;
+            ]],
+            {
+                cs_utils.visibility_choice(1),
+                c(2, {
+                    t("readonly"),
+                    t(""),
+                }),
+                f(function(args)
+                    if #args[1][1] > 0 then
+                        return " "
+                    end
+                    return ""
+                end, { 2 }),
+                i(3, "Type"),
+                i(4, "Name"),
             }
         )
     ),
