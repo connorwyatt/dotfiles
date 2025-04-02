@@ -155,10 +155,10 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 20,
+                        score_offset = 21,
                     },
                     buffer = {
-                        name = "",
+                        name = "",
                         enabled = true,
                         async = false,
                         timeout_ms = 50,
