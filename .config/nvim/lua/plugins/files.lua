@@ -5,7 +5,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader>fo", "<cmd>:Oil<cr>", desc = "Oil" },
+            { "<leader><leader>", "<cmd>:Oil<cr>", desc = "Files" },
         },
         lazy = false,
         cmd = "Oil",
@@ -20,26 +20,42 @@ return {
             use_default_keymaps = false,
             keymaps = {
                 ["g?"] = { "actions.show_help", mode = "n" },
-                ["<CR>"] = "actions.select",
-                ["<C-p>"] = "actions.preview",
-                ["<C-r>"] = "actions.refresh",
+                ["<CR>"] = { "actions.select" },
+                ["<C-p>"] = { "actions.preview", opts = { split = "belowright" } },
+                ["<C-r>"] = { "actions.refresh" },
                 ["-"] = { "actions.parent", mode = "n" },
                 ["_"] = { "actions.open_cwd", mode = "n" },
-                ["`"] = { "actions.cd", mode = "n" },
-                ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+                ["."] = { "actions.cd", mode = "n" },
                 ["gs"] = { "actions.change_sort", mode = "n" },
-                ["gx"] = "actions.open_external",
+                ["gx"] = { "actions.open_external" },
                 ["g."] = { "actions.toggle_hidden", mode = "n" },
-                ["g\\"] = { "actions.toggle_trash", mode = "n" },
             },
             view_options = {
                 show_hidden = true,
+                natural_order = false,
                 sort = {
+                    { "type", "asc" },
                     { "name", "asc" },
                 },
                 is_always_hidden = function(name)
                     return name == ".DS_Store"
                 end,
+            },
+            float = {
+                border = "single",
+                preview_split = "right",
+            },
+            confirmation = {
+                border = "single",
+            },
+            progress = {
+                border = "single",
+            },
+            ssh = {
+                border = "single",
+            },
+            keymaps_help = {
+                border = "single",
             },
         },
     },
@@ -51,12 +67,11 @@ return {
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
+        enabled = false,
         keys = {
             { "<leader>ff", "<cmd>:Neotree reveal<cr>", desc = "File browser" },
             { "<leader>fb", "<cmd>:Neotree reveal source=buffers<cr>", desc = "Open buffers" },
             { "<leader>fg", "<cmd>:Neotree reveal source=git_status<cr>", desc = "Git changed files" },
-
-            { "<leader>e", "<cmd>:Neotree reveal position=left toggle<cr>", desc = "Toggle file browser sidebar" },
         },
         lazy = true,
         -- priority = 999,
