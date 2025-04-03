@@ -26,8 +26,8 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$cyan_foreground%}$plus_minus_glyph"
 
 PROMPT="\
-%{$magenta_foreground%}$user_glyph %n\
+%{$cyan_foreground%}$user_glyph %n\
  %{$white_foreground%}in%{%f%} \
 %{$yellow_foreground%}$directory_glyph %~\
 %{$git_info%}
-%{$red_foreground%}%(?..[%?] )%{$green_foreground%}$%{%f%} "
+%{$red_foreground%}%(?..[%?] )%{$magenta_foreground%}$%{%f%} "
