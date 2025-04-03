@@ -126,4 +126,22 @@ return {
             }
         )
     ),
+    s(
+        {
+            trig = "if",
+            desc = "If statement",
+        },
+        fmta(
+            [[
+            if (<>)
+            {
+                <>
+            }
+            ]],
+            {
+                i(1),
+                i(0),
+            }
+        )
+    ),
 }
