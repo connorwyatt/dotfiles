@@ -13,6 +13,15 @@ return {
 
     -- Specific LSPs
     {
+        "netmute/ctags-lsp.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
+        config = function()
+            require("lspconfig").ctags_lsp.setup({
+                filetypes = { "kotlin" },
+            })
+        end,
+    },
+    {
         "seblyng/roslyn.nvim",
         ft = "cs",
         config = true,

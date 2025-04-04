@@ -5,6 +5,7 @@
   "blink.cmp": { "branch": "main", "commit": "cb5e346d9e0efa7a3eee7fd4da0b690c48d2a98e" },
   "colorful-menu.nvim": { "branch": "master", "commit": "f80feb8a6706f965321aff24d0ed3849f02a7f77" },
   "conform.nvim": { "branch": "master", "commit": "b1a75324ddf96b7bb84963a297b1ed334db087c0" },
+  "ctags-lsp.nvim": { "branch": "main", "commit": "aaae7b5d8dc7aeb836c63301b8eb7311af49bb2a" },
   "gitsigns.nvim": { "branch": "main", "commit": "17ab794b6fce6fce768430ebc925347e349e1d60" },
   "heirline.nvim": { "branch": "master", "commit": "af3f441ea10f96105e1af14cd37bf213533812d2" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
