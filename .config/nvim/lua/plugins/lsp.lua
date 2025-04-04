@@ -27,19 +27,26 @@ return {
     -- Autocompletion
     {
         "saghen/blink.cmp",
-        version = "v0.13.*",
+        version = "1.*",
         dependencies = {
             "xzbdmw/colorful-menu.nvim",
         },
         opts = {
             keymap = {
-                preset = "enter",
-                ["<C-s>"] = {
-                    function(cmp)
-                        cmp.show({ providers = { "snippets" } })
-                    end,
-                },
-                ["<C-k>"] = {},
+                preset = "none",
+
+                ["<C-space>"] = { "show" },
+                ["<C-e>"] = { "hide", "fallback" },
+                ["<CR>"] = { "accept", "fallback" },
+
+                ["<Tab>"] = { "snippet_forward", "fallback" },
+                ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+                ["<Up>"] = { "select_prev", "fallback" },
+                ["<Down>"] = { "select_next", "fallback" },
+
+                ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+                ["<C-f>"] = { "scroll_documentation_down", "fallback" },
             },
             appearance = {
                 nerd_font_variant = "normal",
@@ -48,14 +55,14 @@ return {
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 0,
-                    update_delay_ms = 0,
+                    update_delay_ms = 50,
                 },
                 ghost_text = {
                     enabled = false,
                 },
                 list = {
                     selection = {
-                        preselect = true,
+                        preselect = false,
                         auto_insert = false,
                     },
                 },
