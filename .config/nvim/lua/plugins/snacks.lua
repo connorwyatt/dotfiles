@@ -24,6 +24,12 @@ return {
                 only_current = false,
                 hl = "SnacksIndentScope",
             },
+            chunk = {
+                enabled = true,
+                char = {
+                    arrow = "─",
+                },
+            },
         },
         notifier = {
             enabled = true,
