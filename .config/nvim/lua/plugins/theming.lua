@@ -4,17 +4,6 @@ return {
         priority = 10000,
     },
     {
-        "xiyaowong/transparent.nvim",
-        opts = {
-            exclude_groups = {
-                "CursorLine",
-                "CursorLineNr",
-                "StatusLine",
-            },
-        },
-        enabled = false,
-    },
-    {
         "f-person/auto-dark-mode.nvim",
         opts = {
             update_interval = 1000,

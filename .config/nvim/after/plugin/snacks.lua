@@ -17,6 +17,13 @@ whichKey.add({
         desc = "Grep",
     },
     {
+        "<leader>s<leader>",
+        function()
+            Snacks.picker.smart()
+        end,
+        desc = "Smart",
+    },
+    {
         "<leader>sC",
         function()
             Snacks.picker.command_history()
@@ -36,6 +43,13 @@ whichKey.add({
             Snacks.picker.projects()
         end,
         desc = "Projects",
+    },
+    {
+        "<leader>sR",
+        function()
+            Snacks.picker.resume()
+        end,
+        desc = "Last search",
     },
     {
         "<leader>sS",
@@ -63,14 +77,65 @@ whichKey.add({
         function()
             Snacks.picker.files()
         end,
-        desc = "Find files",
+        desc = "Files",
+    },
+    { "<leader>sg", group = "Git" },
+    {
+        "<leader>sgS",
+        function()
+            Snacks.picker.git_stash()
+        end,
+        desc = "Stash",
     },
     {
-        "<leader>sg",
+        "<leader>sgb",
+        function()
+            Snacks.picker.git_branches()
+        end,
+        desc = "Branches",
+    },
+    {
+        "<leader>sgd",
+        function()
+            Snacks.picker.git_diff()
+        end,
+        desc = "Diff",
+    },
+    {
+        "<leader>sgf",
         function()
             Snacks.picker.git_files()
         end,
-        desc = "Find git files",
+        desc = "Files",
+    },
+    { "<leader>sgl", group = "Log" },
+    {
+        "<leader>sgla",
+        function()
+            Snacks.picker.git_log()
+        end,
+        desc = "Repository",
+    },
+    {
+        "<leader>sglf",
+        function()
+            Snacks.picker.git_log_file()
+        end,
+        desc = "File",
+    },
+    {
+        "<leader>sgll",
+        function()
+            Snacks.picker.git_log_line()
+        end,
+        desc = "Line",
+    },
+    {
+        "<leader>sgs",
+        function()
+            Snacks.picker.git_status()
+        end,
+        desc = "Status",
     },
     {
         "<leader>sh",
@@ -87,11 +152,18 @@ whichKey.add({
         desc = "Icons",
     },
     {
+        "<leader>sk",
+        function()
+            Snacks.picker.keymaps()
+        end,
+        desc = "Keymaps",
+    },
+    {
         "<leader>sl",
         function()
-            Snacks.picker.resume()
+            Snacks.picker.lines()
         end,
-        desc = "Last search",
+        desc = "Lines",
     },
     {
         "<leader>sp",
@@ -106,6 +178,13 @@ whichKey.add({
             Snacks.picker.recent()
         end,
         desc = "Recent",
+    },
+    {
+        "<leader>st",
+        function()
+            Snacks.picker.treesitter()
+        end,
+        desc = "Treesitter",
     },
     {
         "<leader>ss",
@@ -128,6 +207,13 @@ whichKey.add({
             Snacks.picker.registers()
         end,
         desc = "Registers",
+    },
+    {
+        "<leader>su",
+        function()
+            Snacks.picker.undo()
+        end,
+        desc = "Undo",
     },
 
     {

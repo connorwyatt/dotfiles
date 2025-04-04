@@ -74,7 +74,7 @@ local Spacer = {
 local Divider = {
     hl = highlights.divider,
     Spacer,
-    { provider = "|" },
+    { provider = "│" },
     Spacer,
 }
 
@@ -424,7 +424,7 @@ local BufType = {
 
 local FileType = {
     provider = function()
-        return vim.bo.filetype or "unknown"
+        return vim.bo.filetype
     end,
 }
 
@@ -560,21 +560,31 @@ local DefaultStatusline = utils.insert(ModeSubtleHighlights, {
         Spacer,
     },
     Git,
+    {
+        condition = conditions.is_git_repo,
+        Divider,
+    },
 
     Align,
     FilePath,
     Align,
 
-    Diagnostics,
     {
         condition = conditions.has_diagnostics,
         Divider,
     },
+    Diagnostics,
+    Divider,
     AutoformatIcon,
     Divider,
     FileEncoding,
-    Divider,
-    FileType,
+    {
+        condition = function()
+            return vim.bo.filetype ~= ""
+        end,
+        Divider,
+        FileType,
+    },
     Divider,
     Ruler,
     Spacer,
@@ -600,6 +610,10 @@ local OilStatusline = utils.insert(ModeSubtleHighlights, {
         Spacer,
     },
     Git,
+    {
+        condition = conditions.is_git_repo,
+        Divider,
+    },
 
     Align,
     OilCwd,
@@ -608,6 +622,10 @@ local OilStatusline = utils.insert(ModeSubtleHighlights, {
 
 local NeoTreeStatusline = utils.insert(ModeSubtleHighlights, {
     Git,
+    {
+        condition = conditions.is_git_repo,
+        Divider,
+    },
 
     Align,
     Cwd,

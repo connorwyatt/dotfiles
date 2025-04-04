@@ -77,14 +77,11 @@ vim.opt.list = false
 vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
 vim.opt.fillchars:append({ diff = "╱" })
 
--- Folding.
-vim.o.foldenable = true
+-- nvim-ufo suggested folding configuration.
+vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldtext = ""
-vim.opt.foldcolumn = "0"
-vim.opt.fillchars:append({ fold = " " })
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 ----------------
 -- KEYMAPPING --
