@@ -477,10 +477,6 @@ local Diagnostics = {
                 })
             end
 
-            if #children > 0 then
-                table.insert(children, 1, Spacer)
-            end
-
             self.children = self:new(children, 1)
         end,
         provider = function(self)
