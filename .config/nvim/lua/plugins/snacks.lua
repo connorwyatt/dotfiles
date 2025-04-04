@@ -31,8 +31,23 @@ return {
                 },
             },
         },
+        input = {
+            enabled = true,
+        },
         notifier = {
             enabled = true,
+        },
+        picker = {
+            enabled = true,
+            ui_select = true,
+            layout = {
+                cycle = true,
+                preset = "vertical",
+            },
+            matcher = {
+                sort_empty = true,
+                frecency = true,
+            },
         },
         quickfile = {
             enabled = true,
@@ -41,6 +56,24 @@ return {
             enabled = true,
             folds = {
                 open = true,
+            },
+        },
+        styles = {
+            float = {
+                position = "float",
+                backdrop = false,
+            },
+            input = {
+                border = "single",
+                relative = "cursor",
+                -- row = -3,
+                -- col = 0,
+            },
+            notification = {
+                border = "single",
+            },
+            notification_history = {
+                border = "single",
             },
         },
         words = {
