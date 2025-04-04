@@ -549,7 +549,7 @@ local Ruler = {
     provider = "%l:%c",
 }
 
-local DefaultStatusline = utils.insert(ModeSubtleHighlights, {
+local DefaultStatusline = {
     utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
     {
         condition = conditions.is_git_repo,
@@ -585,7 +585,7 @@ local DefaultStatusline = utils.insert(ModeSubtleHighlights, {
     Ruler,
     Spacer,
     utils.insert(ModeHighlights, Spacer),
-})
+}
 
 local InactiveStatusline = {
     hl = highlights.statusline_nc,
@@ -595,11 +595,11 @@ local InactiveStatusline = {
     Align,
 }
 
-local EmptyStatusline = utils.insert(ModeSubtleHighlights, {
+local EmptyStatusline = {
     Align,
-})
+}
 
-local OilStatusline = utils.insert(ModeSubtleHighlights, {
+local OilStatusline = {
     utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
     {
         condition = conditions.is_git_repo,
@@ -614,9 +614,9 @@ local OilStatusline = utils.insert(ModeSubtleHighlights, {
     Align,
     OilCwd,
     Align,
-})
+}
 
-local NeoTreeStatusline = utils.insert(ModeSubtleHighlights, {
+local NeoTreeStatusline = {
     Git,
     {
         condition = conditions.is_git_repo,
@@ -626,7 +626,7 @@ local NeoTreeStatusline = utils.insert(ModeSubtleHighlights, {
     Align,
     Cwd,
     Align,
-})
+}
 
 local Statusline = {
     fallthrough = false,
