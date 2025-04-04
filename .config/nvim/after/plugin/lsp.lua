@@ -12,6 +12,7 @@ local which_key = require("which-key")
 
 vim.diagnostic.config({
     virtual_text = false,
+    virtual_lines = { current_line = true },
     underline = true,
     update_in_insert = false,
     signs = {
@@ -21,52 +22,6 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = "󰋼",
             [vim.diagnostic.severity.INFO] = "󰋗",
         },
-    },
-})
-
-local float_options = {
-    focusable = false,
-    close_events = {
-        "CursorMoved",
-        "CursorMovedI",
-        "BufHidden",
-        "InsertCharPre",
-        "WinLeave",
-    },
-}
-
-which_key.add({
-    {
-        "[d",
-        function()
-            vim.diagnostic.goto_prev({
-                float = float_options,
-            })
-        end,
-        desc = "Jump to the previous diagnostic",
-    },
-    {
-        "]d",
-        function()
-            vim.diagnostic.goto_next({
-                float = float_options,
-            })
-        end,
-        desc = "Jump to the next diagnostic",
-    },
-    {
-        "<leader>dK",
-        function()
-            if vim.lsp.buf_is_attached() and vim.api.nvim_get_mode().mode == "n" then
-                vim.diagnostic.open_float(
-                    0,
-                    vim.tbl_extend("force", float_options, {
-                        scope = "cursor",
-                    })
-                )
-            end
-        end,
-        desc = "Show diagnostic",
     },
 })
 
@@ -81,71 +36,9 @@ mason_lspconfig.setup()
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP actions",
     callback = function(event)
-        which_key.add({
-            { "<leader>lt", group = "Toggles" },
-            {
-                "<leader>lti",
-                function()
-                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
-                end,
-                desc = "Toggle inlay hints",
-            },
-        })
-
-        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Show hover" })
-        vim.keymap.set(
-            "n",
-            "gd",
-            "<cmd>lua vim.lsp.buf.definition()<cr>",
-            { buffer = event.buf, desc = "Go to definition" }
-        )
-        vim.keymap.set(
-            "n",
-            "gD",
-            "<cmd>lua vim.lsp.buf.declaration()<cr>",
-            { buffer = event.buf, desc = "Go to declaration" }
-        )
-        vim.keymap.set(
-            "n",
-            "gi",
-            "<cmd>lua vim.lsp.buf.implementation()<cr>",
-            { buffer = event.buf, desc = "Go to implementation" }
-        )
-        vim.keymap.set(
-            "n",
-            "go",
-            "<cmd>lua vim.lsp.buf.type_definition()<cr>",
-            { buffer = event.buf, desc = "Go to type definition" }
-        )
-        vim.keymap.set(
-            "n",
-            "gr",
-            "<cmd>lua vim.lsp.buf.references()<cr>",
-            { buffer = event.buf, desc = "Find references" }
-        )
-        vim.keymap.set(
-            "n",
-            "gs",
-            "<cmd>lua vim.lsp.buf.signature_help()<cr>",
-            { buffer = event.buf, desc = "Show signature help" }
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>lr",
-            "<cmd>lua vim.lsp.buf.rename()<cr>",
-            { buffer = event.buf, desc = "Rename symbol" }
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>la",
-            "<cmd>lua vim.lsp.buf.code_action()<cr>",
-            { buffer = event.buf, desc = "Code actions" }
-        )
+        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
     end,
-})
-
-which_key.add({
-    { "<leader>l", group = "LSP actions" },
 })
 
 local lsp_capabilities = blink.get_lsp_capabilities({
