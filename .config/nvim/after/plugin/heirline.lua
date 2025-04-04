@@ -399,7 +399,7 @@ local FilePath = utils.insert(FileInfoProvider, {
 
 local AutoformatIcon = {
     provider = function()
-        return "󰁨"
+        return "AF"
     end,
     hl = function()
         if vim.g.disable_autoformat then
@@ -614,6 +614,8 @@ local OilStatusline = {
     Align,
     OilCwd,
     Align,
+
+    utils.insert(ModeHighlights, Spacer),
 }
 
 local NeoTreeStatusline = {
@@ -626,6 +628,8 @@ local NeoTreeStatusline = {
     Align,
     Cwd,
     Align,
+
+    utils.insert(ModeHighlights, Spacer),
 }
 
 local Statusline = {
