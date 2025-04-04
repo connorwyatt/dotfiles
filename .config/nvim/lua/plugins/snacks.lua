@@ -42,11 +42,20 @@ return {
             ui_select = true,
             layout = {
                 cycle = true,
-                preset = "vertical",
             },
             matcher = {
                 sort_empty = true,
                 frecency = true,
+            },
+            layouts = {
+                select = {
+                    layout = {
+                        relative = "cursor",
+                        width = 80,
+                        min_width = 0,
+                        row = 1,
+                    },
+                },
             },
         },
         quickfile = {
@@ -66,8 +75,8 @@ return {
             input = {
                 border = "single",
                 relative = "cursor",
-                -- row = -3,
-                -- col = 0,
+                row = 1,
+                column = 0,
             },
             notification = {
                 border = "single",
