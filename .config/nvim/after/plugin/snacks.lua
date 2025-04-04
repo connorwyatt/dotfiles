@@ -230,4 +230,20 @@ whichKey.add({
         end,
         desc = "Next word occurrence",
     },
+
+    {
+        "<leader>go",
+        function()
+            Snacks.gitbrowse.open()
+        end,
+        desc = "Open in browser",
+    },
+
+    {
+        "<leader>gl",
+        function()
+            Snacks.lazygit.open()
+        end,
+        desc = "Open lazygit",
+    },
 })
