@@ -99,12 +99,6 @@ vim.keymap.set("n", "<right>", noop)
 vim.keymap.set("n", "<up>", noop)
 vim.keymap.set("n", "<down>", noop)
 
--- Window keybinds.
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Go to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Go to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Go to the down window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Go to the up window" })
-
 -- Clear search highlights on escape.
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
