@@ -7,6 +7,7 @@ return {
             "folke/snacks.nvim",
             "nvim-tree/nvim-web-devicons",
         },
+        cmd = "Octo",
         opts = {
             picker = "snacks",
         },
