@@ -45,7 +45,7 @@ return {
             keymap = {
                 preset = "none",
 
-                ["<C-space>"] = { "show" },
+                ["<C-space>"] = { "show", "fallback" },
                 ["<C-e>"] = { "hide", "fallback" },
                 ["<CR>"] = { "accept", "fallback" },
 
@@ -72,7 +72,7 @@ return {
                 },
                 list = {
                     selection = {
-                        preselect = false,
+                        preselect = true,
                         auto_insert = false,
                     },
                 },
@@ -136,7 +136,7 @@ return {
                             return vim.bo.filetype == "lua"
                         end,
                         module = "lazydev.integrations.blink",
-                        score_offset = 20,
+                        score_offset = 10,
                     },
                     lsp = {
                         name = "",
@@ -148,7 +148,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 20,
+                        score_offset = 10,
                     },
                     path = {
                         name = "",
@@ -160,7 +160,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 20,
+                        score_offset = 10,
                     },
                     snippets = {
                         name = "",
@@ -172,7 +172,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 21,
+                        score_offset = 20,
                     },
                     buffer = {
                         name = "",
@@ -184,7 +184,7 @@ return {
                         max_items = 5,
                         min_keyword_length = 3,
                         fallbacks = {},
-                        score_offset = 10,
+                        score_offset = 5,
                     },
                     ripgrep = {
                         module = "blink-ripgrep",
@@ -216,8 +216,17 @@ return {
             },
             cmdline = {
                 keymap = {
-                    ["<Tab>"] = { "show_and_insert", "select_next" },
-                    ["<S-Tab>"] = { "show_and_insert", "select_prev" },
+                    preset = "none",
+
+                    ["<C-space>"] = { "show" },
+                    ["<C-e>"] = { "hide", "fallback" },
+                    ["<CR>"] = { "accept", "fallback" },
+
+                    ["<Up>"] = { "select_prev", "fallback" },
+                    ["<Down>"] = { "select_next", "fallback" },
+
+                    ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+                    ["<C-f>"] = { "scroll_documentation_down", "fallback" },
                 },
                 completion = {
                     menu = {
@@ -226,7 +235,7 @@ return {
                     list = {
                         selection = {
                             preselect = true,
-                            auto_insert = true,
+                            auto_insert = false,
                         },
                     },
                 },
