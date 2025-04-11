@@ -44,7 +44,7 @@ return {
                 cycle = true,
             },
             matcher = {
-                sort_empty = true,
+                sort_empty = false,
                 frecency = true,
             },
             layouts = {

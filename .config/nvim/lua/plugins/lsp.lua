@@ -136,7 +136,7 @@ return {
                             return vim.bo.filetype == "lua"
                         end,
                         module = "lazydev.integrations.blink",
-                        score_offset = 10,
+                        score_offset = 20,
                     },
                     lsp = {
                         name = "",
@@ -148,7 +148,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 10,
+                        score_offset = 20,
                     },
                     path = {
                         name = "",
@@ -160,7 +160,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 10,
+                        score_offset = 20,
                     },
                     snippets = {
                         name = "",
@@ -172,11 +172,11 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 20,
+                        score_offset = 10,
                     },
                     buffer = {
                         name = "",
-                        enabled = true,
+                        enabled = false,
                         async = false,
                         timeout_ms = 50,
                         transform_items = nil,
