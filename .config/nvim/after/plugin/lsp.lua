@@ -36,8 +36,47 @@ mason_lspconfig.setup()
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP actions",
     callback = function()
-        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
-        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
+        which_key.add({
+            {
+                "gd",
+                function()
+                    Snacks.picker.lsp_definitions()
+                end,
+                desc = "Go to definition",
+            },
+            {
+                "gD",
+                function()
+                    Snacks.picker.lsp_declarations()
+                end,
+                desc = "Go to declaration",
+            },
+            { "gra", desc = "Code actions" },
+            { "grn", desc = "Rename" },
+            {
+                "grr",
+                function()
+                    Snacks.picker.lsp_references()
+                end,
+                nowait = true,
+                desc = "References",
+            },
+            {
+                "gri",
+                function()
+                    Snacks.picker.lsp_implementations()
+                end,
+                desc = "Go to implementation",
+            },
+            {
+                "gry",
+                function()
+                    Snacks.picker.lsp_type_definitions()
+                end,
+                desc = "Go to type definition",
+            },
+            { "gO", desc = "Document symbols" },
+        })
     end,
 })
 
