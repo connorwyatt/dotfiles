@@ -176,7 +176,7 @@ return {
                     },
                     buffer = {
                         name = "",
-                        enabled = false,
+                        enabled = true,
                         async = false,
                         timeout_ms = 50,
                         transform_items = nil,
