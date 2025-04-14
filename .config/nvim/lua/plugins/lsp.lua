@@ -15,10 +15,9 @@ return {
     {
         "netmute/ctags-lsp.nvim",
         dependencies = { "neovim/nvim-lspconfig" },
-        ft = "kotlin",
         config = function()
             require("lspconfig").ctags_lsp.setup({
-                filetypes = { "kotlin" },
+                filetypes = { "java", "kotlin" },
             })
         end,
     },
