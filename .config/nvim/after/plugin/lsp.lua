@@ -1,6 +1,7 @@
 local blink = require("blink-cmp")
 local dap = require("dap")
 local dapui = require("dapui")
+local lspconfig = require("lspconfig")
 local luasnip = require("luasnip")
 local luasnip_types = require("luasnip.util.types")
 local mason = require("mason")
@@ -96,7 +97,7 @@ local lsp_capabilities = blink.get_lsp_capabilities({
 
 mason_lspconfig.setup_handlers({
     rust_analyzer = function(server_name)
-        require("lspconfig")[server_name].setup({
+        lspconfig[server_name].setup({
             completion = {
                 capable = {
                     snippets = "add_parenthesis",
@@ -105,7 +106,7 @@ mason_lspconfig.setup_handlers({
         })
     end,
     lua_ls = function(server_name)
-        require("lspconfig")[server_name].setup({
+        lspconfig[server_name].setup({
             settings = {
                 Lua = {
                     completion = {
@@ -117,7 +118,7 @@ mason_lspconfig.setup_handlers({
         })
     end,
     function(server_name)
-        require("lspconfig")[server_name].setup({
+        lspconfig[server_name].setup({
             capabilities = lsp_capabilities,
         })
     end,
