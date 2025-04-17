@@ -8,6 +8,6 @@ ZSH_THEME="connor"
 
 zstyle ":omz:update" mode auto
 
-plugins=(git zsh-autosuggestions)
+plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
