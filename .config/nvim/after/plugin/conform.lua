@@ -29,6 +29,8 @@ local conform_formatters = {
     json = { "jq" },
     lua = { "stylua" },
     rust = { "rustfmt" },
+    typescript = { "eslint", "prettier" },
+    typescriptreact = { "eslint", "prettier" },
 }
 
 if vim.fn.executable("dotnet") == 1 then
