@@ -16,10 +16,23 @@ font-family-italic = "JetBrains Mono Italic Italic"
 font-family-bold = "JetBrains Mono Regular ExtraBold"
 font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
 
-# font-family = "IBM Plex Mono"
+# font-family = "JetBrains Mono Regular Medium"
+# font-family-italic = "JetBrains Mono Italic Medium Italic"
+# font-family-bold = "JetBrains Mono Regular ExtraBold"
+# font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
+
+# font-family = "IBM Plex Mono Regular"
+# font-family-italic = "IBM Plex Mono Italic"
+# font-family-bold = "IBM Plex Mono Bold"
+# font-family-bold-italic = "IBM Plex Mono Bold Italic"
 
 # font-family = "Iosevka Extended"
 # font-family-italic = "Iosevka Extended Oblique"
+# font-family-bold = "Iosevka Heavy Extended"
+# font-family-bold-italic = "Iosevka Heavy Extended Oblique"
+
+# font-family = "Iosevka Medium Extended"
+# font-family-italic = "Iosevka Medium Extended Oblique"
 # font-family-bold = "Iosevka Heavy Extended"
 # font-family-bold-italic = "Iosevka Heavy Extended Oblique"
 
@@ -34,7 +47,7 @@ font-feature = -dlig
 
 font-size = 14
 
-adjust-cell-height = 10%
+adjust-cell-height = 20%
 
 adjust-cursor-thickness = 1
-adjust-cursor-height = 10%
+adjust-cursor-height = 20%
