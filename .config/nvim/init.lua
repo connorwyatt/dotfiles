@@ -26,6 +26,8 @@ vim.opt.colorcolumn = "80"
 
 -- Don't wrap by default.
 vim.opt.wrap = false
+-- Wrap at word boundary.
+vim.opt.linebreak = true
 
 -- Highlight line that cursor is on.
 vim.opt.cursorline = true
