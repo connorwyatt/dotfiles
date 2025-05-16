@@ -250,7 +250,7 @@ return {
                 },
             },
             signature = {
-                enabled = true,
+                enabled = false,
                 trigger = {
                     show_on_keyword = true,
                     show_on_trigger_character = true,
