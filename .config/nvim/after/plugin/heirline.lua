@@ -433,6 +433,12 @@ local FileEncoding = {
     end,
 }
 
+local FileFormat = {
+    provider = function()
+        return vim.bo.fileformat
+    end,
+}
+
 local BufType = {
     provider = function()
         return vim.bo.buftype
@@ -589,6 +595,8 @@ local DefaultStatusline = {
     Diagnostics,
     Divider,
     AutoformatIcon,
+    Divider,
+    FileFormat,
     Divider,
     FileEncoding,
     {
