@@ -10,6 +10,13 @@ whichKey.add({
         desc = "Marks",
     },
     {
+        "<leader>s,",
+        function()
+            Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+        end,
+        desc = "Config files",
+    },
+    {
         "<leader>s/",
         function()
             Snacks.picker.grep()
@@ -29,6 +36,13 @@ whichKey.add({
             Snacks.picker.command_history()
         end,
         desc = "Command history",
+    },
+    {
+        "<leader>sD",
+        function()
+            Snacks.picker.diagnostics_buffer()
+        end,
+        desc = "Buffer diagnostics",
     },
     {
         "<leader>sH",
@@ -71,6 +85,13 @@ whichKey.add({
             Snacks.picker.commands()
         end,
         desc = "Commands",
+    },
+    {
+        "<leader>sd",
+        function()
+            Snacks.picker.diagnostics()
+        end,
+        desc = "Diagnostics",
     },
     {
         "<leader>sf",
