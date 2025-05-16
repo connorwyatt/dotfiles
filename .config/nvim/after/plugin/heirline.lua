@@ -398,16 +398,33 @@ local FilePath = utils.insert(FileInfoProvider, {
 })
 
 local AutoformatIcon = {
-    provider = function()
-        return "AF"
-    end,
-    hl = function()
-        if vim.g.disable_autoformat then
-            return highlights.autoformat.disabled
-        else
-            return highlights.autoformat.enabled
-        end
-    end,
+    {
+        provider = function()
+            return "AF"
+        end,
+        hl = function()
+            if vim.g.disable_autoformat then
+                return highlights.autoformat.disabled
+            else
+                return highlights.autoformat.enabled
+            end
+        end,
+    },
+    {
+        provider = function()
+            return " "
+        end,
+        condition = function()
+            return vim.b.disable_autoformat
+        end,
+        hl = function()
+            if vim.b.disable_autoformat then
+                return highlights.autoformat.disabled
+            else
+                return highlights.autoformat.enabled
+            end
+        end,
+    },
 }
 
 local FileEncoding = {

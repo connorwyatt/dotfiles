@@ -24,10 +24,11 @@ whichKey.add({
 })
 
 local conform_formatters = {
-    ["*"] = { "trim_whitespace" },
+    ["*"] = { "trim_newlines", "trim_whitespace" },
     java = { "clang-format" },
     json = { "jq" },
     lua = { "stylua" },
+    markdown = { "prettier" },
     rust = { "rustfmt" },
     typescript = { "eslint", "prettier" },
     typescriptreact = { "eslint", "prettier" },
