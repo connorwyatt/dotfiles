@@ -127,6 +127,7 @@ return {
                 },
                 per_filetype = {
                     gitcommit = {
+                        "conventional_commits",
                         "path",
                         "snippets",
                         "buffer",
@@ -215,6 +216,11 @@ return {
                             additional_paths = {},
                         },
                     },
+                    conventional_commits = {
+                        name = "",
+                        module = "blink-cmp-conventional-commits",
+                        score_offset = 25,
+                    },
                 },
             },
             cmdline = {
@@ -255,6 +261,9 @@ return {
     },
     {
         "mikavilpas/blink-ripgrep.nvim",
+    },
+    {
+        "disrupted/blink-cmp-conventional-commits",
     },
     {
         "xzbdmw/colorful-menu.nvim",
