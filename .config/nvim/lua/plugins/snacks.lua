@@ -42,6 +42,9 @@ return {
             ui_select = true,
             layout = {
                 cycle = true,
+                preset = function()
+                    return "vertical"
+                end,
             },
             matcher = {
                 sort_empty = false,
