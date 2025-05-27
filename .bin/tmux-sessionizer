@@ -2,7 +2,7 @@
 
 printf "\033]2;tmux-sessionizer\a"
 
-selected=$(fd '^.git$' $HOME/Code --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | grep '^worktree ' | sd '^worktree ' '' | sd '/.bare$' '' | sd "$HOME/Code/" '' | sort | uniq | fzf --exit-0)
+selected=$(fd '^.git$' $HOME/Code --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | grep '^worktree ' | grep -v '/.bare$' | sd '^worktree ' '' | sd "$HOME/Code/" '' | sort | uniq | fzf --exit-0)
 
 if [[ -z $selected ]]; then
     exit 0
