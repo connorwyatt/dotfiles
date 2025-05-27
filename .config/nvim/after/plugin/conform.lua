@@ -32,6 +32,7 @@ local conform_formatters = {
     rust = { "rustfmt" },
     typescript = { "eslint", "prettier" },
     typescriptreact = { "eslint", "prettier" },
+    yaml = { "prettier" },
 }
 
 if vim.fn.executable("dotnet") == 1 then
