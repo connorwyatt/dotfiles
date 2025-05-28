@@ -48,11 +48,22 @@ return {
             keymap = {
                 preset = "none",
 
-                ["<C-space>"] = { "show", "fallback" },
+                ["<C-space>"] = { "show", "hide", "fallback" },
                 ["<C-e>"] = { "hide", "fallback" },
+                ["<C-d>"] = { "show_documentation", "hide_documentation", "fallback" },
                 ["<CR>"] = { "accept", "fallback" },
 
-                ["<Tab>"] = { "snippet_forward", "fallback" },
+                ["<Tab>"] = {
+                    function(cmp)
+                        if cmp.snippet_active() then
+                            return cmp.accept()
+                        else
+                            return cmp.select_and_accept()
+                        end
+                    end,
+                    "snippet_forward",
+                    "fallback",
+                },
                 ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
                 ["<Up>"] = { "select_prev", "fallback" },
@@ -66,7 +77,7 @@ return {
             },
             completion = {
                 documentation = {
-                    auto_show = true,
+                    auto_show = false,
                     auto_show_delay_ms = 0,
                     update_delay_ms = 50,
                 },
@@ -75,7 +86,7 @@ return {
                 },
                 list = {
                     selection = {
-                        preselect = true,
+                        preselect = false,
                         auto_insert = false,
                     },
                 },
@@ -185,20 +196,20 @@ return {
                         timeout_ms = 50,
                         transform_items = nil,
                         should_show_items = true,
-                        max_items = 5,
-                        min_keyword_length = 3,
+                        max_items = 10,
+                        min_keyword_length = 0,
                         fallbacks = {},
                         score_offset = 5,
                     },
                     ripgrep = {
                         module = "blink-ripgrep",
-                        name = "",
+                        name = "",
                         enabled = true,
-                        async = false,
-                        timeout_ms = 50,
+                        async = true,
+                        timeout_ms = 500,
                         transform_items = nil,
                         should_show_items = true,
-                        max_items = 5,
+                        max_items = 10,
                         min_keyword_length = 3,
                         fallbacks = {},
                         score_offset = 0,
