@@ -30,8 +30,8 @@ local conform_formatters = {
     lua = { "stylua" },
     markdown = { "prettier" },
     rust = { "rustfmt" },
-    typescript = { "eslint", "prettier" },
-    typescriptreact = { "eslint", "prettier" },
+    typescript = { "eslint_d", "prettier" },
+    typescriptreact = { "eslint_d", "prettier" },
     yaml = { "prettier" },
 }
 
