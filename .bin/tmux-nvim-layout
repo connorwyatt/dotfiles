@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ -z $TMUX ]]; then
+    echo 'Not in a tmux session'
+    exit 1
+fi
+
+tmux send-keys 'nvim .' C-m
+
+tmux new-window -d
