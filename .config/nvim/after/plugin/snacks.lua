@@ -173,6 +173,13 @@ whichKey.add({
         desc = "Icons",
     },
     {
+        "<leader>sj",
+        function()
+            Snacks.picker.jumps()
+        end,
+        desc = "Jumps",
+    },
+    {
         "<leader>sk",
         function()
             Snacks.picker.keymaps()
@@ -192,6 +199,13 @@ whichKey.add({
             Snacks.picker.lazy()
         end,
         desc = "Plugin",
+    },
+    {
+        "<leader>sq",
+        function()
+            Snacks.picker.qflist()
+        end,
+        desc = "Quickfix",
     },
     {
         "<leader>sr",

@@ -69,6 +69,37 @@ return {
                     git_status_hl = true,
                 },
             },
+            sources = {
+                marks = {
+                    actions = {
+                        delmark = function(picker)
+                            local cursor = picker.list.cursor
+                            local deleted = {}
+                            for _, it in ipairs(picker:selected({ fallback = true })) do
+                                local ok = pcall(vim.api.nvim_del_mark, it.label)
+                                if ok then
+                                    table.insert(deleted, it)
+                                end
+                            end
+                            picker:close()
+                            local picker_new = Snacks.picker.marks()
+                            picker_new.list:view(cursor - #deleted)
+                        end,
+                    },
+                    win = {
+                        input = {
+                            keys = {
+                                ["<C-x>"] = { "delmark", mode = { "i", "n" } },
+                            },
+                        },
+                        list = {
+                            keys = {
+                                ["dd"] = { "delmark" },
+                            },
+                        },
+                    },
+                },
+            },
         },
         quickfile = {
             enabled = true,
