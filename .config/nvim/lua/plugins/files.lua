@@ -29,6 +29,20 @@ return {
                 ["gs"] = { "actions.change_sort", mode = "n" },
                 ["gx"] = { "actions.open_external" },
                 ["g."] = { "actions.toggle_hidden", mode = "n" },
+                ["<localleader>s."] = {
+                    desc = "Files",
+                    callback = function()
+                        Snacks.picker.files({ cwd = require("oil").get_current_dir() })
+                    end,
+                    mode = "n",
+                },
+                ["<localleader>s/"] = {
+                    desc = "Grep",
+                    callback = function()
+                        Snacks.picker.grep({ dirs = { require("oil").get_current_dir() } })
+                    end,
+                    mode = "n",
+                },
             },
             view_options = {
                 show_hidden = true,
