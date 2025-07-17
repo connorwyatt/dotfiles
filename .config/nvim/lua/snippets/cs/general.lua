@@ -29,13 +29,16 @@ local utils = require("snippets.utils")
 local cs_utils = require("snippets.cs.utils")
 
 return {
-    s(
+    ms(
         {
-            trig = "namespace",
-            desc = "File-scoped namespace",
+            common = {
+                desc = "File-scoped namespace",
+            },
+            "namespace",
+            "ns",
         },
         fmta("namespace <>;", {
-            i(1, "Namespace"),
+            i(0),
         })
     ),
     s(
@@ -59,8 +62,30 @@ return {
     ),
     s(
         {
-            trig = "method",
-            desc = "Method",
+            trig = "enum",
+            desc = "Enum",
+        },
+        fmta(
+            [[
+            <> enum <>
+            {
+                <>
+            }
+            ]],
+            {
+                cs_utils.visibility_choice(1),
+                i(2, "EnumName"),
+                i(0),
+            }
+        )
+    ),
+    ms(
+        {
+            common = {
+                desc = "Method",
+            },
+            "method",
+            "meth",
         },
         fmta(
             [[
@@ -78,11 +103,10 @@ return {
             }
         )
     ),
-    s(
-        {
-            trig = "property",
+    ms(
+        { common = {
             desc = "Property",
-        },
+        }, "property", "prop" },
         fmta(
             [[
             <> <> <> { get; <>; }
