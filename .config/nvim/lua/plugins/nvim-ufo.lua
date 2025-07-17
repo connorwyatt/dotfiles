@@ -1,7 +1,6 @@
 return {
     {
-        "connorwyatt/nvim-ufo",
-        branch = "close_fold_current_line",
+        "kevinhwang91/nvim-ufo",
         dependencies = {
             "kevinhwang91/promise-async",
         },
@@ -34,7 +33,7 @@ return {
                     end
                     curWidth = curWidth + chunkWidth
                 end
-                table.insert(newVirtText, { suffix, "Comment" })
+                table.insert(newVirtText, { suffix, "FoldText" })
                 return newVirtText
             end,
             preview = {
