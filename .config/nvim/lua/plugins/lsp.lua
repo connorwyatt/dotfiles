@@ -93,11 +93,13 @@ return {
                                         if dev_icon then
                                             icon = dev_icon
                                         end
+                                    elseif ctx.kind == "RipgrepRipgrep" then
                                     else
                                         icon = require("lspkind").symbolic(ctx.kind, {
                                             mode = "symbol",
-                                        })
+                                        }) or icon
                                     end
+
                                     return " " .. icon .. " "
                                 end,
                             },
@@ -132,6 +134,13 @@ return {
                         "snippets",
                         "buffer",
                     },
+                    markdown = {
+                        "path",
+                        "snippets",
+                        "buffer",
+                        "ripgrep",
+                        "markdown",
+                    },
                 },
                 providers = {
                     lazydev = {
@@ -139,15 +148,19 @@ return {
                         enabled = function()
                             return vim.bo.filetype == "lua"
                         end,
+                        async = true,
                         module = "lazydev.integrations.blink",
                         score_offset = 20,
                     },
                     lsp = {
                         name = "",
                         enabled = true,
-                        async = false,
-                        timeout_ms = 50,
-                        transform_items = nil,
+                        async = true,
+                        transform_items = function(_, items)
+                            return vim.tbl_filter(function(item)
+                                return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
+                            end, items)
+                        end,
                         should_show_items = true,
                         max_items = nil,
                         min_keyword_length = 0,
@@ -157,8 +170,7 @@ return {
                     path = {
                         name = "",
                         enabled = true,
-                        async = false,
-                        timeout_ms = 50,
+                        async = true,
                         transform_items = nil,
                         should_show_items = true,
                         max_items = nil,
@@ -169,7 +181,7 @@ return {
                     snippets = {
                         name = "",
                         enabled = true,
-                        async = false,
+                        async = true,
                         timeout_ms = 50,
                         transform_items = nil,
                         should_show_items = true,
@@ -181,8 +193,7 @@ return {
                     buffer = {
                         name = "",
                         enabled = true,
-                        async = false,
-                        timeout_ms = 50,
+                        async = true,
                         transform_items = nil,
                         should_show_items = true,
                         max_items = 10,
@@ -192,10 +203,9 @@ return {
                     },
                     ripgrep = {
                         module = "blink-ripgrep",
-                        name = "",
+                        name = "",
                         enabled = true,
                         async = true,
-                        timeout_ms = 500,
                         transform_items = nil,
                         should_show_items = true,
                         max_items = 10,
@@ -219,6 +229,8 @@ return {
                     conventional_commits = {
                         name = "",
                         module = "blink-cmp-conventional-commits",
+                        enabled = false,
+                        async = true,
                         score_offset = 25,
                     },
                 },
@@ -250,7 +262,7 @@ return {
                 },
             },
             signature = {
-                enabled = false,
+                enabled = true,
                 trigger = {
                     show_on_keyword = true,
                     show_on_trigger_character = true,
