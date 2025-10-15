@@ -17,15 +17,6 @@ return {
 
     -- Specific LSPs
     {
-        "netmute/ctags-lsp.nvim",
-        dependencies = { "neovim/nvim-lspconfig" },
-        config = function()
-            require("lspconfig").ctags_lsp.setup({
-                filetypes = { "java", "kotlin" },
-            })
-        end,
-    },
-    {
         "seblyng/roslyn.nvim",
         ft = "cs",
         config = true,
@@ -75,7 +66,7 @@ return {
                 },
                 list = {
                     selection = {
-                        preselect = false,
+                        preselect = true,
                         auto_insert = false,
                     },
                 },
@@ -216,14 +207,15 @@ return {
                         ---@type blink-ripgrep.Options
                         opts = {
                             prefix_min_len = 3,
-                            context_size = 5,
-                            max_filesize = "1M",
-                            project_root_marker = {},
-                            project_root_fallback = true,
-                            search_casing = "--smart-case",
                             fallback_to_regex_highlighting = true,
-                            ignore_paths = {},
-                            additional_paths = {},
+                            backend = {
+                                ripgrep = {
+                                    context_size = 5,
+                                    max_filesize = "1M",
+                                    search_casing = "--smart-case",
+                                    project_root_fallback = true,
+                                },
+                            },
                         },
                     },
                     conventional_commits = {
@@ -285,7 +277,7 @@ return {
     -- Snippets
     {
         "L3MON4D3/LuaSnip",
-        version = "v2.*",
+        version = "v2.4.x",
         build = "make install_jsregexp",
         event = "InsertEnter",
     },
