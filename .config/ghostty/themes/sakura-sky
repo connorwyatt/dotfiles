@@ -1,0 +1,25 @@
+# background-opacity = 0.9
+# background-blur-radius = 64
+
+palette = 0=#c9d8e8
+palette = 1=#d97c7c
+palette = 2=#8bab63
+palette = 3=#da9b2e
+palette = 4=#aa88d2
+palette = 5=#d480b4
+palette = 6=#79a5d2
+palette = 7=#51657a
+palette = 8=#a5bfd8
+palette = 9=#eab7b7
+palette = 10=#b0c594
+palette = 11=#e5ba6f
+palette = 12=#d2c0e7
+palette = 13=#e8bad6
+palette = 14=#b2cbe5
+palette = 15=#758ca3
+background=#edf2f7
+foreground=#51657a
+cursor-color=#d480b4
+cursor-text=#ffffff
+selection-background=#c9d8e8
+selection-foreground=#51657a
