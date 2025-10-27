@@ -1,6 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
         build = ":TSUpdate",
     },
     {
@@ -10,12 +11,6 @@ return {
         },
         opts = {
             max_lines = 3,
-        },
-    },
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
         },
     },
 }

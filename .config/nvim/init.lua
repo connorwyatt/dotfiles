@@ -1,9 +1,6 @@
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
--- Disable netrw.
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 -- Make space the leader key and backslash the local leader key.
 vim.g.mapleader = " "
@@ -21,9 +18,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
--- Column line.
-vim.opt.colorcolumn = "80"
-
 -- Don't wrap by default.
 vim.opt.wrap = false
 -- Wrap at word boundary.
@@ -38,9 +32,6 @@ vim.opt.mouse = "a"
 -- Cursor
 vim.o.guicursor =
     "n-v-c:block,i-ci-ve-sm:ver25,r-cr:hor20,o:hor50,a:Cursor/lCursor,i-ci-ve-sm-r-cr-o:blinkwait400-blinkoff400-blinkon400"
-
--- Disable mode display, it's already in heirline.
-vim.opt.showmode = false
 
 -- Enable break indent.
 vim.opt.breakindent = true
@@ -88,14 +79,6 @@ vim.o.foldenable = true
 ----------------
 -- KEYMAPPING --
 ----------------
-
-local noop = function() end
-
--- Disable arrow keys in normal mode.
-vim.keymap.set("n", "<left>", noop)
-vim.keymap.set("n", "<right>", noop)
-vim.keymap.set("n", "<up>", noop)
-vim.keymap.set("n", "<down>", noop)
 
 -- Clear search highlights on escape.
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

@@ -1,5 +1,7 @@
 return {
-    "chentoast/marks.nvim",
-    event = "VeryLazy",
-    config = true,
+    {
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+        config = true,
+    },
 }

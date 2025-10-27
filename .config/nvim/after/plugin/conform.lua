@@ -25,15 +25,17 @@ whichKey.add({
 
 local conform_formatters = {
     ["*"] = { "trim_newlines", "trim_whitespace" },
-    java = { "clang-format" },
     json = { "jq" },
     lua = { "stylua" },
-    markdown = { "prettier" },
     rust = { "rustfmt" },
-    typescript = { "eslint_d", "prettier" },
-    typescriptreact = { "eslint_d", "prettier" },
-    yaml = { "prettier" },
 }
+
+if vim.fn.executable("npm") == 1 then
+    conform_formatters.markdown = { "prettier" }
+    conform_formatters.typescript = { "eslint_d", "prettier" }
+    conform_formatters.typescriptreact = { "eslint_d", "prettier" }
+    conform_formatters.yaml = { "prettier" }
+end
 
 if vim.fn.executable("dotnet") == 1 then
     conform_formatters.cs = { "csharpier", "fallback", stop_after_first = true }

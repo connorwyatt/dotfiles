@@ -1,7 +1,6 @@
 return {
     {
         "folke/which-key.nvim",
-        name = "which-key",
         event = "VeryLazy",
         keys = {
             {

@@ -24,48 +24,6 @@ whichKey.add({
         desc = "Grep",
     },
     {
-        "<leader>s<leader>",
-        function()
-            Snacks.picker.smart()
-        end,
-        desc = "Smart",
-    },
-    {
-        "<leader>sC",
-        function()
-            Snacks.picker.command_history()
-        end,
-        desc = "Command history",
-    },
-    {
-        "<leader>sD",
-        function()
-            Snacks.picker.diagnostics_buffer()
-        end,
-        desc = "Buffer diagnostics",
-    },
-    {
-        "<leader>sH",
-        function()
-            Snacks.picker.highlights()
-        end,
-        desc = "Highlights",
-    },
-    {
-        "<leader>sP",
-        function()
-            Snacks.picker.projects()
-        end,
-        desc = "Projects",
-    },
-    {
-        "<leader>sR",
-        function()
-            Snacks.picker.resume()
-        end,
-        desc = "Last search",
-    },
-    {
         "<leader>sS",
         function()
             Snacks.picker.lsp_workspace_symbols()
@@ -80,14 +38,14 @@ whichKey.add({
         desc = "Buffers",
     },
     {
-        "<leader>sc",
+        "<leader>sd",
         function()
-            Snacks.picker.commands()
+            Snacks.picker.diagnostics_buffer()
         end,
-        desc = "Commands",
+        desc = "Buffer diagnostics",
     },
     {
-        "<leader>sd",
+        "<leader>sD",
         function()
             Snacks.picker.diagnostics()
         end,
@@ -173,32 +131,11 @@ whichKey.add({
         desc = "Icons",
     },
     {
-        "<leader>sj",
-        function()
-            Snacks.picker.jumps()
-        end,
-        desc = "Jumps",
-    },
-    {
-        "<leader>sk",
-        function()
-            Snacks.picker.keymaps()
-        end,
-        desc = "Keymaps",
-    },
-    {
         "<leader>sl",
         function()
             Snacks.picker.lines()
         end,
         desc = "Lines",
-    },
-    {
-        "<leader>sp",
-        function()
-            Snacks.picker.lazy()
-        end,
-        desc = "Plugin",
     },
     {
         "<leader>sq",
@@ -249,21 +186,6 @@ whichKey.add({
             Snacks.picker.undo()
         end,
         desc = "Undo",
-    },
-
-    {
-        "[w",
-        function()
-            Snacks.words.jump(-1)
-        end,
-        desc = "Previous word occurrence",
-    },
-    {
-        "]w",
-        function()
-            Snacks.words.jump(1)
-        end,
-        desc = "Next word occurrence",
     },
 
     {

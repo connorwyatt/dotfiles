@@ -1,3 +1,11 @@
+local ivyOrIvySplitPickerLayout = function()
+    return vim.o.columns >= 120 and "ivy" or "ivy_split"
+end
+
+local ivySplitPickerLayout = function()
+    return "ivy_split"
+end
+
 return {
     "folke/snacks.nvim",
     priority = 1000,
@@ -42,9 +50,7 @@ return {
             ui_select = true,
             layout = {
                 cycle = true,
-                preset = function()
-                    return "vertical"
-                end,
+                preset = ivyOrIvySplitPickerLayout,
             },
             matcher = {
                 sort_empty = false,
@@ -62,43 +68,17 @@ return {
             },
             formatters = {
                 file = {
-                    filename_first = true,
-                    truncate = 120,
+                    filename_first = false,
+                    truncate = "center",
                     filename_only = false,
                     icon_width = 2,
                     git_status_hl = true,
                 },
             },
             sources = {
-                marks = {
-                    actions = {
-                        delmark = function(picker)
-                            local cursor = picker.list.cursor
-                            local deleted = {}
-                            for _, it in ipairs(picker:selected({ fallback = true })) do
-                                local ok = pcall(vim.api.nvim_del_mark, it.label)
-                                if ok then
-                                    table.insert(deleted, it)
-                                end
-                            end
-                            picker:close()
-                            local picker_new = Snacks.picker.marks()
-                            picker_new.list:view(cursor - #deleted)
-                        end,
-                    },
-                    win = {
-                        input = {
-                            keys = {
-                                ["<C-x>"] = { "delmark", mode = { "i", "n" } },
-                            },
-                        },
-                        list = {
-                            keys = {
-                                ["dd"] = { "delmark" },
-                            },
-                        },
-                    },
-                },
+                files = { layout = { preset = ivySplitPickerLayout } },
+                grep = { layout = { preset = ivySplitPickerLayout } },
+                recent = { layout = { preset = ivySplitPickerLayout } },
             },
         },
         quickfile = {
@@ -127,11 +107,6 @@ return {
             notification_history = {
                 border = "single",
             },
-        },
-        words = {
-            enabled = true,
-            debounce = 0,
-            modes = { "n", "i" },
         },
     },
 }
