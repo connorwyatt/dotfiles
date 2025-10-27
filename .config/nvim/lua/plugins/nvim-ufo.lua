@@ -8,7 +8,9 @@ return {
             close_fold_kinds_for_ft = {
                 default = { "imports", "comment" },
             },
-            close_fold_current_line = true,
+            close_fold_current_line_for_ft = {
+                default = true,
+            },
             fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
                 local newVirtText = {}
                 local suffix = ("   %d lines"):format(endLnum - lnum)
