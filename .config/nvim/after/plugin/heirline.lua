@@ -352,12 +352,12 @@ local EmptyStatusline = {
 }
 
 local NeoTreeStatusline = {
-    Git,
+    Cwd,
     {
         condition = conditions.is_git_repo,
         Divider,
     },
-    Cwd,
+    Git,
 
     Align,
 }
