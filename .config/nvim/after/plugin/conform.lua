@@ -25,6 +25,7 @@ whichKey.add({
 
 local conform_formatters = {
     ["*"] = { "trim_newlines", "trim_whitespace" },
+    go = { "gofumpt" },
     json = { "jq" },
     lua = { "stylua" },
     rust = { "rustfmt" },
