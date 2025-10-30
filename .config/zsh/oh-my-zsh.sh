@@ -1,6 +1,6 @@
 ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 
-if [[ ":$FPATH:" != *":/Users/connorwyatt/.zsh/completions:"* ]]; then export FPATH="/Users/connorwyatt/.zsh/completions:$FPATH"; fi
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
