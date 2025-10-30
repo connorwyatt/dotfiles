@@ -29,6 +29,7 @@ local conform_formatters = {
     json = { "jq" },
     lua = { "stylua" },
     rust = { "rustfmt" },
+    templ = { "templ" },
 }
 
 if vim.fn.executable("npm") == 1 then
