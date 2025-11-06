@@ -14,7 +14,7 @@ alias dgdw='dotfiles diff --word-diff'
 alias dgf='dotfiles fetch --all'
 alias dgfp='dotfiles fetch --all --prune'
 alias dgl='dotfiles log'
-alias dglg="git log --graph --pretty='dotfilesC(magenta)%h%Creset%C(auto)%d%Creset %s %C(yellow)(%ad) %C(bold cyan)<%an>%Creset' --date=short"
+alias dglg="dotfiles log --graph --pretty='%C(magenta)%h%Creset%C(auto)%d%Creset %s %C(yellow)(%ad) %C(bold cyan)<%an>%Creset' --date=short"
 alias dgls='dotfiles log --stat'
 alias dglsp='dotfiles log --stat --patch'
 alias dgm='dotfiles merge'
