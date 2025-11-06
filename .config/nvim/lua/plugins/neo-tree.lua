@@ -30,6 +30,7 @@ return {
             enable_modified_markers = false,
             enable_opened_markers = false,
             enable_refresh_on_write = true,
+            use_libuv_file_watcher = true,
             default_component_configs = {
                 name = {
                     trailing_slash = true,
