@@ -70,7 +70,7 @@ vim.opt.scrolloff = 5
 vim.opt.termguicolors = true
 
 -- Invisible characters.
-vim.opt.list = false
+vim.opt.list = true
 vim.opt.listchars = { tab = "» ", space = "·", trail = "·", nbsp = "␣" }
 vim.opt.fillchars:append({ diff = "╱" })
 
