@@ -9,7 +9,7 @@ whichKey.add({
 gitsigns.setup({
     signs_staged_enable = true,
     signcolumn = true,
-    numhl = false,
+    numhl = true,
     linehl = false,
     word_diff = false,
     attach_to_untracked = true,
