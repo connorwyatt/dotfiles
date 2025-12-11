@@ -28,8 +28,10 @@ local conform_formatters = {
     go = { "gofumpt" },
     json = { "jq" },
     lua = { "stylua" },
+    markdown = { "mdformat" },
     rust = { "rustfmt" },
     templ = { "templ" },
+    zsh = { "beautysh" },
 }
 
 if vim.fn.executable("npm") == 1 then
@@ -42,6 +44,10 @@ end
 
 if vim.fn.executable("dotnet") == 1 then
     conform_formatters.cs = { "csharpier", "fallback", stop_after_first = true }
+end
+
+if vim.fn.executable("zig") == 1 then
+    conform_formatters.zig = { "zigfmt" }
 end
 
 conform.setup({
