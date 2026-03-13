@@ -9,4 +9,6 @@ tmux send-keys 'nvim .' C-m
 
 tmux rename-window Neovim
 
+tmux new-window -d -n Cursor agent
+
 tmux new-window -d -n Other
