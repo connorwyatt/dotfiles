@@ -91,6 +91,7 @@ return {
                     "snippets",
                     "buffer",
                     "ripgrep",
+                    "tmux",
                 },
                 per_filetype = {
                     gitcommit = {
@@ -98,6 +99,7 @@ return {
                         "path",
                         "snippets",
                         "buffer",
+                        "tmux",
                     },
                     markdown = {
                         "path",
@@ -105,6 +107,7 @@ return {
                         "buffer",
                         "ripgrep",
                         "markdown",
+                        "tmux",
                     },
                 },
                 providers = {
@@ -199,6 +202,17 @@ return {
                         async = true,
                         score_offset = 25,
                     },
+                    tmux = {
+                        name = "",
+                        module = "blink-cmp-tmux",
+                        enabled = true,
+                        async = true,
+                        score_offset = 0,
+                        opts = {
+                            panes = "session",
+                            capture_history = false,
+                        },
+                    },
                 },
             },
             cmdline = {
@@ -242,6 +256,9 @@ return {
     },
     {
         "disrupted/blink-cmp-conventional-commits",
+    },
+    {
+        "mgalliou/blink-cmp-tmux",
     },
     {
         "xzbdmw/colorful-menu.nvim",
