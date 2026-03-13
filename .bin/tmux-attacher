@@ -2,15 +2,17 @@
 
 printf "\033]2;tmux-attacher\a"
 
-selected=$(tmux ls | sd '^(?<session_name>.*?):.*?(?<attached>\(attached\))?$' '$session_name $attached' | sd '\(attached\)' '[attached]' | sd '^(.*?)\s*$' '$1' | fzf --nth 1 --accept-nth 1 --exit-0)
+selected=$(tmux ls | fzf --exit-0 --bind "ctrl-x:execute-silent(tmux kill-session -t {1})+reload(tmux ls)")
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
+session_name="$(cut -d ':' -f1 <<< "$selected")"
+
 if [[ -z $TMUX ]]; then
-    tmux attach -t $selected
+    tmux attach -t $session_name
     exit 0
 fi
 
-tmux switch-client -t $selected
+tmux switch-client -t $session_name

@@ -2,19 +2,29 @@
 
 printf "\033]2;tmux-sessionizer\a"
 
-selected=$(fd '^.git$' $HOME/Code --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | grep '^worktree ' | grep -v '/.bare$' | sd '^worktree ' '' | sd "$HOME/Code/" '' | sort | uniq | fzf --exit-0)
+base_directory="$HOME/Code"
+
+selected=$(
+    fd '^.git$' $HOME/Code --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | \
+        grep '^worktree ' | \
+        grep -v '/.bare$' | \
+        sd '^worktree ' '' | \
+        sd "$base_directory/" '' | \
+        sort | \
+        uniq | \
+        fzf --exit-0 --preview "lstr $base_directory/{} --icons --gitignore --git-status --size")
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(echo "$selected" | tr . _)
+selected_basename=$(echo "$selected" | sd -F "$base_directory" '' | tr . _)
 
 if [[ -z $TMUX ]]; then
-    tmux new-session -A -s $selected_name -c $HOME/Code/$selected
+    tmux new-session -A -s $selected_basename -c $base_directory/$selected
     exit 0
 fi
 
-tmux new-session -ds $selected_name -c $HOME/Code/$selected
+tmux new-session -ds $selected_basename -c $base_directory/$selected
 
-tmux switch-client -t $selected_name
+tmux switch-client -t $selected_basename
