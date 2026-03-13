@@ -2,7 +2,8 @@ local blink = require("blink-cmp")
 local which_key = require("which-key")
 
 vim.diagnostic.config({
-    virtual_text = true,
+    --- Disabled as we have tiny-inline-diagnostic
+    virtual_text = false,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
