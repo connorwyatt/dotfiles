@@ -208,6 +208,11 @@ return {
                         enabled = true,
                         async = true,
                         score_offset = 0,
+                        transform_items = function(_, items)
+                            return vim.tbl_filter(function(item)
+                                return item.label:find("%w")
+                            end, items)
+                        end,
                         opts = {
                             panes = "session",
                             capture_history = false,
