@@ -12,7 +12,7 @@ selected=$(
         sd "$base_directory/" '' | \
         sort | \
         uniq | \
-        fzf --exit-0 --preview "lstr $base_directory/{} --icons --gitignore --git-status --size")
+        fzf --exit-0 --preview "echo 'Project structure' && lstr --icons --gitignore --git-status --size $base_directory/{} | tail -n +2 | tail -r | tail -n +3 | tail -r")
 
 if [[ -z $selected ]]; then
     exit 0
