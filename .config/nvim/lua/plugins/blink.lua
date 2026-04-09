@@ -51,14 +51,15 @@ return {
                                 ellipsis = false,
                                 text = function(ctx)
                                     local icon = ctx.kind_icon
-                                    if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                                    if ctx.source_id == "tmux" then
+                                        icon = ""
+                                    elseif vim.tbl_contains({ "Path" }, ctx.source_name) then
                                         local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
                                         if dev_icon then
                                             icon = dev_icon
                                         end
                                     elseif ctx.kind == "Ripgrep" then
                                     else
-                                        vim.print(ctx.kind)
                                         icon = require("lspkind").symbolic(ctx.kind, {
                                             mode = "symbol",
                                         }) or icon
