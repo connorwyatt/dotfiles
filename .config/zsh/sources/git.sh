@@ -1,3 +1,11 @@
+git-worktree-add-remote() {
+    git worktree add "$1" "origin/$1"
+}
+
+dotfiles-worktree-add-remote() {
+    dotfiles worktree add "$1" "origin/$1"
+}
+
 alias dg='dotfiles'
 alias dgai='dotfiles add --interactive'
 alias dgam='dotfiles am'
@@ -26,6 +34,7 @@ alias dgrs='dotfiles restore'
 alias dgrsp='dotfiles restore --patch'
 alias dgst='dotfiles status'
 alias dgwa='dotfiles worktree add'
+alias dgwar='dotfiles-worktree-add-remote'
 alias dgwl='dotfiles worktree list'
 alias dgwr='dotfiles worktree remove'
 alias g='git'
@@ -56,5 +65,6 @@ alias grs='git restore'
 alias grsp='git restore --patch'
 alias gst='git status'
 alias gwa='git worktree add'
+alias gwar='git-worktree-add-remote'
 alias gwl='git worktree list'
 alias gwr='git worktree remove'
