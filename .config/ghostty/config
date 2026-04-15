@@ -13,10 +13,10 @@ window-padding-balance = true
 
 copy-on-select = false
 
-font-family = "JetBrains Mono Regular Regular"
-font-family-italic = "JetBrains Mono Italic Italic"
-font-family-bold = "JetBrains Mono Regular ExtraBold"
-font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
+# font-family = "JetBrains Mono Regular Regular"
+# font-family-italic = "JetBrains Mono Italic Italic"
+# font-family-bold = "JetBrains Mono Regular ExtraBold"
+# font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
 
 # font-family = "JetBrains Mono Regular Medium"
 # font-family-italic = "JetBrains Mono Italic Medium Italic"
@@ -28,10 +28,10 @@ font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
 # font-family-bold = "IBM Plex Mono Bold"
 # font-family-bold-italic = "IBM Plex Mono Bold Italic"
 
-# font-family = "Iosevka Extended"
-# font-family-italic = "Iosevka Extended Oblique"
-# font-family-bold = "Iosevka Heavy Extended"
-# font-family-bold-italic = "Iosevka Heavy Extended Oblique"
+font-family = "Iosevka Extended"
+font-family-italic = "Iosevka Extended Oblique"
+font-family-bold = "Iosevka Heavy Extended"
+font-family-bold-italic = "Iosevka Heavy Extended Oblique"
 
 # font-family = "Iosevka Medium Extended"
 # font-family-italic = "Iosevka Medium Extended Oblique"
@@ -43,9 +43,9 @@ font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
 # font-family-bold = "InputMonoNarrow Black"
 # font-family-bold-italic = "InputMonoNarrow BlackIta"
 
-# font-feature = -calt
-# font-feature = -liga
-# font-feature = -dlig
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 font-size = 14
 
