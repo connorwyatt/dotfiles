@@ -11,6 +11,8 @@ window-padding-balance = true
 # macos-titlebar-style = hidden
 # window-decoration = none
 
+copy-on-select = false
+
 font-family = "JetBrains Mono Regular Regular"
 font-family-italic = "JetBrains Mono Italic Italic"
 font-family-bold = "JetBrains Mono Regular ExtraBold"
