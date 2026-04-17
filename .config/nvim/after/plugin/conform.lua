@@ -28,18 +28,18 @@ local conform_formatters = {
     go = { "gofumpt" },
     json = { "jq" },
     lua = { "stylua" },
-    markdown = { "mdformat" },
     rust = { "rustfmt" },
+    sh = { "beautysh" },
     templ = { "templ" },
     zsh = { "beautysh" },
 }
 
 if vim.fn.executable("npm") == 1 then
-    conform_formatters.css = { "prettier" }
-    conform_formatters.markdown = { "prettier" }
-    conform_formatters.typescript = { "eslint_d", "prettier" }
-    conform_formatters.typescriptreact = { "eslint_d", "prettier" }
-    conform_formatters.yaml = { "prettier" }
+    conform_formatters.css = { "prettierd" }
+    conform_formatters.markdown = { "prettierd" }
+    conform_formatters.typescript = { "eslint_d", "prettierd" }
+    conform_formatters.typescriptreact = { "eslint_d", "prettierd" }
+    conform_formatters.yaml = { "prettierd" }
 end
 
 if vim.fn.executable("dotnet") == 1 then
