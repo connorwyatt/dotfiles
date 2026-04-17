@@ -79,6 +79,10 @@ return {
                         },
                     },
                 },
+                trigger = {
+                    show_on_keyword = false,
+                    show_on_trigger_character = false,
+                },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
             snippets = {
@@ -107,7 +111,6 @@ return {
                         "snippets",
                         "buffer",
                         "ripgrep",
-                        "markdown",
                         "tmux",
                     },
                 },
