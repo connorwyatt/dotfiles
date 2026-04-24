@@ -2,11 +2,14 @@ if (( ${+commands[brew]} )); then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     export HOMEBREW_NO_ENV_HINTS=1
+    export HOMEBREW_NO_AUTO_UPDATE=1
 
-    UPDATE_CACHE="$HOME/.config/zsh/.brew_last_check"
-    current_date=$(date +%Y%m%d)
+    local update_cache="$HOME/.config/zsh/.brew_last_check"
+    local current_date=$(date +%Y%m%d)
 
-    if [[ ! -f "$UPDATE_CACHE" ]] || [[ "$(cat "$UPDATE_CACHE")" != "$current_date" ]]; then
+    if [[ ! -f "$update_cache" ]] || [[ "$(cat "$update_cache")" != "$current_date" ]]; then
+        brew update
+
         echo "\nChecking for Homebrew updates..."
 
         data=$(brew outdated --json=v2)
@@ -22,6 +25,6 @@ if (( ${+commands[brew]} )); then
             echo -e "\e[K\e[32m✔\e[0m All Homebrew packages are up to date!"
         fi
 
-        echo "$current_date" > "$UPDATE_CACHE"
+        echo "$current_date" > "$update_cache"
     fi
 fi
