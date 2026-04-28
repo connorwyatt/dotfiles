@@ -8,6 +8,8 @@ path+=("$HOME/.bin-local")
 autoload -Uz compinit
 compinit
 
+source $HOME/.config/zsh/initial-setup.sh
+
 SOURCES_FILES_STR=$(fd --glob '*.sh' $HOME/.config/zsh/sources)
 SOURCES_FILES=($(echo $SOURCES_FILES_STR | tr '\n' ' '))
 
