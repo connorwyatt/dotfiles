@@ -10,6 +10,7 @@ return {
         lazy = false,
         keys = {
             { "<leader><leader>", "<cmd>:Neotree reveal<cr>", desc = "File browser" },
+            { "<leader>g<leader>", "<cmd>:Neotree reveal source=git_status<cr>", desc = "Git status browser" },
         },
         opts = {
             window = {
