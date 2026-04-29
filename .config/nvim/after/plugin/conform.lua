@@ -37,6 +37,8 @@ local conform_formatters = {
 if vim.fn.executable("npm") == 1 then
     conform_formatters.css = { "prettierd" }
     conform_formatters.markdown = { "prettierd" }
+    conform_formatters.javascript = { "eslint_d", "prettierd" }
+    conform_formatters.javascriptreact = { "eslint_d", "prettierd" }
     conform_formatters.typescript = { "eslint_d", "prettierd" }
     conform_formatters.typescriptreact = { "eslint_d", "prettierd" }
     conform_formatters.yaml = { "prettierd" }
