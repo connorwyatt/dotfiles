@@ -3,6 +3,8 @@ source "$HOME/.config/zsh/oh-my-zsh.sh"
 export EDITOR="nvim"
 
 path+=("$HOME/.bin")
+
+mkdir -p "$HOME/.bin-local"
 path+=("$HOME/.bin-local")
 
 autoload -Uz compinit
