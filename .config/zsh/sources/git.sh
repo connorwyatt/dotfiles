@@ -1,16 +1,24 @@
 if (( ${+commands[git]} )); then
-    git config --global core.editor nvim
-    git config --global push.autoSetupRemote true
-    git config --global init.defaultBranch main
-    git config --global commit.verbose true
-    git config --global diff.tool nvimdiff
-    git config --global difftool.prompt false
-    git config --global difftool.nvimdiff.cmd 'nvim -d $BASE $LOCAL $REMOTE $MERGED -c '\''$wincmd w'\'' -c '\''wincmd J'\'
-    git config --global merge.tool nvimdiff
-    git config --global mergetool.prompt false
-    git config --global mergetool.nvimdiff.cmd 'nvim -d $BASE $LOCAL $REMOTE $MERGED -c '\''$wincmd w'\'' -c '\''wincmd J'\'
-    git config --global alias.clone-for-worktrees '!sh $HOME/.bin/git-clone-bare-for-worktrees'
-    git config --global diff.algorithm minimal
+    local current_script_path=${0:a}
+    local gitconfig_last_hash="$HOME/.config/zsh/.gitconfig_last_hash"
+    local current_script_hash=$(cat "$current_script_path" | sha256)
+
+    if [[ ! -f "$gitconfig_last_hash" ]] || [[ "$(cat "$gitconfig_last_hash")" != "$current_script_hash" ]]; then
+        git config --global core.editor nvim
+        git config --global push.autoSetupRemote true
+        git config --global init.defaultBranch main
+        git config --global commit.verbose true
+        git config --global diff.tool nvimdiff
+        git config --global difftool.prompt false
+        git config --global difftool.nvimdiff.cmd 'nvim -d $BASE $LOCAL $REMOTE $MERGED -c '\''$wincmd w'\'' -c '\''wincmd J'\'
+        git config --global merge.tool nvimdiff
+        git config --global mergetool.prompt false
+        git config --global mergetool.nvimdiff.cmd 'nvim -d $BASE $LOCAL $REMOTE $MERGED -c '\''$wincmd w'\'' -c '\''wincmd J'\'
+        git config --global alias.clone-for-worktrees '!sh $HOME/.bin/git-clone-bare-for-worktrees'
+        git config --global diff.algorithm minimal
+
+        echo "$current_script_hash" > "$gitconfig_last_hash"
+    fi
 
     git-worktree-add-remote() {
         git worktree add "$1" "origin/$1"
