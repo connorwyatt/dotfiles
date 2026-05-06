@@ -5,6 +5,7 @@ if (( ${+commands[git]} )); then
 
     if [[ ! -f "$gitconfig_last_hash" ]] || [[ "$(cat "$gitconfig_last_hash")" != "$current_script_hash" ]]; then
         git config --global core.editor nvim
+        git config --global core.excludesFile '~/.gitignore'
         git config --global push.autoSetupRemote true
         git config --global init.defaultBranch main
         git config --global commit.verbose true
