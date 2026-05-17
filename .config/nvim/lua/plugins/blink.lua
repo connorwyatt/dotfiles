@@ -36,7 +36,7 @@ return {
                 },
                 list = {
                     selection = {
-                        preselect = true,
+                        preselect = false,
                         auto_insert = false,
                     },
                 },
@@ -80,8 +80,8 @@ return {
                     },
                 },
                 trigger = {
-                    show_on_keyword = false,
-                    show_on_trigger_character = false,
+                    show_on_keyword = true,
+                    show_on_trigger_character = true,
                 },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
