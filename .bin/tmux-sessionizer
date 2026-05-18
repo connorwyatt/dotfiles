@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/zsh
+
+source ~/.config/zsh/sources/tmux.zsh
 
 printf "\033]2;tmux-sessionizer\a"
 
@@ -12,19 +14,10 @@ selected=$(
         sd "$base_directory/" '' | \
         sort | \
         uniq | \
-        fzf --exit-0 --preview "echo 'Project structure' && lstr --icons --gitignore --git-status --size $base_directory/{} | tail -n +2 | tail -r | tail -n +3 | tail -r")
+    fzf --exit-0 --preview "echo 'Project structure' && lstr --icons --gitignore --git-status --size $base_directory/{} | tail -n +2 | tail -r | tail -n +3 | tail -r")
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_basename=$(echo "$selected" | sd -F "$base_directory" '' | tr . _)
-
-if [[ -z $TMUX ]]; then
-    tmux new-session -A -s $selected_basename -c $base_directory/$selected
-    exit 0
-fi
-
-tmux new-session -ds $selected_basename -c $base_directory/$selected
-
-tmux switch-client -t $selected_basename
+tmux-create-or-attach $base_directory/$selected

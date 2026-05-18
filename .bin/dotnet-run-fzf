@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
 selected=$(dotnet sln list | tail -n+3 | fzf --scheme path --query="$1" --select-1 --exit-0)
 

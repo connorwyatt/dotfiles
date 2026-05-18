@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/zsh
+
+source ~/.config/zsh/sources/tmux.zsh
 
 printf "\033]2;tmux-attacher\a"
 
@@ -10,9 +12,4 @@ fi
 
 session_name="$(cut -d ':' -f1 <<< "$selected")"
 
-if [[ -z $TMUX ]]; then
-    tmux attach -t $session_name
-    exit 0
-fi
-
-tmux switch-client -t $session_name
+tmux-attach $session_name

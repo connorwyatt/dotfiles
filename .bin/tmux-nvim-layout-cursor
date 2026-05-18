@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
 if [[ -z $TMUX ]]; then
     echo 'Not in a tmux session'
