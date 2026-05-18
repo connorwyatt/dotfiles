@@ -49,9 +49,9 @@ font-family-bold-italic = "Iosevka Heavy Extended Oblique"
 # font-family-bold = "InputMonoNarrow Black"
 # font-family-bold-italic = "InputMonoNarrow BlackIta"
 
-# font-feature = -calt
-# font-feature = -liga
-# font-feature = -dlig
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 font-size = 14
 
