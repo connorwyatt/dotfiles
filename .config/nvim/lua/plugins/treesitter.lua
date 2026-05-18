@@ -16,6 +16,9 @@ return {
         },
     },
     {
+        "casey/tree-sitter-just",
+    },
+    {
         "nvim-treesitter/nvim-treesitter-context",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",

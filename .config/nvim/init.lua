@@ -1,3 +1,9 @@
+---------------------------------------
+-- SET UP PERSONAL GLOBALS NAMESPACE --
+---------------------------------------
+
+_G.cw = {}
+
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
@@ -90,6 +96,14 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Use escape to exit terminal mode.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-------------------------------------
+-- INIT PROJECT CONFIGURATION HOOK --
+-------------------------------------
+
+local project_configuration = require("helpers.project-config")
+
+project_configuration.execute_init_hook()
+
 -------------
 -- PLUGINS --
 -------------
@@ -137,3 +151,9 @@ require("lazy").setup({
         { import = "plugins" },
     },
 })
+
+---------------------------------------
+-- LOADED PROJECT CONFIGURATION HOOK --
+---------------------------------------
+
+project_configuration.execute_loaded_hook()
