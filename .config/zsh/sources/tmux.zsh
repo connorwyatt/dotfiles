@@ -8,16 +8,16 @@ tmux-attach() {
 }
 
 tmux-create-or-attach() {
-    directory_basename=$(basename "$1" | tr . _)
+    session_name=$(echo "${2:-$1}" | tr . _)
 
     if [[ -z $TMUX ]]; then
-        tmux new-session -A -s $directory_basename -c $1
+        tmux new-session -A -s $session_name -c $1
         return
     fi
 
-    tmux new-session -ds $directory_basename -c $1
+    tmux new-session -ds $session_name -c $1
 
-    tmux switch-client -t $directory_basename
+    tmux switch-client -t $session_name
 }
 
 tmux-directory() {
