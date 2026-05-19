@@ -6,12 +6,12 @@ _G.cw.project_configuration_loaded = false
 _G.cw.project_configuration_cache = nil
 
 local function get_file_path()
-    local nvim_dir = vim.fs.find(".nvim", { upward = true, stop = vim.uv.os_homedir() })[1]
-    if not nvim_dir then
+    local cw_dir = vim.fs.find(".cw", { upward = true, stop = vim.uv.os_homedir() })[1]
+    if not cw_dir then
         return nil
     end
 
-    return vim.fs.joinpath(nvim_dir, project_configuration_file_name)
+    return vim.fs.joinpath(cw_dir, project_configuration_file_name)
 end
 
 local function load_project_configuration()
