@@ -8,7 +8,7 @@ tmux-attach() {
 }
 
 tmux-create-or-attach() {
-    session_name=$(echo "${2:-$1}" | tr . _)
+    session_name="${${2:-${1:t}}//./_}"
 
     if [[ -z $TMUX ]]; then
         tmux new-session -A -s $session_name -c $1
