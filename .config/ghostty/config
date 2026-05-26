@@ -1,8 +1,8 @@
-theme = dark:sakura-night,light:sakura-day
+theme = dark:sakura-midnight,light:sakura-day
 
-background-opacity = 0.9
-background-blur = 100
-background-opacity-cells = true
+# background-opacity = 0.9
+# background-blur = 100
+# background-opacity-cells = true
 
 mouse-hide-while-typing = true
 
@@ -14,8 +14,8 @@ window-padding-color = extend
 # window-padding-color = extend-always
 window-padding-balance = true
 
-# macos-titlebar-style = hidden
-# window-decoration = none
+macos-titlebar-style = hidden
+window-decoration = none
 
 copy-on-select = false
 
