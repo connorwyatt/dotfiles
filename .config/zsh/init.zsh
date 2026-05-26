@@ -7,6 +7,9 @@ path+=("$HOME/.bin")
 mkdir -p "$HOME/.bin-local"
 path+=("$HOME/.bin-local")
 
+mkdir -p "$HOME/.local/bin"
+path+=("$HOME/.local/bin")
+
 autoload -Uz compinit
 compinit
 
