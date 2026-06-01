@@ -28,6 +28,7 @@ local conform_formatters = {
     go = { "gofumpt" },
     json = { "jq" },
     lua = { "stylua" },
+    proto = { "buf" },
     rust = { "rustfmt" },
     sh = { "beautysh" },
     templ = { "templ" },
