@@ -4,7 +4,7 @@ return {
         version = "*",
         config = function()
             local animate = require("mini.animate")
-            local timing = animate.gen_timing.linear({ duration = 50, unit = "total" })
+            local timing = animate.gen_timing.linear({ duration = 100, unit = "total" })
             animate.setup({
                 cursor = {
                     timing = timing,
