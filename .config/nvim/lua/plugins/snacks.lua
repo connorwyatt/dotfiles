@@ -32,12 +32,6 @@ return {
                 only_current = false,
                 hl = "SnacksIndentScope",
             },
-            chunk = {
-                enabled = true,
-                char = {
-                    arrow = "─",
-                },
-            },
         },
         input = {
             enabled = true,
