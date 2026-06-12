@@ -27,28 +27,13 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 local utils = require("snippets.utils")
 
-local function execute_shell_command(command)
-    local file = io.popen(command, "r")
-    local res = {}
-
-    if file == nil then
-        return res
-    end
-
-    for line in file:lines() do
-        table.insert(res, line)
-    end
-
-    return res
-end
-
 return {
     s({
         trig = "uuid",
         desc = "Generate a uuid",
     }, {
         d(1, function()
-            local uuid = execute_shell_command("uuidgen")[1]
+            local uuid = utils.execute_shell_command("uuidgen")[1]
 
             return sn(nil, {
                 c(1, {

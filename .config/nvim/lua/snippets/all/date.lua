@@ -25,32 +25,31 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
+local utils = require("snippets.utils")
 
-local M = {}
-
-M.execute_shell_command = function(command)
-    local file = io.popen(command, "r")
-    local res = {}
-
-    if file == nil then
-        return res
-    end
-
-    for line in file:lines() do
-        table.insert(res, line)
-    end
-
-    return res
+local function date_command(arguments)
+    return d(nil, function(_, _, _, fmt)
+        local date = utils.execute_shell_command('date "' .. fmt .. '"')[1] or ""
+        return sn(nil, { t(date) })
+    end, {}, { user_args = { arguments } })
 end
 
-M.visual_selection_or_insert = function(default_insert_text)
-    return function(args, parent)
-        if #parent.snippet.env.LS_SELECT_RAW > 0 then
-            return sn(nil, t(parent.snippet.env.LS_SELECT_RAW))
-        else
-            return sn(nil, i(1, default_insert_text))
-        end
-    end
-end
-
-return M
+return {
+    s({
+        trig = "date",
+        desc = "Insert the date",
+    }, {
+        c(1, {
+            date_command("+%Y-%m-%d"),
+            date_command("+%d/%m/%Y"),
+        }),
+    }),
+    s({
+        trig = "datetime",
+        desc = "Insert the datetime",
+    }, {
+        c(1, {
+            date_command('-u "+%Y-%m-%dT%H:%M:%SZ"'),
+        }),
+    }),
+}
