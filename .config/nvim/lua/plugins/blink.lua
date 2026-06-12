@@ -96,7 +96,7 @@ return {
                     "snippets",
                     "buffer",
                     "ripgrep",
-                    "tmux",
+                    -- "tmux",
                 },
                 per_filetype = {
                     gitcommit = {
@@ -104,14 +104,15 @@ return {
                         "path",
                         "snippets",
                         "buffer",
-                        "tmux",
+                        -- "tmux",
                     },
                     markdown = {
+                        "lsp",
                         "path",
                         "snippets",
                         "buffer",
                         "ripgrep",
-                        "tmux",
+                        -- "tmux",
                     },
                 },
                 providers = {
@@ -168,7 +169,7 @@ return {
                         async = true,
                         transform_items = nil,
                         should_show_items = true,
-                        max_items = 10,
+                        max_items = 5,
                         min_keyword_length = 0,
                         fallbacks = {},
                         score_offset = 5,
@@ -180,7 +181,7 @@ return {
                         async = true,
                         transform_items = nil,
                         should_show_items = true,
-                        max_items = 10,
+                        max_items = 5,
                         min_keyword_length = 3,
                         fallbacks = {},
                         score_offset = 0,
@@ -206,22 +207,22 @@ return {
                         async = true,
                         score_offset = 25,
                     },
-                    tmux = {
-                        name = "",
-                        module = "blink-cmp-tmux",
-                        enabled = true,
-                        async = true,
-                        score_offset = 0,
-                        transform_items = function(_, items)
-                            return vim.tbl_filter(function(item)
-                                return item.label:find("%w")
-                            end, items)
-                        end,
-                        opts = {
-                            panes = "session",
-                            capture_history = false,
-                        },
-                    },
+                    -- tmux = {
+                    --     name = "",
+                    --     module = "blink-cmp-tmux",
+                    --     enabled = true,
+                    --     async = true,
+                    --     score_offset = 0,
+                    --     transform_items = function(_, items)
+                    --         return vim.tbl_filter(function(item)
+                    --             return item.label:find("%w")
+                    --         end, items)
+                    --     end,
+                    --     opts = {
+                    --         panes = "session",
+                    --         capture_history = false,
+                    --     },
+                    -- },
                 },
             },
             cmdline = {
@@ -268,6 +269,7 @@ return {
     },
     {
         "mgalliou/blink-cmp-tmux",
+        enabled = false,
     },
     {
         "xzbdmw/colorful-menu.nvim",
