@@ -1,9 +1,9 @@
 return {
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        ft = {
-            "markdown",
-        },
+        cond = function()
+            return not _G.cw.is_obsidian_vault
+        end,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
