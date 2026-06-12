@@ -14,8 +14,8 @@ window-padding-color = extend
 # window-padding-color = extend-always
 window-padding-balance = true
 
-macos-titlebar-style = hidden
-window-decoration = none
+# macos-titlebar-style = hidden
+# window-decoration = none
 
 copy-on-select = false
 
