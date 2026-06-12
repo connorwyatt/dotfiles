@@ -41,7 +41,7 @@ vim.opt.mouse = "a"
 
 -- Cursor
 vim.o.guicursor =
-    "n-v-c:block,i-ci-ve-sm:ver25,r-cr:hor20,o:hor50,a:Cursor/lCursor,i-ci-ve-sm-r-cr-o:blinkwait400-blinkoff400-blinkon400"
+    "n-v-c-i-ci-ve-sm:block,r-cr:hor20,o:hor50,a:Cursor/lCursor,i-ci-ve-sm-r-cr-o:blinkwait400-blinkoff400-blinkon400"
 
 -- Enable break indent.
 vim.opt.breakindent = true
