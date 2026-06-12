@@ -319,11 +319,6 @@ local Ruler = {
 }
 
 local DefaultStatusline = {
-    FilePath,
-    {
-        condition = conditions.is_git_repo,
-        Divider,
-    },
     Git,
 
     Align,
@@ -362,6 +357,23 @@ local NeoTreeStatusline = {
     Align,
 }
 
+local Navic = {
+    condition = function()
+        return require("nvim-navic").is_available()
+    end,
+    provider = function()
+        return require("nvim-navic").get_location({ highlight = true })
+    end,
+    update = "CursorMoved",
+}
+
+local Winbar = {
+    fallthrough = false,
+    FilePath,
+    Spacer,
+    Navic,
+}
+
 local Statusline = {
     fallthrough = false,
 
@@ -385,5 +397,6 @@ local Statusline = {
 }
 
 heirline.setup({
+    winbar = Winbar,
     statusline = Statusline,
 })
