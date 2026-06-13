@@ -7,6 +7,36 @@ local highlights = {
     statusline = "StatusLine",
     statusline_nc = "StatusLineNC",
     divider = "StatusLineDivider",
+    modes = {
+        normal = "StatusLineModeNormal",
+        insert = "StatusLineModeInsert",
+        visual = "StatusLineModeVisual",
+        command = "StatusLineModeCommand",
+        select = "StatusLineModeSelect",
+        replace = "StatusLineModeReplace",
+        prompt = "StatusLineModePrompt",
+        terminal = "StatusLineModeTerminal",
+    },
+    modes_subtle = {
+        normal = "StatusLineModeNormalSubtle",
+        insert = "StatusLineModeInsertSubtle",
+        visual = "StatusLineModeVisualSubtle",
+        command = "StatusLineModeCommandSubtle",
+        select = "StatusLineModeSelectSubtle",
+        replace = "StatusLineModeReplaceSubtle",
+        prompt = "StatusLineModePromptSubtle",
+        terminal = "StatusLineModeTerminalSubtle",
+    },
+    modes_text = {
+        normal = "StatusLineModeNormalText",
+        insert = "StatusLineModeInsertText",
+        visual = "StatusLineModeVisualText",
+        command = "StatusLineModeCommandText",
+        select = "StatusLineModeSelectText",
+        replace = "StatusLineModeReplaceText",
+        prompt = "StatusLineModePromptText",
+        terminal = "StatusLineModeTerminalText",
+    },
     file = {
         directory = "StatusLineFileDirectory",
         directory_modified = "StatusLineFileDirectoryModified",
@@ -25,12 +55,17 @@ local highlights = {
         warning = "StatusLineDiagnosticWarning",
         info = "StatusLineDiagnosticInfo",
         hint = "StatusLineDiagnosticHint",
+        none = "StatusLineDiagnosticNone",
     },
     git = {
         branch = "StatusLineGitBranch",
         added = "StatusLineGitAdded",
         changed = "StatusLineGitChanged",
         removed = "StatusLineGitRemoved",
+        none = "StatusLineGitNone",
+    },
+    lsp = {
+        text = "StatusLineLSPText",
     },
 }
 
@@ -47,6 +82,148 @@ local Divider = {
 
 local Align = {
     provider = "%=",
+}
+
+local ModeHighlights = {
+    static = {
+        mode_highlight_groups = {
+            n = highlights.modes.normal,
+            i = highlights.modes.insert,
+            v = highlights.modes.visual,
+            V = highlights.modes.visual,
+            ["\22"] = highlights.modes.visual,
+            c = highlights.modes.command,
+            s = highlights.modes.select,
+            S = highlights.modes.select,
+            ["\19"] = highlights.modes.select,
+            R = highlights.modes.replace,
+            r = highlights.modes.prompt,
+            ["!"] = highlights.modes.command,
+            t = highlights.modes.terminal,
+        },
+    },
+    init = function(self)
+        self.mode = vim.fn.mode(1)
+    end,
+    hl = function(self)
+        local mode = self.mode:sub(1, 1)
+        return self.mode_highlight_groups[mode]
+    end,
+}
+
+local ModeSubtleHighlights = {
+    static = {
+        mode_highlight_groups = {
+            n = highlights.modes_subtle.normal,
+            i = highlights.modes_subtle.insert,
+            v = highlights.modes_subtle.visual,
+            V = highlights.modes_subtle.visual,
+            ["\22"] = highlights.modes_subtle.visual,
+            c = highlights.modes_subtle.command,
+            s = highlights.modes_subtle.select,
+            S = highlights.modes_subtle.select,
+            ["\19"] = highlights.modes_subtle.select,
+            R = highlights.modes_subtle.replace,
+            r = highlights.modes_subtle.prompt,
+            ["!"] = highlights.modes_subtle.command,
+            t = highlights.modes_subtle.terminal,
+        },
+    },
+    init = function(self)
+        self.mode = vim.fn.mode(1)
+    end,
+    hl = function(self)
+        local mode = self.mode:sub(1, 1)
+        return self.mode_highlight_groups[mode]
+    end,
+}
+
+local ModeTextHighlights = {
+    static = {
+        mode_highlight_groups = {
+            n = highlights.modes_text.normal,
+            i = highlights.modes_text.insert,
+            v = highlights.modes_text.visual,
+            V = highlights.modes_text.visual,
+            ["\22"] = highlights.modes_text.visual,
+            c = highlights.modes_text.command,
+            s = highlights.modes_text.select,
+            S = highlights.modes_text.select,
+            ["\19"] = highlights.modes_text.select,
+            R = highlights.modes_text.replace,
+            r = highlights.modes_text.prompt,
+            ["!"] = highlights.modes_text.command,
+            t = highlights.modes_text.terminal,
+        },
+    },
+    init = function(self)
+        self.mode = vim.fn.mode(1)
+    end,
+    hl = function(self)
+        local mode = self.mode:sub(1, 1)
+        return self.mode_highlight_groups[mode]
+    end,
+}
+
+local NeovimLogo = {
+    provider = "<U+E6AE>",
+}
+
+local VimMode = {
+    static = {
+        mode_names = {
+            n = "Normal",
+            no = "Normal",
+            nov = "Normal",
+            noV = "Normal",
+            ["no\22"] = "Normal",
+            niI = "Normal",
+            niR = "Normal",
+            niV = "Normal",
+            nt = "Normal",
+            v = "Visual",
+            vs = "Visual",
+            V = "Visual-Line",
+            Vs = "Visual-Line",
+            ["\22"] = "Visual-Block",
+            ["\22s"] = "Visual-Block",
+            s = "Select",
+            S = "Select-Line",
+            ["\19"] = "Select-Block",
+            i = "Insert",
+            ic = "Insert",
+            ix = "Insert",
+            R = "Replace",
+            Rc = "Replace",
+            Rx = "Replace",
+            Rv = "Replace",
+            Rvc = "Replace",
+            Rvx = "Replace",
+            c = "Command",
+            cv = "Command",
+            r = "Prompt",
+            rm = "Prompt",
+            ["r?"] = "Prompt",
+            ["!"] = "Command",
+            t = "Terminal",
+        },
+    },
+    init = function(self)
+        self.mode = vim.fn.mode(1)
+    end,
+    condition = conditions.is_active,
+    update = {
+        "BufEnter",
+        "ModeChanged",
+        pattern = "*:*",
+        callback = vim.schedule_wrap(function()
+            vim.cmd("redrawstatus")
+        end),
+    },
+    provider = function(self)
+        local mode_name = self.mode_names[self.mode]
+        return mode_name and string.upper(mode_name)
+    end,
 }
 
 local FileModifiedIndicator = {
@@ -168,10 +345,10 @@ local FilePath = utils.insert(FileInfoProvider, {
     FileName,
 })
 
-local AutoformatIcon = {
+local Autoformat = {
     {
         provider = function()
-            return "AF"
+            return "Auto Format"
         end,
         hl = function()
             if vim.g.disable_autoformat then
@@ -199,7 +376,7 @@ local AutoformatIcon = {
 }
 
 local Diagnostics = {
-    condition = conditions.has_diagnostics,
+    -- condition = conditions.has_diagnostics,
     init = function(self)
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
         self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -210,42 +387,42 @@ local Diagnostics = {
         init = function(self)
             local children = {}
 
-            if self.errors > 0 then
-                table.insert(children, {
-                    hl = highlights.diagnostics.error,
-                    provider = "󰀨 " .. self.errors,
-                })
-            end
+            -- if self.errors > 0 then
+            table.insert(children, {
+                hl = self.errors > 0 and highlights.diagnostics.error or highlights.diagnostics.none,
+                provider = "󰀨 " .. self.errors,
+            })
+            -- end
 
-            if self.warnings > 0 then
-                if #children > 0 then
-                    table.insert(children, Spacer)
-                end
-                table.insert(children, {
-                    hl = highlights.diagnostics.warning,
-                    provider = "󰀦 " .. self.warnings,
-                })
+            -- if self.warnings > 0 then
+            if #children > 0 then
+                table.insert(children, Spacer)
             end
+            table.insert(children, {
+                hl = self.warnings > 0 and highlights.diagnostics.warnings or highlights.diagnostics.none,
+                provider = "󰀦 " .. self.warnings,
+            })
+            -- end
 
-            if self.info > 0 then
-                if #children > 0 then
-                    table.insert(children, Spacer)
-                end
-                table.insert(children, {
-                    hl = highlights.diagnostics.info,
-                    provider = "󰋼 " .. self.info,
-                })
+            -- if self.info > 0 then
+            if #children > 0 then
+                table.insert(children, Spacer)
             end
+            table.insert(children, {
+                hl = self.info > 0 and highlights.diagnostics.info or highlights.diagnostics.none,
+                provider = "󰋼 " .. self.info,
+            })
+            -- end
 
-            if self.hints > 0 then
-                if #children > 0 then
-                    table.insert(children, Spacer)
-                end
-                table.insert(children, {
-                    hl = highlights.diagnostics.hint,
-                    provider = "󰋗 " .. self.hints,
-                })
+            -- if self.hints > 0 then
+            if #children > 0 then
+                table.insert(children, Spacer)
             end
+            table.insert(children, {
+                hl = self.hints > 0 and highlights.diagnostics.hint or highlights.diagnostics.none,
+                provider = "󰋗 " .. self.hints,
+            })
+            -- end
 
             self.children = self:new(children, 1)
         end,
@@ -276,32 +453,32 @@ local Git = {
 
             local children = {}
 
-            if added > 0 then
-                table.insert(children, {
-                    hl = highlights.git.added,
-                    provider = "󰐖 " .. added,
-                })
-            end
+            -- if added > 0 then
+            table.insert(children, {
+                hl = added > 0 and highlights.git.added or highlights.git.none,
+                provider = "󰐖 " .. added,
+            })
+            -- end
 
-            if changed > 0 then
-                if #children > 0 then
-                    table.insert(children, Spacer)
-                end
-                table.insert(children, {
-                    hl = highlights.git.changed,
-                    provider = "󰦓 " .. changed,
-                })
+            -- if changed > 0 then
+            if #children > 0 then
+                table.insert(children, Spacer)
             end
+            table.insert(children, {
+                hl = changed > 0 and highlights.git.changed or highlights.git.none,
+                provider = "󰦓 " .. changed,
+            })
+            -- end
 
-            if removed > 0 then
-                if #children > 0 then
-                    table.insert(children, Spacer)
-                end
-                table.insert(children, {
-                    hl = highlights.git.removed,
-                    provider = "󰍵 " .. removed,
-                })
+            -- if removed > 0 then
+            if #children > 0 then
+                table.insert(children, Spacer)
             end
+            table.insert(children, {
+                hl = removed > 0 and highlights.git.removed or highlights.git.none,
+                provider = "󰍵 " .. removed,
+            })
+            -- end
 
             if #children > 0 then
                 table.insert(children, 1, Spacer)
@@ -319,7 +496,27 @@ local Ruler = {
     provider = "%l:%c",
 }
 
+local LSPActive = {
+    condition = conditions.lsp_attached,
+    update = { "LspAttach", "LspDetach" },
+
+    provider = function()
+        local names = {}
+        for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+            table.insert(names, server.name)
+        end
+        return " " .. table.concat(names, " ")
+    end,
+    hl = highlights.lsp.text,
+}
+
 local DefaultStatusline = {
+    utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
+
+    {
+        condition = conditions.is_git_repo,
+        Spacer,
+    },
     Git,
 
     Align,
@@ -329,10 +526,17 @@ local DefaultStatusline = {
         Divider,
     },
     Diagnostics,
+    {
+        condition = conditions.lsp_attached,
+        Divider,
+    },
+    LSPActive,
     Divider,
-    AutoformatIcon,
+    Autoformat,
     Divider,
     Ruler,
+    Spacer,
+    utils.insert(ModeHighlights, Spacer),
 }
 
 local InactiveStatusline = {
@@ -358,12 +562,20 @@ local NeoTreeStatusline = {
     Align,
 }
 
+local BreadcrumbDivider = {
+    hl = highlights.divider,
+    Spacer,
+    { provider = ">" },
+    Spacer,
+}
+
 local Navic = {
     condition = function()
-        return navic.is_available()
+        local data = navic.get_data()
+        return navic.is_available() and data ~= nil and #data > 0
     end,
     update = "CursorMoved",
-    Spacer,
+    BreadcrumbDivider,
     {
         provider = function()
             return navic.get_location({ highlight = true })
@@ -404,4 +616,11 @@ local Statusline = {
 heirline.setup({
     winbar = Winbar,
     statusline = Statusline,
+    opts = {
+        disable_winbar_cb = function(args)
+            return conditions.buffer_matches({
+                buftype = { "nofile", "prompt", "help", "quickfix" },
+            }, args.buf)
+        end,
+    },
 })

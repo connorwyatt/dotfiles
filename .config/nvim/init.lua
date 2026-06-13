@@ -36,6 +36,9 @@ vim.opt.linebreak = true
 -- Highlight line that cursor is on.
 vim.opt.cursorline = true
 
+-- Hide vim mode as it's in the heirline.
+vim.opt.showmode = false
+
 -- Enable mouse mode, useful for resizing splits.
 vim.opt.mouse = "a"
 
