@@ -6,7 +6,7 @@ return {
     {
         "zapling/mason-conform.nvim",
         dependencies = {
-            "williamboman/mason.nvim",
+            "mason-org/mason.nvim",
             "stevearc/conform.nvim",
         },
     },

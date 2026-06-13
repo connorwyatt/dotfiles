@@ -1,6 +1,7 @@
 local heirline = require("heirline")
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
+local navic = require("nvim-navic")
 
 local highlights = {
     statusline = "StatusLine",
@@ -359,19 +360,23 @@ local NeoTreeStatusline = {
 
 local Navic = {
     condition = function()
-        return require("nvim-navic").is_available()
-    end,
-    provider = function()
-        return require("nvim-navic").get_location({ highlight = true })
+        return navic.is_available()
     end,
     update = "CursorMoved",
+    Spacer,
+    {
+        provider = function()
+            return navic.get_location({ highlight = true })
+        end,
+    },
 }
 
 local Winbar = {
     fallthrough = false,
-    FilePath,
-    Spacer,
-    Navic,
+    {
+        FilePath,
+        Navic,
+    },
 }
 
 local Statusline = {

@@ -1,4 +1,5 @@
 local blink = require("blink-cmp")
+local navic = require("nvim-navic")
 local which_key = require("which-key")
 
 vim.diagnostic.config({
@@ -17,52 +18,49 @@ vim.diagnostic.config({
     },
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "LSP actions",
-    callback = function()
-        which_key.add({
-            {
-                "gd",
-                function()
-                    Snacks.picker.lsp_definitions()
-                end,
-                desc = "Go to definition",
-            },
-            {
-                "gD",
-                function()
-                    Snacks.picker.lsp_declarations()
-                end,
-                desc = "Go to declaration",
-            },
-            { "gra", desc = "Code actions" },
-            { "grn", desc = "Rename" },
-            {
-                "grr",
-                function()
-                    Snacks.picker.lsp_references()
-                end,
-                nowait = true,
-                desc = "References",
-            },
-            {
-                "gri",
-                function()
-                    Snacks.picker.lsp_implementations()
-                end,
-                desc = "Go to implementation",
-            },
-            {
-                "gry",
-                function()
-                    Snacks.picker.lsp_type_definitions()
-                end,
-                desc = "Go to type definition",
-            },
-            { "gO", desc = "Document symbols" },
-        })
-    end,
-})
+local function lsp_on_attach(client, bufnr)
+    which_key.add({
+        {
+            "gd",
+            function()
+                Snacks.picker.lsp_definitions()
+            end,
+            desc = "Go to definition",
+        },
+        {
+            "gD",
+            function()
+                Snacks.picker.lsp_declarations()
+            end,
+            desc = "Go to declaration",
+        },
+        { "gra", desc = "Code actions" },
+        { "grn", desc = "Rename" },
+        {
+            "grr",
+            function()
+                Snacks.picker.lsp_references()
+            end,
+            nowait = true,
+            desc = "References",
+        },
+        {
+            "gri",
+            function()
+                Snacks.picker.lsp_implementations()
+            end,
+            desc = "Go to implementation",
+        },
+        {
+            "gry",
+            function()
+                Snacks.picker.lsp_type_definitions()
+            end,
+            desc = "Go to type definition",
+        },
+        { "gO", desc = "Document symbols" },
+    }, { buffer = bufnr })
+end
 
 local lsp_capabilities = blink.get_lsp_capabilities({
     textDocument = {
@@ -78,23 +76,7 @@ local lsp_capabilities = blink.get_lsp_capabilities({
     },
 })
 
---- Specific LSP Configuration
-
-vim.lsp.config("rust_analyzer", {
-    completion = {
-        capable = {
-            snippets = "add_parenthesis",
-        },
-    },
-})
-
-vim.lsp.config("lua_ls", {
-    settings = {
-        Lua = {
-            completion = {
-                callSnippet = "Disable",
-                keywordSnippet = "Disable",
-            },
-        },
-    },
+vim.lsp.config("*", {
+    capabilities = lsp_capabilities,
+    on_attach = lsp_on_attach,
 })
