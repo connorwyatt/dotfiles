@@ -34,10 +34,10 @@ copy-on-select = false
 # font-family-bold = "IBM Plex Mono Bold"
 # font-family-bold-italic = "IBM Plex Mono Bold Italic"
 
-font-family = "Iosevka Extended"
-font-family-italic = "Iosevka Extended Oblique"
-font-family-bold = "Iosevka Heavy Extended"
-font-family-bold-italic = "Iosevka Heavy Extended Oblique"
+# font-family = "Iosevka Extended"
+# font-family-italic = "Iosevka Extended Oblique"
+# font-family-bold = "Iosevka Heavy Extended"
+# font-family-bold-italic = "Iosevka Heavy Extended Oblique"
 
 # font-family = "Iosevka Medium Extended"
 # font-family-italic = "Iosevka Medium Extended Oblique"
@@ -59,3 +59,9 @@ adjust-cell-height = 20%
 
 adjust-cursor-thickness = 4
 adjust-cursor-height = 20%
+
+keybind = global:cmd+ctrl+alt+space=toggle_quick_terminal
+quick-terminal-position = right
+quick-terminal-size = 35%, 100%
+quit-after-last-window-closed = false
+quick-terminal-autohide = true
