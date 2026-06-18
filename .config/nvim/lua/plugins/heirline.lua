@@ -1,4 +1,6 @@
 return {
-    "rebelot/heirline.nvim",
-    event = "UiEnter",
+    {
+        "rebelot/heirline.nvim",
+        event = "UiEnter",
+    },
 }

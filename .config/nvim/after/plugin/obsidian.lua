@@ -1,15 +1,46 @@
-vim.api.nvim_create_autocmd("User", {
-    pattern = "LazyLoad",
-    callback = function(event)
-        if event.data ~= "obsidian.nvim" then
-            return
-        end
+local whichKey = require("which-key")
 
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "markdown",
-            callback = function()
-                vim.opt_local.conceallevel = 2
-            end,
-        })
-    end,
+if not _G.cw.is_obsidian_vault then
+    return
+end
+
+vim.opt.conceallevel = 2
+
+whichKey.add({
+    { "<leader>o", group = "Obsidian" },
+    {
+        "<leader>os",
+        function()
+            vim.cmd(":Obsidian quick_switch")
+        end,
+        desc = "Quick Switch",
+    },
+    {
+        "<leader>ot",
+        function()
+            vim.cmd(":Obsidian tags")
+        end,
+        desc = "Tags",
+    },
+    {
+        "<leader>od",
+        function()
+            vim.cmd(":Obsidian dailies")
+        end,
+        desc = "Dailies",
+    },
+    {
+        "<leader>ot",
+        function()
+            vim.cmd(":Obsidian today")
+        end,
+        desc = "Today Daily",
+    },
+    {
+        "<leader>ob",
+        function()
+            vim.cmd(":Obsidian backlinks")
+        end,
+        desc = "Backlinks",
+    },
 })

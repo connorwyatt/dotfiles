@@ -38,6 +38,13 @@ whichKey.add({
         desc = "Buffers",
     },
     {
+        "<leader>sc",
+        function()
+            Snacks.picker.commands()
+        end,
+        desc = "Commands",
+    },
+    {
         "<leader>sd",
         function()
             Snacks.picker.diagnostics_buffer()

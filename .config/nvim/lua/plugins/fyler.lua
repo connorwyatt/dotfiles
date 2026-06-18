@@ -6,13 +6,16 @@ return {
         },
         branch = "stable",
         lazy = false,
+        keys = {
+            { "<leader><leader>", "<cmd>:Fyler<cr>", desc = "File browser" },
+        },
         opts = {
             integrations = {
                 icon = "nvim_web_devicons",
             },
             views = {
                 finder = {
-                    -- default_explorer = true,
+                    default_explorer = true,
                 },
             },
         },

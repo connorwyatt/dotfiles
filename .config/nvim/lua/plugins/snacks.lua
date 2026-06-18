@@ -1,9 +1,55 @@
-local ivyOrIvySplitPickerLayout = function()
-    return vim.o.columns >= 120 and "ivy" or "ivy_split"
+local ivyPickerLayout = function()
+    return { preset = "ivy" }
 end
 
 local ivySplitPickerLayout = function()
-    return "ivy_split"
+    return { preset = "ivy_split" }
+end
+
+local ivyOrIvySplitPickerLayout = function()
+    return vim.o.columns >= 120 and ivyPickerLayout() or ivySplitPickerLayout()
+end
+
+local defaultPickerLayout = function()
+    return {
+        layout = {
+            box = "horizontal",
+            width = 0.8,
+            min_width = 120,
+            height = 0.8,
+            {
+                box = "vertical",
+                border = true,
+                title = "{title} {live} {flags}",
+                { win = "input", height = 1, border = "bottom" },
+                { win = "list", border = "none" },
+            },
+            { win = "preview", title = "{preview}", border = true, width = 0.5 },
+        },
+    }
+end
+
+local verticalPickerLayout = function()
+    return {
+        layout = {
+            backdrop = false,
+            width = 0.5,
+            min_width = 80,
+            height = 0.8,
+            min_height = 30,
+            box = "vertical",
+            border = true,
+            title = "{title} {live} {flags}",
+            title_pos = "center",
+            { win = "input", height = 1, border = "bottom" },
+            { win = "list", border = "none" },
+            { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+        },
+    }
+end
+
+local defaultOrVerticalPickerLayout = function()
+    return vim.o.columns >= 120 and defaultPickerLayout() or verticalPickerLayout()
 end
 
 return {
@@ -42,10 +88,9 @@ return {
         picker = {
             enabled = true,
             ui_select = true,
-            layout = {
+            layout = vim.tbl_deep_extend("force", {
                 cycle = true,
-                preset = ivyOrIvySplitPickerLayout,
-            },
+            }, ivyOrIvySplitPickerLayout()),
             matcher = {
                 sort_empty = false,
                 frecency = true,
@@ -70,9 +115,9 @@ return {
                 },
             },
             sources = {
-                files = { layout = { preset = ivySplitPickerLayout } },
-                grep = { layout = { preset = ivySplitPickerLayout } },
-                recent = { layout = { preset = ivySplitPickerLayout } },
+                files = { layout = defaultOrVerticalPickerLayout() },
+                grep = { layout = ivySplitPickerLayout() },
+                recent = { layout = defaultOrVerticalPickerLayout() },
             },
         },
         quickfile = {

@@ -227,11 +227,19 @@ local VimMode = {
 }
 
 local FileModifiedIndicator = {
-    condition = function()
-        return vim.bo.modified
-    end,
-    hl = highlights.file.modified,
-    provider = "[+]",
+    update = {
+        "BufWritePost",
+        "TextChanged",
+        "TextChangedI",
+        "BufEnter",
+    },
+    {
+        condition = function()
+            return vim.bo.modified
+        end,
+        hl = highlights.file.modified,
+        provider = "[+]",
+    },
 }
 
 local Cwd = {
@@ -574,7 +582,7 @@ local Navic = {
         local data = navic.get_data()
         return navic.is_available() and data ~= nil and #data > 0
     end,
-    update = "CursorMoved",
+    update = { "CursorMoved", "CursorMovedI", "CursorHold", "CursorHoldI" },
     BreadcrumbDivider,
     {
         provider = function()
@@ -593,7 +601,6 @@ local Winbar = {
 
 local Statusline = {
     fallthrough = false,
-
     {
         condition = function()
             return vim.bo.filetype == "neo-tree"

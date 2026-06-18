@@ -42,7 +42,8 @@ return {
                 },
                 menu = {
                     draw = {
-                        columns = { { "label", "source_name", "kind_icon", gap = 1 } },
+                        -- columns = { { "label", "source_name", "kind_icon", gap = 1 } },
+                        columns = { { "label", "kind_icon", gap = 2 } },
                         padding = { 1, 0 },
                         -- columns = { { "kind_icon", "label", "source_name", gap = 1 } },
                         -- padding = { 0, 1 },
@@ -60,9 +61,7 @@ return {
                                         end
                                     elseif ctx.kind == "Ripgrep" then
                                     else
-                                        icon = require("lspkind").symbolic(ctx.kind, {
-                                            mode = "symbol",
-                                        }) or icon
+                                        icon = require("lspkind").symbolic(ctx.kind) or icon
                                     end
 
                                     return " " .. icon .. " "
@@ -123,7 +122,7 @@ return {
                         end,
                         async = true,
                         module = "lazydev.integrations.blink",
-                        score_offset = 20,
+                        score_offset = 50,
                     },
                     lsp = {
                         name = "",
@@ -138,7 +137,7 @@ return {
                         max_items = nil,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 20,
+                        score_offset = 50,
                     },
                     path = {
                         name = "",
@@ -146,10 +145,10 @@ return {
                         async = true,
                         transform_items = nil,
                         should_show_items = true,
-                        max_items = nil,
+                        max_items = 5,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 20,
+                        score_offset = 30,
                     },
                     snippets = {
                         name = "",
@@ -158,10 +157,10 @@ return {
                         timeout_ms = 50,
                         transform_items = nil,
                         should_show_items = true,
-                        max_items = nil,
+                        max_items = 5,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 10,
+                        score_offset = 20,
                     },
                     buffer = {
                         name = "",
@@ -172,7 +171,7 @@ return {
                         max_items = 5,
                         min_keyword_length = 0,
                         fallbacks = {},
-                        score_offset = 5,
+                        score_offset = 10,
                     },
                     ripgrep = {
                         name = "",
