@@ -1,6 +1,8 @@
-sakura-afterglow
-sakura-dusk
-sakura-midnight
-sakura-midnight-muted
-sakura-night
-sakura-night-muted
+Rose Pine
+Rose Pine Moon
+Sakura Afterglow
+Sakura Dusk
+Sakura Midnight
+Sakura Midnight Muted
+Sakura Night
+Sakura Night Muted
