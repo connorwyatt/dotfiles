@@ -559,11 +559,12 @@ local EmptyStatusline = {
     Align,
 }
 
-local NeoTreeStatusline = {
-    Cwd,
+local GitOnlyStatusline = {
+    utils.insert(ModeHighlights, Spacer, VimMode, Spacer),
+
     {
         condition = conditions.is_git_repo,
-        Divider,
+        Spacer,
     },
     Git,
 
@@ -591,21 +592,33 @@ local Navic = {
     },
 }
 
+local DefaultWinbar = {
+    FilePath,
+    Navic,
+}
+
+local CwdWinbar = {
+    Cwd,
+}
+
 local Winbar = {
     fallthrough = false,
     {
-        FilePath,
-        Navic,
+        condition = function()
+            return vim.bo.filetype == "neo-tree" or vim.bo.filetype == "fyler"
+        end,
+        CwdWinbar,
     },
+    DefaultWinbar,
 }
 
 local Statusline = {
     fallthrough = false,
     {
         condition = function()
-            return vim.bo.filetype == "neo-tree"
+            return vim.bo.filetype == "neo-tree" or vim.bo.filetype == "fyler"
         end,
-        NeoTreeStatusline,
+        GitOnlyStatusline,
     },
     {
         condition = function()
