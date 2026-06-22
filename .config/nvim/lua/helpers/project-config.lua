@@ -1,3 +1,5 @@
+local cw = require("helpers.cw")
+
 local M = {}
 
 local project_configuration_file_name = "project-config.lua"
@@ -6,7 +8,7 @@ _G.cw.project_configuration_loaded = false
 _G.cw.project_configuration_cache = nil
 
 local function get_file_path()
-    local cw_dir = vim.fs.find(".cw", { upward = true, stop = vim.uv.os_homedir() })[1]
+    local cw_dir = vim.fs.find(cw.directory_name, { upward = true, stop = vim.uv.os_homedir() })[1]
     if not cw_dir then
         return nil
     end

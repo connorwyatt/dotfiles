@@ -4,6 +4,13 @@
 
 _G.cw = {}
 
+----------------
+-- SHADA FILE --
+----------------
+
+local shada = require("helpers.shada")
+shada.initialise_shada()
+
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
