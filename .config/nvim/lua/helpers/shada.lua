@@ -30,7 +30,24 @@ local function is_in_project_specific_shada_directory()
     return false
 end
 
+local function is_editing_commit_message()
+    for _, arg in ipairs(vim.fn.argv()) do
+        if type(arg) == "string" and not vim.startswith(arg, "-") then
+            local path = vim.fs.normalize(arg)
+            if vim.endswith(path, ".git/COMMIT_EDITMSG") then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
 local function should_use_project_specific_shada()
+    if is_editing_commit_message() then
+        return false
+    end
+
     if is_in_project_specific_shada_directory() then
         return true
     end
