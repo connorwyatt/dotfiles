@@ -1,3 +1,31 @@
+local ICON_COLUMN_WIDTH = 3
+
+local function blink_kind_icon(ctx)
+    local icon = ctx.kind_icon
+    if ctx.source_id == "tmux" then
+        icon = ""
+    elseif vim.tbl_contains({ "Path" }, ctx.source_name) then
+        local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+        if dev_icon then
+            icon = dev_icon
+        end
+    elseif ctx.kind ~= "Ripgrep" then
+        icon = require("lspkind").symbolic(ctx.kind) or icon
+    end
+    return icon
+end
+
+local function blink_kind_icon_column(ctx)
+    local text = blink_kind_icon(ctx)
+    local width = vim.api.nvim_strwidth(text)
+    if width >= ICON_COLUMN_WIDTH then
+        return text
+    end
+    local extra = ICON_COLUMN_WIDTH - width
+    local left = math.floor(extra / 2)
+    return string.rep(" ", left) .. text .. string.rep(" ", extra - left)
+end
+
 return {
 
     {
@@ -48,21 +76,12 @@ return {
                         components = {
                             kind_icon = {
                                 ellipsis = false,
+                                width = { fixed = ICON_COLUMN_WIDTH },
                                 text = function(ctx)
-                                    local icon = ctx.kind_icon
-                                    if ctx.source_id == "tmux" then
-                                        icon = ""
-                                    elseif vim.tbl_contains({ "Path" }, ctx.source_name) then
-                                        local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-                                        if dev_icon then
-                                            icon = dev_icon
-                                        end
-                                    elseif ctx.kind == "Ripgrep" then
-                                    else
-                                        icon = require("lspkind").symbolic(ctx.kind) or icon
-                                    end
-
-                                    return " " .. icon .. " "
+                                    return blink_kind_icon_column(ctx)
+                                end,
+                                highlight = function(ctx, text)
+                                    return { { 0, #text, group = ctx.kind_hl, priority = 20000 } }
                                 end,
                             },
                             label = {

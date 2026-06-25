@@ -1,8 +1,9 @@
+local theming = require("helpers.theming")
+
 return {
     {
         "connorwyatt/themes.nvim",
         priority = 10000,
-        dev = true,
     },
 
     {
@@ -10,19 +11,17 @@ return {
         dependencies = {
             -- "xiyaowong/transparent.nvim",
         },
+        init = function()
+            theming.apply("dark")
+            -- vim.cmd(":TransparentEnable")
+        end,
         opts = {
             update_interval = 300000,
             set_dark_mode = function()
-                local dark_mode_theme = ""
-                vim.api.nvim_set_option_value("background", "dark", {})
-                vim.cmd("colorscheme " .. dark_mode_theme)
-                -- vim.cmd(":TransparentEnable")
+                theming.apply("dark")
             end,
             set_light_mode = function()
-                local light_mode_theme = "rose-pineish-dawn"
-                vim.api.nvim_set_option_value("background", "light", {})
-                vim.cmd("colorscheme " .. light_mode_theme)
-                -- vim.cmd(":TransparentEnable")
+                theming.apply("light")
             end,
         },
     },

@@ -9,10 +9,5 @@ theme=$(cat "${HOME}/.bin/themes-${appearance}.txt" | fzf)
 # Update ghostty theme
 sd "^(theme.*${appearance}:)[A-Za-z-\s]+(,?.*)$" "\${1}${theme}\${2}" $HOME/.config/ghostty/config
 
-# Update initial nvim theme
-if [ $appearance = "dark" ]; then
-    sd "^(.*theme =.*\").+(\".*)$" "\${1}${theme}\${2}" $HOME/.config/nvim/after/plugin/theming.lua
-fi
-
 # Update nvim theme
-sd "^(.*${appearance}_mode_theme.*\").+(\".*)$" "\${1}${theme}\${2}" $HOME/.config/nvim/lua/plugins/theming.lua
+sd "^(.*${appearance} = \").+(\".*)$" "\${1}${theme}\${2}" $HOME/.config/nvim/lua/helpers/theming.lua
