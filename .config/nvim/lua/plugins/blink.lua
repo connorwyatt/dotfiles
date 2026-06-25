@@ -41,12 +41,10 @@ return {
                     },
                 },
                 menu = {
+                    min_width = 20,
                     draw = {
-                        -- columns = { { "label", "source_name", "kind_icon", gap = 1 } },
-                        columns = { { "label", "kind_icon", gap = 2 } },
-                        padding = { 1, 0 },
-                        -- columns = { { "kind_icon", "label", "source_name", gap = 1 } },
-                        -- padding = { 0, 1 },
+                        columns = { { "kind_icon" }, { "label", gap = 1 } },
+                        padding = { 0, 1 },
                         components = {
                             kind_icon = {
                                 ellipsis = false,
