@@ -1,0 +1,14 @@
+local M = {}
+
+M.themes = {
+    dark = "rose-pineish-moon",
+    light = "rose-pineish-dawn",
+}
+
+function M.apply(mode)
+    local theme = M.themes[mode]
+    vim.api.nvim_set_option_value("background", mode, {})
+    vim.cmd.colorscheme(theme)
+end
+
+return M
