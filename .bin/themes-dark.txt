@@ -1,8 +1,9 @@
-Rose Pine
-Rose Pine Moon
-Sakura Afterglow
-Sakura Dusk
-Sakura Midnight
-Sakura Midnight Muted
-Sakura Night
-Sakura Night Muted
+flowers-night
+rose-pineish-main
+rose-pineish-moon
+sakura-afterglow
+sakura-dusk
+sakura-midnight
+sakura-midnight-muted
+sakura-night
+sakura-night-muted
