@@ -8,8 +8,15 @@ _G.cw = {}
 -- SHADA FILE --
 ----------------
 
-local shada = require("helpers.shada")
-shada.initialise_shada()
+require("helpers.shada").initialise_shada()
+
+---------------------
+-- COMMAND PALETTE --
+---------------------
+
+require("helpers.command-palette").initialise_command_palette()
+
+require("commands").register()
 
 -------------------------
 -- BASIC CONFIGURATION --

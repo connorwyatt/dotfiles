@@ -16,7 +16,7 @@ return {
             -- vim.cmd(":TransparentEnable")
         end,
         opts = {
-            update_interval = 300000,
+            update_interval = 5000,
             set_dark_mode = function()
                 theming.apply("dark")
             end,

@@ -98,3 +98,17 @@ end, {
     desc = "Toggle auto reformat on save",
     bang = true,
 })
+
+local command_palette = require("helpers.command-palette")
+
+command_palette.register_toggle_command_definition("Autoformat on save (global)", function()
+    return not vim.g.disable_autoformat
+end, function(enabled)
+    vim.g.disable_autoformat = not enabled
+end)
+
+command_palette.register_toggle_command_definition("Autoformat on save (buffer)", function()
+    return not vim.b.disable_autoformat
+end, function(enabled)
+    vim.b.disable_autoformat = not enabled
+end)

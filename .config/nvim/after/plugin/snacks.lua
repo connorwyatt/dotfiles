@@ -211,3 +211,15 @@ whichKey.add({
         desc = "Open lazygit",
     },
 })
+
+local command_palette = require("helpers.command-palette")
+
+command_palette.register_toggle_command_definition("Indent guides", function()
+    return require("snacks.indent").enabled
+end, function(enabled)
+    if enabled then
+        Snacks.indent.enable()
+    else
+        Snacks.indent.disable()
+    end
+end)

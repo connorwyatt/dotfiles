@@ -82,3 +82,19 @@ gitsigns.setup({
         end, { desc = "Toggle inline diff" })
     end,
 })
+
+local command_palette = require("helpers.command-palette")
+
+command_palette.register_toggle_command_definition("Git line blame", function()
+    return require("gitsigns.config").config.current_line_blame
+end, function(enabled)
+    gitsigns.toggle_current_line_blame(enabled)
+end)
+
+command_palette.register_toggle_command_definition("Git inline diff", function()
+    return require("gitsigns.config").config.linehl
+end, function(enabled)
+    gitsigns.toggle_linehl(enabled)
+    gitsigns.toggle_deleted(enabled)
+    gitsigns.toggle_word_diff(enabled)
+end)

@@ -1,8 +1,8 @@
 local M = {}
 
 M.themes = {
-    dark = "rose-pineish-moon",
-    light = "rose-pineish-dawn",
+    dark = "sakura-night",
+    light = "sakura-day",
 }
 
 function M.apply(mode)
