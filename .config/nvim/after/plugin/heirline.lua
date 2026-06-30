@@ -267,6 +267,40 @@ local Cwd = {
     },
 }
 
+local OilCwd = {
+    init = function(self)
+        local oil_prefix = "oil://"
+        local filename = vim.api.nvim_buf_get_name(0)
+        self.cwd = filename:sub(#oil_prefix + 1, -2)
+    end,
+    { provider = "󰉋", hl = highlights.file.directory_icon },
+    Spacer,
+    {
+        hl = function()
+            if vim.bo.modified then
+                return highlights.file.basename_modified
+            else
+                return highlights.file.basename
+            end
+        end,
+        flexible = 10,
+        {
+            provider = function(self)
+                return self.cwd
+            end,
+        },
+        {
+            provider = function(self)
+                return vim.fn.pathshorten(self.cwd)
+            end,
+        },
+        {
+            provider = "",
+        },
+    },
+    FileModifiedIndicator,
+}
+
 local FileInfoProvider = {
     init = function(self)
         self.filename = vim.api.nvim_buf_get_name(0)
@@ -569,6 +603,8 @@ local GitOnlyStatusline = {
     Git,
 
     Align,
+
+    utils.insert(ModeHighlights, Spacer),
 }
 
 local BreadcrumbDivider = {
@@ -595,14 +631,27 @@ local Navic = {
 local DefaultWinbar = {
     FilePath,
     Navic,
+    Align,
+}
+
+local OilCwdWinbar = {
+    OilCwd,
+    Align,
 }
 
 local CwdWinbar = {
     Cwd,
+    Align,
 }
 
 local Winbar = {
     fallthrough = false,
+    {
+        condition = function()
+            return vim.bo.filetype == "oil"
+        end,
+        OilCwdWinbar,
+    },
     {
         condition = function()
             return vim.bo.filetype == "neo-tree" or vim.bo.filetype == "fyler"
@@ -616,7 +665,7 @@ local Statusline = {
     fallthrough = false,
     {
         condition = function()
-            return vim.bo.filetype == "neo-tree" or vim.bo.filetype == "fyler"
+            return vim.bo.filetype == "oil" or vim.bo.filetype == "neo-tree" or vim.bo.filetype == "fyler"
         end,
         GitOnlyStatusline,
     },

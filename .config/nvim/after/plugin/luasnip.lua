@@ -67,7 +67,7 @@ local function select_choice()
     vim.ui.select(luasnip.get_current_choices(), { kind = "luasnip" }, set_choice_callback)
 end
 
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
     if luasnip.choice_active() then
         select_choice()
     elseif luasnip.expandable() then
@@ -79,7 +79,7 @@ vim.keymap.set({ "i", "s" }, "<C-l>", function()
         luasnip.jump(1)
     end
 end)
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
+vim.keymap.set({ "i", "s" }, "<C-h>", function()
     if luasnip.in_snippet() then
         luasnip.jump(-1)
     end

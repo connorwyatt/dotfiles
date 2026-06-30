@@ -11,6 +11,10 @@ return {
     },
 
     {
+        "onsails/lspkind.nvim",
+        config = true,
+    },
+    {
         "SmiteshP/nvim-navic",
         dependencies = {
             "neovim/nvim-lspconfig",

@@ -17,6 +17,9 @@ return {
                     enabled = true,
                 },
             },
+            pipe_table = {
+                style = "normal",
+            },
         },
     },
 }

@@ -10,7 +10,6 @@ return {
         transparent_cursorline = true,
         options = {
             add_messages = {
-
                 display_count = true,
             },
             multilines = {

@@ -40,31 +40,14 @@ local function open_command_palette_picker()
 end
 
 function M.initialise_command_palette()
-    local snacks_loaded = false
-    local which_key_loaded = false
-
-    vim.api.nvim_create_autocmd("User", {
-        pattern = "LazyLoad",
-        callback = function(event)
-            if event.data == "snacks.nvim" then
-                snacks_loaded = true
-            end
-            if event.data == "which-key.nvim" then
-                which_key_loaded = true
-            end
-
-            if snacks_loaded and which_key_loaded then
-                local which_key = require("which-key")
-                which_key.add({
-                    {
-                        "<C-p>",
-                        open_command_palette_picker,
-                        mode = { "n", "i", "v" },
-                        desc = "Open Command Palette",
-                    },
-                })
-            end
-        end,
+    local which_key = require("which-key")
+    which_key.add({
+        {
+            "<C-p>",
+            open_command_palette_picker,
+            mode = { "n", "i", "v" },
+            desc = "Open Command Palette",
+        },
     })
 end
 

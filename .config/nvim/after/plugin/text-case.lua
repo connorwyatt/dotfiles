@@ -1,3 +1,5 @@
+local command_palette = require("helpers.command-palette")
+
 local telescope_commands = {
     "TextCaseOpenTelescope",
     "TextCaseOpenTelescopeQuickChange",
@@ -20,20 +22,22 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 local commands = {
-    TextCaseSnake = "to_snake_case",
-    TextCaseCamel = "to_camel_case",
-    TextCasePascal = "to_pascal_case",
-    TextCaseDash = "to_dash_case",
-    TextCaseConstant = "to_constant_case",
-    TextCaseUpper = "to_upper_case",
-    TextCaseLower = "to_lower_case",
-    TextCaseDot = "to_dot_case",
-    TextCaseTitle = "to_title_case",
-    TextCasePath = "to_path_case",
+    { name = "TextCaseSnake", method = "to_snake_case", label = "Text case: snake_case" },
+    { name = "TextCaseCamel", method = "to_camel_case", label = "Text case: camelCase" },
+    { name = "TextCasePascal", method = "to_pascal_case", label = "Text case: PascalCase" },
+    { name = "TextCaseDash", method = "to_dash_case", label = "Text case: kebab-case" },
+    { name = "TextCaseConstant", method = "to_constant_case", label = "Text case: CONSTANT_CASE" },
+    { name = "TextCaseUpper", method = "to_upper_case", label = "Text case: UPPER CASE" },
+    { name = "TextCaseLower", method = "to_lower_case", label = "Text case: lower case" },
+    { name = "TextCaseDot", method = "to_dot_case", label = "Text case: dot.case" },
+    { name = "TextCaseTitle", method = "to_title_case", label = "Text case: Title Case" },
+    { name = "TextCasePath", method = "to_path_case", label = "Text case: path/case" },
 }
 
-for name, method in pairs(commands) do
-    vim.api.nvim_create_user_command(name, function()
-        require("textcase").quick_replace(method)
+for _, command in ipairs(commands) do
+    vim.api.nvim_create_user_command(command.name, function()
+        require("textcase").quick_replace(command.method)
     end, { range = true })
+
+    command_palette.register_command_definition(command.label, ":" .. command.name)
 end

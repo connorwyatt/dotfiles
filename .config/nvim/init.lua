@@ -10,14 +10,6 @@ _G.cw = {}
 
 require("helpers.shada").initialise_shada()
 
----------------------
--- COMMAND PALETTE --
----------------------
-
-require("helpers.command-palette").initialise_command_palette()
-
-require("commands").register()
-
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
@@ -55,10 +47,6 @@ vim.opt.showmode = false
 
 -- Enable mouse mode, useful for resizing splits.
 vim.opt.mouse = "a"
-
--- Cursor
-vim.o.guicursor =
-    "n-v-c-i-ci-ve-sm:block,r-cr:hor20,o:hor50,a:Cursor/lCursor,i-ci-ve-sm-r-cr-o:blinkwait400-blinkoff400-blinkon400"
 
 -- Enable break indent.
 vim.opt.breakindent = true
