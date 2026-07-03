@@ -25,7 +25,7 @@ tmux-directory() {
         echo "Directory ($1) does not exist"
         return
     fi
-    tmux-create-or-attach $1
+    tmux-create-or-attach "$1" "$2"
 }
 
 alias ta='tmux-attacher'
