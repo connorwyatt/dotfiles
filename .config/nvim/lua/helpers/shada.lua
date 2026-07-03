@@ -60,6 +60,24 @@ local function should_use_project_specific_shada()
     return false
 end
 
+function register_shada_sync_autocommands()
+    local shada_sync_group = vim.api.nvim_create_augroup("ShadaSync", { clear = true })
+
+    vim.api.nvim_create_autocmd({ "FocusLost", "VimLeave" }, {
+        group = shada_sync_group,
+        callback = function()
+            pcall(vim.cmd, "wshada")
+        end,
+    })
+
+    vim.api.nvim_create_autocmd({ "FocusGained", "VimEnter" }, {
+        group = shada_sync_group,
+        callback = function()
+            pcall(vim.cmd, "rshada")
+        end,
+    })
+end
+
 function M.initialise_shada()
     if not should_use_project_specific_shada() then
         return
@@ -68,6 +86,8 @@ function M.initialise_shada()
     cw.ensure_cw_directory()
 
     vim.o.shadafile = project_specific_shada_file_location()
+
+    register_shada_sync_autocommands()
 end
 
 return M
