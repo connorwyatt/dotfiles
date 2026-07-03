@@ -4,7 +4,7 @@ printf "\033]2;theme-switcher\a"
 
 appearance=$(echo "light,dark" | tr , "\n" | fzf --height=4 --no-input)
 
-theme=$(cat "${HOME}/.bin/themes-${appearance}.txt" | fzf)
+theme=$(cat "${HOME}/.bin/resources/themes-${appearance}.txt" | fzf)
 
 # Update ghostty theme
 sd "^(theme.*${appearance}:)[A-Za-z-\s]+(,?.*)$" "\${1}${theme}\${2}" $HOME/.config/ghostty/config
