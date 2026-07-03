@@ -5,7 +5,15 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader><leader>", "<cmd>:Oil<cr>", desc = "Files" },
+            {
+                "<leader><leader>",
+                function()
+                    if vim.bo.filetype ~= "oil" then
+                        vim.cmd(":Oil")
+                    end
+                end,
+                desc = "Files",
+            },
         },
         lazy = false,
         cmd = "Oil",
@@ -23,7 +31,8 @@ return {
                 ["<CR>"] = { "actions.select" },
                 ["<localleader>p"] = { "actions.preview", opts = { split = "belowright" } },
                 ["<C-r>"] = { "actions.refresh" },
-                ["<BS>"] = { "actions.parent", mode = "n" },
+                ["-"] = { "actions.parent", mode = "n" },
+                ["_"] = { "actions.open_cwd", mode = "n" },
                 ["."] = { "actions.cd", mode = "n" },
                 ["gs"] = { "actions.change_sort", mode = "n" },
                 ["gx"] = { "actions.open_external" },
