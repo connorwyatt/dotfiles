@@ -19,9 +19,21 @@ config_paths=(
 
 config_paths=(${(ou)config_paths})
 
+colorize_path() {
+    local p=$1
+    if [[ $p == */* ]]; then
+        printf '\033[2m%s/\033[0m%s' "${p:h}" "${p:t}"
+    else
+        printf '%s' "$p"
+    fi
+}
+
 selected=$(
-    print -l -- $config_paths | \
-    fzf --exit-0 --scheme=path --preview 'zsh -fc "bat --color=always --style=plain \${~argv[1]}/README.md 2>/dev/null" -- {}')
+    for p in $config_paths; do
+        printf '%s\t%s\n' "$p" "$(colorize_path $p)"
+    done | \
+    fzf --exit-0 --scheme=path --delimiter=$'\t' --with-nth=2 --accept-nth=1 \
+        --preview 'zsh -fc "bat --color=always --style=plain \${~argv[1]}/README.md 2>/dev/null" -- {1}')
 
 if [[ -z $selected ]]; then
     exit 0
