@@ -6,10 +6,11 @@ printf "\033]2;tmux-sessionizer\a"
 
 base_directory="$HOME/Code"
 script_dir="${0:a:h}"
+resources_local_config="$script_dir/resources-local/tmux-sessionizer-configurations.json"
 
 config_paths=(
     ${(f)"$(jq -r '.[]' "$script_dir/resources/tmux-sessionizer-configurations.json")"}
-    ${(f)"$(jq -r '.[]' "$script_dir/resources-local/tmux-sessionizer-configurations.json")"}
+    ${(f)"$([[ -f $resources_local_config ]] && jq -r '.[]' "$resources_local_config")"}
     ${(f)"$(fd '^.git$' $base_directory --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | \
         grep '^worktree ' | \
         grep -v '/.bare$' | \
