@@ -1,0 +1,4 @@
+theme = 16
+without_commandbar = true
+without_topbar = true
+less_status_bar = true

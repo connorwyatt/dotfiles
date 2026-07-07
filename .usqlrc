@@ -1,0 +1,4 @@
+\pset pager always
+\pset linestyle unicode
+\pset format aligned
+\set PAGER pspg
