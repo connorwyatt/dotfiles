@@ -1,4 +1,5 @@
 local cw = require("helpers.cw")
+local command_palette = require("helpers.command-palette")
 
 local M = {}
 
@@ -38,14 +39,14 @@ local function load_project_configuration()
     return _G.cw.project_configuration_cache
 end
 
-local function execute_project_configuration_hook(hook_name)
+local function execute_project_configuration_hook(hook_name, ctx)
     local project_configuration = load_project_configuration()
 
     if project_configuration == nil or project_configuration[hook_name] == nil then
         return
     end
 
-    project_configuration[hook_name]()
+    project_configuration[hook_name](ctx)
 end
 
 function M.execute_init_hook()
@@ -53,7 +54,12 @@ function M.execute_init_hook()
 end
 
 function M.execute_loaded_hook()
-    execute_project_configuration_hook("loaded")
+    execute_project_configuration_hook("loaded", {
+        command_palette = {
+            register_command_definition = command_palette.register_command_definition,
+            register_toggle_command_definition = command_palette.register_toggle_command_definition,
+        },
+    })
 end
 
 return M
