@@ -5,19 +5,26 @@ source ~/.config/zsh/sources/tmux.zsh
 printf "\033]2;tmux-sessionizer\a"
 
 base_directory="$HOME/Code"
+script_dir="${0:a:h}"
 
-selected=$(
-    fd '^.git$' $HOME/Code --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | \
+config_paths=(
+    ${(f)"$(jq -r '.[]' "$script_dir/resources/tmux-sessionizer-configurations.json")"}
+    ${(f)"$(jq -r '.[]' "$script_dir/resources-local/tmux-sessionizer-configurations.json")"}
+    ${(f)"$(fd '^.git$' $base_directory --hidden --exec bash -c 'cd {//}; git worktree list --porcelain' bash | \
         grep '^worktree ' | \
         grep -v '/.bare$' | \
         sd '^worktree ' '' | \
-        sd "$base_directory/" '' | \
-        sort | \
-        uniq | \
-    fzf --exit-0 --preview "bat $base_directory/{}/README.md 2> /dev/null")
+        sd "$HOME" '~')"}
+)
+
+config_paths=(${(ou)config_paths})
+
+selected=$(
+    print -l -- $config_paths | \
+    fzf --exit-0 --scheme=path --preview 'zsh -fc "bat --color=always --style=plain \${~argv[1]}/README.md 2>/dev/null" -- {}')
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-tmux-create-or-attach $base_directory/$selected $selected
+tmux-create-or-attach $selected
