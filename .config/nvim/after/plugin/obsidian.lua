@@ -1,46 +1,37 @@
 local whichKey = require("which-key")
 
-if not _G.cw.is_obsidian_vault then
-    return
+local function register_obsidian_keybinds()
+    whichKey.add({
+        { "<leader>o", group = "Obsidian" },
+        {
+            "<leader>os",
+            function()
+                vim.cmd(":Obsidian quick_switch")
+            end,
+            desc = "Quick Switch",
+        },
+        {
+            "<leader>ot",
+            function()
+                vim.cmd(":Obsidian tags")
+            end,
+            desc = "Tags",
+        },
+        {
+            "<leader>ob",
+            function()
+                vim.cmd(":Obsidian backlinks")
+            end,
+            desc = "Backlinks",
+        },
+    })
 end
 
-vim.opt.conceallevel = 2
-
-whichKey.add({
-    { "<leader>o", group = "Obsidian" },
-    {
-        "<leader>os",
-        function()
-            vim.cmd(":Obsidian quick_switch")
-        end,
-        desc = "Quick Switch",
-    },
-    {
-        "<leader>ot",
-        function()
-            vim.cmd(":Obsidian tags")
-        end,
-        desc = "Tags",
-    },
-    {
-        "<leader>od",
-        function()
-            vim.cmd(":Obsidian dailies")
-        end,
-        desc = "Dailies",
-    },
-    {
-        "<leader>ot",
-        function()
-            vim.cmd(":Obsidian today")
-        end,
-        desc = "Today Daily",
-    },
-    {
-        "<leader>ob",
-        function()
-            vim.cmd(":Obsidian backlinks")
-        end,
-        desc = "Backlinks",
-    },
+vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyLoad",
+    callback = function(event)
+        if event.data == "obsidian.nvim" then
+            register_obsidian_keybinds()
+        end
+    end,
 })
