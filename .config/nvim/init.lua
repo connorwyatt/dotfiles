@@ -91,6 +91,9 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
+-- Turn on spell check.
+vim.opt.spell = true
+
 ----------------
 -- KEYMAPPING --
 ----------------
