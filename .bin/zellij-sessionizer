@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-source ~/.config/zsh/sources/tmux.zsh
+source ~/.config/zsh/sources/zellij.zsh
 
-printf "\033]2;tmux-sessionizer\a"
+printf "\033]2;zellij-sessionizer\a"
 
 base_directory="$HOME/Code"
 script_dir="${0:a:h}"
@@ -40,4 +40,4 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-tmux-create-or-attach $selected
+zellij-create-or-attach $selected

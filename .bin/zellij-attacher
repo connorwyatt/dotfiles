@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+printf "\033]2;zellij-attacher\a"
+
+selected=$(
+    zellij list-sessions -s | \
+        fzf --exit-0 --bind "ctrl-x:execute-silent(zellij kill-session {1})+reload(zellij list-sessions -s)"
+)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+zellij attach $selected
