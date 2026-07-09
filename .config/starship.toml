@@ -3,13 +3,13 @@
 add_newline = true
 
 format = '''$directory$git_branch$git_commit$git_status$git_state
-$character'''
+$cmd_duration$character'''
 
-right_format = '''$dotnet$golang$nodejs$rust$zig'''
+right_format = '''$dotnet$golang$nodejs$rust$zig$time'''
 
 [character]
-success_symbol = '[\$](green)'
-error_symbol = '[\$](red)'
+success_symbol = '[>](green)'
+error_symbol = '[>](red)'
 
 [directory]
 style = 'yellow'
@@ -53,6 +53,16 @@ staged = ''
 renamed = '[ $count](yellow) '
 deleted = '[ $count](red) '
 typechanged = ''
+
+[cmd_duration]
+min_time = 5000
+show_milliseconds = true
+format = '[$duration](cyan) '
+
+[time]
+disabled = false
+time_format = '%T'
+utc_time_offset = 'local'
 
 [dotnet]
 style = 'blue'
