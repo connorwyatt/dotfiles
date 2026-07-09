@@ -25,13 +25,11 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
-local utils = require("snippets.utils")
 
-local function date_command(arguments)
-    return d(nil, function(_, _, _, fmt)
-        local date = utils.execute_shell_command('date "' .. fmt .. '"')[1] or ""
-        return sn(nil, { t(date) })
-    end, {}, { user_args = { arguments } })
+local function date_format(format)
+    return f(function()
+        return os.date(format)
+    end)
 end
 
 return {
@@ -40,16 +38,14 @@ return {
         desc = "Insert the date",
     }, {
         c(1, {
-            date_command("+%Y-%m-%d"),
-            date_command("+%d/%m/%Y"),
+            date_format("%Y-%m-%d"),
+            date_format("%d/%m/%Y"),
         }),
     }),
     s({
         trig = "datetime",
         desc = "Insert the datetime",
     }, {
-        c(1, {
-            date_command('-u "+%Y-%m-%dT%H:%M:%SZ"'),
-        }),
+        date_format("!%Y-%m-%dT%H:%M:%SZ"),
     }),
 }
