@@ -56,7 +56,7 @@ typechanged = ''
 
 [cmd_duration]
 min_time = 5000
-show_milliseconds = true
+show_milliseconds = false
 format = '[$duration](cyan) '
 
 [time]
