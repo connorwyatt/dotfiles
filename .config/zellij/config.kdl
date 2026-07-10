@@ -25,7 +25,18 @@ keybinds clear-defaults=true {
     }
 
     normal {
+        bind "1" { GoToTab 1; SwitchToMode "locked"; }
+        bind "2" { GoToTab 2; SwitchToMode "locked"; }
+        bind "3" { GoToTab 3; SwitchToMode "locked"; }
+        bind "4" { GoToTab 4; SwitchToMode "locked"; }
+        bind "5" { GoToTab 5; SwitchToMode "locked"; }
+        bind "6" { GoToTab 6; SwitchToMode "locked"; }
+        bind "7" { GoToTab 7; SwitchToMode "locked"; }
+        bind "8" { GoToTab 8; SwitchToMode "locked"; }
+        bind "9" { GoToTab 9; SwitchToMode "locked"; }
+        bind "c" { NewTab; SwitchToMode "locked"; }
         bind "d" { Detach; }
+        bind "h" { NewPane "down"; SwitchToMode "locked"; }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
@@ -33,6 +44,9 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "locked"
         }
+        bind "v" { NewPane "right"; SwitchToMode "locked"; }
+        bind "x" { CloseFocus; SwitchToMode "locked"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "locked"; }
         bind "Ctrl q" { Quit; }
     }
 
@@ -42,10 +56,6 @@ keybinds clear-defaults=true {
 
     // Panes
     pane {
-        bind "left" { NewPane "left"; }
-        bind "down" { NewPane "down"; }
-        bind "up" { NewPane "up"; }
-        bind "right" { NewPane "right"; }
         bind "f" { TogglePaneFrames; }
         bind "h" { MoveFocus "left"; }
         bind "j" { MoveFocus "down"; }
@@ -58,27 +68,25 @@ keybinds clear-defaults=true {
         bind "p" { SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "x" { CloseFocus; }
-        bind "z" { ToggleFocusFullscreen; SwitchToMode "locked"; }
+        bind "z" { ToggleFocusFullscreen; }
     }
 
     // Tabs
-    shared_among "normal" "tab" {
-        bind "1" { GoToTab 1; SwitchToMode "locked"; }
-        bind "2" { GoToTab 2; SwitchToMode "locked"; }
-        bind "3" { GoToTab 3; SwitchToMode "locked"; }
-        bind "4" { GoToTab 4; SwitchToMode "locked"; }
-        bind "5" { GoToTab 5; SwitchToMode "locked"; }
-        bind "6" { GoToTab 6; SwitchToMode "locked"; }
-        bind "7" { GoToTab 7; SwitchToMode "locked"; }
-        bind "8" { GoToTab 8; SwitchToMode "locked"; }
-        bind "9" { GoToTab 9; SwitchToMode "locked"; }
-    }
     tab {
+        bind "1" { GoToTab 1; }
+        bind "2" { GoToTab 2; }
+        bind "3" { GoToTab 3; }
+        bind "4" { GoToTab 4; }
+        bind "5" { GoToTab 5; }
+        bind "6" { GoToTab 6; }
+        bind "7" { GoToTab 7; }
+        bind "8" { GoToTab 8; }
+        bind "9" { GoToTab 9; }
         bind "h" { GoToPreviousTab; }
         bind "l" { GoToNextTab; }
         bind "Ctrl h" { MoveTab "left"; }
         bind "Ctrl l" { MoveTab "right"; }
-        bind "n" { NewTab; SwitchToMode "locked"; }
+        bind "n" { NewTab; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "t" { SwitchToMode "normal"; }
         bind "x" { CloseTab; }
