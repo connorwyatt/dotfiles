@@ -1,3 +1,5 @@
+config-version = 2
+
 after-login-command = []
 
 after-startup-command = []
@@ -16,6 +18,33 @@ default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
+
+on-window-detected = [
+    {
+        if = 'test %{app-bundle-id} = com.kagi.kagimacOS',
+        run = 'move-node-to-workspace 1',
+    },
+    {
+        if = 'test %{app-bundle-id} = com.mitchellh.ghostty',
+        run = 'move-node-to-workspace 2',
+    },
+    {
+        if = 'test %{app-bundle-id} = com.brave.Browser',
+        run = 'move-node-to-workspace 6',
+    },
+    {
+        if = 'test %{app-bundle-id} = com.apple.iCal',
+        run = 'move-node-to-workspace 7',
+    },
+    {
+        if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap',
+        run = 'move-node-to-workspace 8',
+    },
+    {
+        if = 'test %{app-bundle-id} = com.apple.mail',
+        run = 'move-node-to-workspace 9',
+    }
+]
 
 [key-mapping]
 preset = 'qwerty'
@@ -83,8 +112,3 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
-
-[[on-window-detected]]
-    if.app-id = 'com.microsoft.AzureVpnMac'
-    check-further-callbacks = true
-    run = ['layout floating']
