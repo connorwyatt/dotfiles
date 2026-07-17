@@ -19,35 +19,22 @@ window-padding-balance = true
 
 copy-on-select = false
 
-# font-family = "JetBrains Mono Regular Regular"
-# font-family-italic = "JetBrains Mono Italic Italic"
-# font-family-bold = "JetBrains Mono Regular ExtraBold"
-# font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
+# font-family = "IBM Plex Mono"
+# font-style = Regular
+# font-style-italic = Italic
+# font-style-bold = Bold
+# font-style-bold-italic = Bold Italic
 
-# font-family = "JetBrains Mono Regular Medium"
-# font-family-italic = "JetBrains Mono Italic Medium Italic"
-# font-family-bold = "JetBrains Mono Regular ExtraBold"
-# font-family-bold-italic = "JetBrains Mono Italic ExtraBold Italic"
+# font-family = "Iosevka"
+# font-style = Extended
+# font-style-italic = Extended Oblique
+# font-style-bold = Heavy Extended
+# font-style-bold-italic = Heavy Extended Oblique
 
-# font-family = "IBM Plex Mono Regular"
-# font-family-italic = "IBM Plex Mono Italic"
-# font-family-bold = "IBM Plex Mono Bold"
-# font-family-bold-italic = "IBM Plex Mono Bold Italic"
-
-# font-family = "Iosevka Extended"
-# font-family-italic = "Iosevka Extended Oblique"
-# font-family-bold = "Iosevka Heavy Extended"
-# font-family-bold-italic = "Iosevka Heavy Extended Oblique"
-
-# font-family = "Iosevka Medium Extended"
-# font-family-italic = "Iosevka Medium Extended Oblique"
-# font-family-bold = "Iosevka Heavy Extended"
-# font-family-bold-italic = "Iosevka Heavy Extended Oblique"
-
-# font-family = "InputMonoNarrow"
-# font-family-italic = "InputMonoNarrow Italic"
-# font-family-bold = "InputMonoNarrow Black"
-# font-family-bold-italic = "InputMonoNarrow BlackIta"
+font-family = "Input Mono Condensed"
+font-style-bold = Bold
+font-style-italic = Italic
+font-style-bold-italic = BoldIta
 
 font-feature = -calt
 font-feature = -liga
@@ -64,4 +51,4 @@ keybind = global:cmd+ctrl+alt+space=toggle_quick_terminal
 quick-terminal-position = right
 quick-terminal-size = 35%, 100%
 quit-after-last-window-closed = false
-quick-terminal-autohide = true
+quick-terminal-autohide = false
