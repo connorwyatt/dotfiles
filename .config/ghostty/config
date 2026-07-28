@@ -1,5 +1,7 @@
 theme = dark:sakura-night,light:sakura-day
 
+macos-option-as-alt = true
+
 # background-opacity = 0.9
 # background-blur = 100
 # background-opacity-cells = true
@@ -46,6 +48,9 @@ adjust-cell-height = 20%
 
 adjust-cursor-thickness = 4
 adjust-cursor-height = 20%
+
+keybind = super+arrow_left=text:\x1bOH
+keybind = super+arrow_right=text:\x1bOF
 
 keybind = global:cmd+ctrl+alt+space=toggle_quick_terminal
 quick-terminal-position = right
