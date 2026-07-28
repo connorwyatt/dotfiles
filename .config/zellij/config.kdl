@@ -32,7 +32,7 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; SwitchToMode "locked"; }
         bind "8" { GoToTab 8; SwitchToMode "locked"; }
         bind "9" { GoToTab 9; SwitchToMode "locked"; }
-        bind "c" { NewTab "unnamed"; SwitchToMode "locked"; }
+        bind "c" { NewTab; SwitchToMode "locked"; }
         bind "d" { Detach; }
         bind "h" { NewPane "down"; SwitchToMode "locked"; }
         bind "w" {
@@ -84,7 +84,7 @@ keybinds clear-defaults=true {
         bind "l" { GoToNextTab; }
         bind "Ctrl h" { MoveTab "left"; }
         bind "Ctrl l" { MoveTab "right"; }
-        bind "n" { NewTab "unnamed"; }
+        bind "n" { NewTab; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "t" { SwitchToMode "normal"; }
         bind "x" { CloseTab; }
@@ -167,12 +167,18 @@ load_plugins {
 
 simplified_ui true
 
+pane_frames false
+
 theme "sakura-night"
+theme_light "sakura-day"
+theme_dark "sakura-night"
 
 default_mode "locked"
 
 default_layout "zjstatus"
 
 attach_to_session true
+
+session_serialization false
 
 show_startup_tips false

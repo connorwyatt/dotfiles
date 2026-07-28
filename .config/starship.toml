@@ -2,7 +2,7 @@
 
 add_newline = true
 
-format = '''$directory$git_branch$git_commit$git_status$git_state
+format = '''$directory$kubernetes$git_branch$git_commit$git_status$git_state
 $cmd_duration$character'''
 
 right_format = '''$dotnet$golang$nodejs$rust$zig$time'''
@@ -84,3 +84,14 @@ symbol = ' '
 [zig]
 style = 'yellow'
 symbol = ' '
+
+[kubernetes]
+disabled = false
+symbol = '󱃾 '
+style = 'fg:black bg:red'
+format = '([ $symbol$context ]($style) )'
+
+[[kubernetes.contexts]]
+context_pattern = 'kind-kind'
+symbol = ''
+context_alias = ''

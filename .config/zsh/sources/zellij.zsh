@@ -1,3 +1,7 @@
+mkdir -p "/tmp/zellij-$UID"
+chmod 700 "/tmp/zellij-$UID"
+export ZELLIJ_SOCKET_DIR="/tmp/zellij-$UID"
+
 zellij-create-or-attach() {
     local dir=${~1}
 
