@@ -18,6 +18,10 @@ keybinds clear-defaults=true {
         bind "Ctrl Shift j" { MoveFocus "down"; }
         bind "Ctrl Shift k" { MoveFocus "up"; }
         bind "Ctrl Shift l" { MoveFocus "right"; }
+        bind "Ctrl Shift Left" { Resize "left"; }
+        bind "Ctrl Shift Down" { Resize "down"; }
+        bind "Ctrl Shift Up" { Resize "up"; }
+        bind "Ctrl Shift Right" { Resize "right"; }
     }
 
     normal {
@@ -65,6 +69,7 @@ keybinds clear-defaults=true {
         bind "Ctrl l" { MovePane "right"; }
         bind "p" { SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renamepane"; PaneNameInput 0; }
+        bind "s" { NewPane "stacked"; SwitchToMode "locked"; }
         bind "x" { CloseFocus; }
         bind "z" { ToggleFocusFullscreen; }
     }
