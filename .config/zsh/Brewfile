@@ -1,4 +1,7 @@
+tap "connorwyatt/tap", trusted: true
+
 brew "bat"
+brew "connorwyatt/tap/fuzzy-table"
 brew "fd"
 brew "fzf"
 brew "gh"
