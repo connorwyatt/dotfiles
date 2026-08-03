@@ -53,7 +53,19 @@ if vim.fn.executable("zig") == 1 then
     conform_formatters.zig = { "zigfmt" }
 end
 
+if vim.fn.executable("odinfmt") == 1 then
+    conform_formatters.odin = { "odinfmt" }
+end
+
 conform.setup({
+    notify_on_error = false,
+    formatters = {
+        odinfmt = {
+            command = "odinfmt",
+            args = { "-stdin" },
+            stdin = true,
+        },
+    },
     formatters_by_ft = conform_formatters,
     default_format_opts = {
         lsp_format = "fallback",
