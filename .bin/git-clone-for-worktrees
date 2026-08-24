@@ -2,15 +2,38 @@
 set -e
 
 # Examples of call:
-# git-clone-bare-for-worktrees git@github.com:name/repo.git
-# => Clones to a /repo directory
+# git-clone-for-worktrees git@github.com:name/repo.git
+# => Clones to a /repo directory, creates main worktree
 #
-# git-clone-bare-for-worktrees git@github.com:name/repo.git my-repo
-# => Clones to a /my-repo directory
+# git-clone-for-worktrees git@github.com:name/repo.git my-repo
+# => Clones to a /my-repo directory, creates main worktree
+#
+# git-clone-for-worktrees --default-branch develop git@github.com:name/repo.git
+# => Clones to a /repo directory, creates develop worktree
 
-url=$1
+default_branch=main
+positional=()
+
+while (( $# )); do
+  case $1 in
+    --default-branch)
+      default_branch=$2
+      shift 2
+      ;;
+    --default-branch=*)
+      default_branch=${1#*=}
+      shift
+      ;;
+    *)
+      positional+=($1)
+      shift
+      ;;
+  esac
+done
+
+url=$positional[1]
 basename=${url##*/}
-name=${2:-${basename%.*}}
+name=${positional[2]:-${basename%.*}}
 
 mkdir $name
 cd "$name"
@@ -23,11 +46,11 @@ git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git fetch origin
 
 echo
-echo "Creating main worktree"
+echo "Creating $default_branch worktree"
 echo
 
-git worktree add main
+git worktree add "$default_branch" "$default_branch"
 
-cd main
+cd "$default_branch"
 
-git branch --set-upstream-to=origin/main main
+git branch --set-upstream-to=origin/"$default_branch" "$default_branch"
