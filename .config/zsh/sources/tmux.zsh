@@ -1,7 +1,7 @@
 tmux-attach() {
     if [[ -z $TMUX ]]; then
         tmux attach -t $1
-        exit 0
+        return
     fi
 
     tmux switch-client -t $1
@@ -27,9 +27,24 @@ tmux-create-or-attach() {
     tmux switch-client -t $session_name
 }
 
+tmux-workspace() {
+    printf "\033]2;tmux-workspace\a"
+    local selected=$(fzf-workspace)
+    [[ -z $selected ]] && return
+    tmux-create-or-attach $selected
+}
+
+tmux-attacher() {
+    printf "\033]2;tmux-attacher\a"
+    local sessions=(${(f)"$(tmux ls -F '#{session_name}')"})
+    local selected=$(print -rl -- $sessions | fzf)
+    [[ -z $selected ]] && return
+    tmux-attach $selected
+}
+
 alias ta='tmux-attacher'
 alias tls='tmux ls'
 alias tnl='tmux-nvim-layout'
 alias tnlc='tmux-nvim-layout-cursor'
 alias tpwd='tmux-create-or-attach $PWD'
-alias ts='tmux-sessionizer'
+alias tw='tmux-workspace'

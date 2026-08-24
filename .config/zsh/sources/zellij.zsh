@@ -16,5 +16,20 @@ zellij-create-or-attach() {
     zellij attach -c $session_name options --default-cwd $dir
 }
 
+zellij-workspace() {
+    printf "\033]2;zellij-workspace\a"
+    local selected=$(fzf-workspace)
+    [[ -z $selected ]] && return
+    zellij-create-or-attach $selected
+}
+
+zellij-attacher() {
+    printf "\033]2;zellij-attacher\a"
+    local sessions=(${(f)"$(zellij list-sessions -s)"})
+    local selected=$(print -rl -- $sessions | fzf)
+    [[ -z $selected ]] && return
+    zellij attach $selected
+}
+
 alias za="zellij-attacher"
-alias zs="zellij-sessionizer"
+alias zw="zellij-workspace"
