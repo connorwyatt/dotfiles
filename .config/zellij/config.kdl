@@ -14,10 +14,10 @@ keybinds clear-defaults=true {
         bind "Ctrl 9" { GoToTab 9; }
         bind "Ctrl Shift [" { PreviousSwapLayout; }
         bind "Ctrl Shift ]" { NextSwapLayout; }
-        bind "Ctrl Shift h" { MoveFocus "left"; }
+        bind "Ctrl Shift h" { MoveFocusOrTab "left"; }
         bind "Ctrl Shift j" { MoveFocus "down"; }
         bind "Ctrl Shift k" { MoveFocus "up"; }
-        bind "Ctrl Shift l" { MoveFocus "right"; }
+        bind "Ctrl Shift l" { MoveFocusOrTab "right"; }
         bind "Ctrl Shift Left" { Resize "left"; }
         bind "Ctrl Shift Down" { Resize "down"; }
         bind "Ctrl Shift Up" { Resize "up"; }
@@ -59,10 +59,10 @@ keybinds clear-defaults=true {
     // Panes
     pane {
         bind "f" { TogglePaneFrames; }
-        bind "h" { MoveFocus "left"; }
+        bind "h" { MoveFocusOrTab "left"; }
         bind "j" { MoveFocus "down"; }
         bind "k" { MoveFocus "up"; }
-        bind "l" { MoveFocus "right"; }
+        bind "l" { MoveFocusOrTab "right"; }
         bind "Ctrl h" { MovePane "left"; }
         bind "Ctrl j" { MovePane "down"; }
         bind "Ctrl k" { MovePane "up"; }
@@ -172,7 +172,7 @@ load_plugins {
 
 simplified_ui true
 
-pane_frames false
+pane_frames true
 
 theme "sakura-night"
 theme_light "sakura-day"
