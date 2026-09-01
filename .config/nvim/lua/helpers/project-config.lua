@@ -5,7 +5,7 @@ local M = {}
 
 local project_configuration_file_name = "project-config.lua"
 
-_G.cw.project_configuration_loaded = false
+_G.cw.project_configuration_load_attempted = false
 _G.cw.project_configuration_cache = nil
 
 local function get_file_path()
@@ -18,7 +18,7 @@ local function get_file_path()
 end
 
 local function load_project_configuration()
-    if _G.cw.project_configuration_loaded then
+    if _G.cw.project_configuration_load_attempted then
         return _G.cw.project_configuration_cache
     end
 
@@ -29,9 +29,9 @@ local function load_project_configuration()
     end
 
     if vim.loop.fs_stat(file_path) then
+        _G.cw.project_configuration_load_attempted = true
         local ok, content = pcall(vim.secure.read, file_path)
         if ok and content then
-            _G.cw.project_configuration_loaded = true
             _G.cw.project_configuration_cache = loadstring(content)()
         end
     end
