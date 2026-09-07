@@ -90,8 +90,3 @@ disabled = false
 symbol = '󱃾 '
 style = 'fg:black bg:red'
 format = '([ $symbol$context ]($style) )'
-
-[[kubernetes.contexts]]
-context_pattern = 'kind-kind'
-symbol = ''
-context_alias = ''
